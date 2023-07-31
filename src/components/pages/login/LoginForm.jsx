@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //import { useHistory } from 'react-router-dom';
 
 export default function LoginForm() {
 
-    const [prenom, setPrenom] = useState('');
-    //const history = useHistory();
+    const [inputValue, setInputValue] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //history.push('./OrderPage');
-        setPrenom('');
+        navigate(`order/${ inputValue }`);
+        setInputValue('');
     };
 
     const handleChange = (e) => {
-        setPrenom(e.target.value)
+        setInputValue(e.target.value)
     }
 
     return (
@@ -26,8 +26,8 @@ export default function LoginForm() {
             <div>
                 <h2>Connectez - vous </h2>
             </div>
-            <input type="text" required placeholder='Entrez votre prenom' value={prenom} onChange={handleChange} />
-            <button> Accedez a votre espace </button><Link to='/order'> Order Page</Link>
+            <input type="text" required placeholder='Entrez votre prenom' value={inputValue} onChange={handleChange} />
+            <button> Accedez a votre espace </button>
         </form>
 
     )
