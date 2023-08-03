@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { theme } from "../../theme/design";
-//import { PiUserCircleFill } from 'react-icons/pi';
+//import { BsPersonIcon } from 'react-icons/bs';
 
 export default function LoginForm() {
 
@@ -24,11 +24,18 @@ export default function LoginForm() {
             <div>
                 <h1>Bienvenue chez nous!</h1>
             </div>
-            <div className='ligne'></div>
+            <hr />
             <div>
                 <h2>Connectez-vous </h2>
             </div>
-            <input type="text" required placeholder='Entrez votre prénom' value={inputValue} onChange={handleChange} />
+            <div className="input-container">
+            
+                <input type="text"
+                    required
+                    placeholder='Entrez votre prénom'
+                    value={inputValue}
+                    onChange={handleChange} />
+            </div>
             <button> Accéder a votre espace <span className="arrow">{'>'}</span> </button>
         </LoginFormStyled>
     )
@@ -42,11 +49,21 @@ const LoginFormStyled = styled.form`
     justify-content: center;   
     align-items: center;
     font-family: 'Amatic SC', cursive;
-    h1, h2 {
+    max-width: 500px;
+    min-width: 400px;
+    border-radius: 5px;
+    h1 {
         color: ${theme.colors.white};
+        color: ${theme.fonts.P5};
     }
-    .ligne {
-        border: 3px solid #f56a2c;
+    h2  {
+        color: ${theme.colors.white};
+        color: ${theme.fonts.P4};
+        margin: 20px 10px 10px;
+    }
+    hr {
+        border: 1.5px solid #f56a2c;
+        margin-bottom: 40px;
         width: 400px;
     }
     button {
@@ -75,17 +92,35 @@ const LoginFormStyled = styled.form`
         color: ${theme.colors.white};
         cursor: pointer;
     }
-    input {
-        width: 400px;
-        height: 53px;
-        margin-bottom: 18px;
-        border-radius: 5px;
-        border: 0px;
+    .input-container{
         background-color: ${theme.colors.white};
-        color: #d3d3d3;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        padding: 18px 24px;
+        margin: 18px 0;
+
+        .icon {
+            font-size: ${theme.fonts.P0};
+            margin-right: 8px;
+            color: ${theme.colors.greySemiDark};
+        }
+
+        input {
+        border-radius: 5px;
+        border: none;
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.dark};
         font-size: ${theme.fonts.P0};
-        
-    }
+        }
+
+        &::placeholder {
+            background: ${theme.colors.white};
+            color: ${theme.colors.greyLight};
+        }
+
+        }
+    
     .arrow {
         margin-left: 10px;
     }
