@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { theme } from "../../theme/design";
-//import { BsPersonIcon } from 'react-icons/bs';
+import { IoChevronForward } from 'react-icons/io5';
+import Input from "./input/input";
 
 export default function LoginForm() {
 
@@ -28,15 +29,11 @@ export default function LoginForm() {
             <div>
                 <h2>Connectez-vous </h2>
             </div>
-            <div className="input-container">
-            
-                <input type="text"
-                    required
-                    placeholder='Entrez votre prénom'
-                    value={inputValue}
-                    onChange={handleChange} />
-            </div>
-            <button> Accéder a votre espace <span className="arrow">{'>'}</span> </button>
+            <Input onChange={handleChange} value={inputValue} placeholder={"Entrez votre prénom"} />
+            <button className="button-icon">
+                <span> Accéder a votre espace </span>
+                <IoChevronForward />
+            </button>
         </LoginFormStyled>
     )
 }
@@ -119,9 +116,9 @@ const LoginFormStyled = styled.form`
             color: ${theme.colors.greyLight};
         }
 
-        }
-    
+    }    
     .arrow {
         margin-left: 10px;
     }
+
 `;
