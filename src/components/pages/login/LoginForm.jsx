@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { theme } from "../../theme/design";
 import { IoChevronForward } from 'react-icons/io5';
-import Input from "./input/input";
+import { BsPersonCircle } from "react-icons/bs";
+import TextInput from "../../reusable-ui/TextInput";
+import SubmitButton from "../../reusable-ui/SubmitButton";
 
 export default function LoginForm() {
 
@@ -29,11 +31,16 @@ export default function LoginForm() {
             <div>
                 <h2>Connectez-vous </h2>
             </div>
-            <Input onChange={handleChange} value={inputValue} placeholder={"Entrez votre prénom"} />
-            <button className="button-icon">
-                <span> Accéder a votre espace </span>
-                <IoChevronForward />
-            </button>
+
+            <TextInput onChange={handleChange}
+                value={inputValue}
+                placeholder={"Entrez votre prénom"}
+                Icon={<BsPersonCircle className="icon" />}
+                required />
+            <SubmitButton
+                IconButton={<IoChevronForward />}
+                label={"Accéder a votre espace"} />
+
         </LoginFormStyled>
     )
 }
@@ -62,63 +69,6 @@ const LoginFormStyled = styled.form`
         border: 1.5px solid #f56a2c;
         margin-bottom: 40px;
         width: 400px;
-    }
-    button {
-        background-color: ${theme.colors.primary_burger};
-        width: 400px;
-        height: 53px;
-        border-radius: 5px;
-        border: none;
-        color: ${theme.colors.white};
-        font-size: ${theme.fonts.P0};
-        font-weight: 700;
-        font-family: 'Arial';
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    button:hover {
-        background-color: ${theme.colors.white};
-        border: 1px solid ${theme.colors.primary_burger};
-        color: ${theme.colors.primary_burger};
-        cursor: pointer;
-    }
-    button:active {
-        background-color: ${theme.colors.primary_burger};
-        border: 1px solid ${theme.colors.white};
-        color: ${theme.colors.white};
-        cursor: pointer;
-    }
-    .input-container{
-        background-color: ${theme.colors.white};
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        padding: 18px 24px;
-        margin: 18px 0;
-
-        .icon {
-            font-size: ${theme.fonts.P0};
-            margin-right: 8px;
-            color: ${theme.colors.greySemiDark};
-        }
-
-        input {
-        border-radius: 5px;
-        border: none;
-        background-color: ${theme.colors.white};
-        color: ${theme.colors.dark};
-        font-size: ${theme.fonts.P0};
-        }
-
-        &::placeholder {
-            background: ${theme.colors.white};
-            color: ${theme.colors.greyLight};
-        }
-
-    }    
-    .arrow {
-        margin-left: 10px;
     }
 
 `;
