@@ -58,7 +58,7 @@ const LoginFormStyled = styled.form`
     flex-direction: column;
     h1 {
         color: ${theme.colors.white};
-        color: ${theme.fonts.P5};
+        color: ${theme.fonts.P6};
     }
     h2  {
         margin: 20px 10px 10px;

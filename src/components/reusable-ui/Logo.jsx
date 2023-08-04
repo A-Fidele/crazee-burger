@@ -18,14 +18,16 @@ const LogoStyled = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-   //transform: scale(2.5);
+    //border: 2px solid white;
+    //transform: scale(1.5);
+    
 
     h1 {
         display: inline;
         text-align: center;
         color: ${theme.colors.primary_burger};
-        font-weight: 700;
-        font-size: ${theme.fonts.P4};
+        font-weight: ${theme.weights.bold};
+        font-size: ${theme.fonts.P6};
         line-height: 1.5px;
         text-transform: uppercase;
         letter-spacing: 1.5px;
@@ -34,8 +36,8 @@ const LogoStyled = styled.div`
     img {
         object-fit: contain;
         object-position: center;
-        width: 80px;
-        height: 60px;
+        width: 150px;
+        height: 100px;
         margin: 0 15px;
     }
 
