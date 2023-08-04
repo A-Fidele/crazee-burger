@@ -38,37 +38,43 @@ export default function LoginForm() {
                 Icon={<BsPersonCircle className="icon" />}
                 required />
             <SubmitButton
-                IconButton={<IoChevronForward />}
-                label={"Accéder a votre espace"} />
+                IconButton={<IoChevronForward className="arrow" />}
+                label={"Accéder a votre espace"}
+            />
 
         </LoginFormStyled>
     )
 }
 
 const LoginFormStyled = styled.form`
-    width: 464px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   
-    align-items: center;
-    font-family: 'Amatic SC', cursive;
+    text-align: center;
     max-width: 500px;
     min-width: 400px;
-    border-radius: 5px;
+    margin: 0px auto;
+    padding: 40px ${theme.spacing.lg};
+    border-radius: ${theme.borderRadius.round};
+    font-family: "Amatic SC", cursive;
+    display: flex;
+    flex-direction: column;
     h1 {
         color: ${theme.colors.white};
         color: ${theme.fonts.P5};
     }
     h2  {
-        color: ${theme.colors.white};
-        color: ${theme.fonts.P4};
         margin: 20px 10px 10px;
+        color: ${theme.colors.white};
+        font-size: ${theme.fonts.P4};
     }
     hr {
         border: 1.5px solid #f56a2c;
-        margin-bottom: 40px;
+        margin-bottom: ${theme.gridUnit * 5}px;
         width: 400px;
     }
-
+    .arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: ${theme.fonts.P0};
+        margin-left: 10px;
+    }
 `;

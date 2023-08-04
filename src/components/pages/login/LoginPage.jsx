@@ -1,4 +1,4 @@
-import Logo from '../../reusable-ui/logo';
+import Logo from '../../reusable-ui/Logo';
 import LoginForm from './LoginForm';
 import styled from 'styled-components';
 
@@ -19,7 +19,7 @@ const LoginPageStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  //justify-content: space-evenly;
+  justify-content: center;
   
   ::before {
     content: "";

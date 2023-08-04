@@ -14,19 +14,22 @@ export default function Logo() {
 const LogoStyled = styled.div`
     color: white;
     font-family: 'Amatic SC', cursive;
+    line-height: 1em;
     display: flex;
     flex-direction: row;
     align-items: center;
-    //transform: scale(2.5);
+   //transform: scale(2.5);
 
     h1 {
         display: inline;
+        text-align: center;
         color: ${theme.colors.primary_burger};
         font-weight: 700;
         font-size: ${theme.fonts.P4};
         line-height: 1.5px;
         text-transform: uppercase;
         letter-spacing: 1.5px;
+        font-family: "Amatic SC", cursive;
     }
     img {
         object-fit: contain;
