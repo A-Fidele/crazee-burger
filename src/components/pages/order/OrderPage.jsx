@@ -1,22 +1,20 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { theme } from '../../theme/design';
+import { theme } from '../../../theme/design';
 import Navbar from '../../reusable-ui/Navbar';
 import Logo from '../../reusable-ui/Logo';
 import Main from './Main';
 import AuthentificationData from '../../reusable-ui/AuthentificationData';
+import { refreshPage } from '../../../utils/window';
 
 export default function OrderPage() {
     const { username } = useParams();
-    const reload = () => { 
-        window.location.reload(true)
-    }
-
+    
     return (
         <OrderPageStyled>
             <div className='container'>
                 <Navbar
-                logo={<Logo className="logo" reload={reload}/>}
+                logo={<Logo className={"logo-order-page"} reload={refreshPage}/>}
                 user={<AuthentificationData username={username}/>}
                 />
                 <Main />

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { styled } from "styled-components";
-import { theme } from "../theme/design";
+import { theme } from "../../theme/design";
 
 export default function AuthentificationData(props) {
   return (
