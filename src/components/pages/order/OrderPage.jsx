@@ -8,25 +8,31 @@ import AuthentificationData from '../../reusable-ui/AuthentificationData';
 
 export default function OrderPage() {
     const { username } = useParams();
+    const reload = () => { 
+        window.location.reload(true)
+    }
 
     return (
         <OrderPageStyled>
-            <Navbar logo={<Logo className="logo"/>}
-            user={<AuthentificationData username={username}/>}
-            />            
-            <Main />
+            <div className='container'>
+                <Navbar
+                logo={<Logo className="logo" reload={reload}/>}
+                user={<AuthentificationData username={username}/>}
+                />
+                <Main />
+            </div>
         </OrderPageStyled>
-
     )
-
 }
 
 const OrderPageStyled = styled.div`
     height: 100vh;
-    background-color: ${theme.colors.orange};
+    background-color: ${theme.colors.primary};
     display:flex;
-    flex-wrap: wrap;;
+    align-items: center;
     justify-content: center;
-    //border: 2px solid black;
-    
+    .container {
+        width: 1400px;
+        height: 95vh;
+    }
 `;
