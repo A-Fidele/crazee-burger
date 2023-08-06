@@ -25,7 +25,6 @@ const LogoStyled = styled.div`
     .logo-order-page {
         display: flex;
         flex-direction: row;
-        border: 1px solid black;
         transform: scale(0.5);
         cursor: pointer;
     }
