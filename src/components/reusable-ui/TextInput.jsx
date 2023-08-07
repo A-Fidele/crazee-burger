@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
-import { theme } from "../theme/design";
+import { theme } from "../../theme/design";
+
 
 export default function TextInput(props, ...restProps) {
     return (

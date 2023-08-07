@@ -1,12 +1,15 @@
 import { styled } from "styled-components";
-import { theme } from "../theme/design";
+import { theme } from "../../theme/design";
 
-export default function Logo() {
+export default function Logo(props) {
+
   return (
-    <LogoStyled>
-        <h1>CRAZEE</h1> 
-        <img src="/images/F03 logo-orange.png" />
-        <h1>BURGER</h1>
+    <LogoStyled  onClick={props.reload}>
+        <div className={props.className}>
+          <h1>CRAZEE </h1>
+          <img src="/images/F03 logo-orange.png" />
+          <h1>BURGER</h1>
+        </div>
     </LogoStyled>
   )
 }
@@ -18,10 +21,14 @@ const LogoStyled = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    //border: 2px solid white;
-    //transform: scale(1.5);
-    
-
+   
+    .logo-order-page {
+        display: flex;
+        flex-direction: row;
+        transform: scale(0.5);
+        cursor: pointer;
+        //border: 1px solid black;
+    }
     h1 {
         display: inline;
         text-align: center;
