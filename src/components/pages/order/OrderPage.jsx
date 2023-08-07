@@ -9,13 +9,13 @@ import { refreshPage } from '../../../utils/window';
 
 export default function OrderPage() {
     const { username } = useParams();
-    
+
     return (
         <OrderPageStyled>
             <div className='container'>
                 <Navbar
-                logo={<Logo className={"logo-order-page"} reload={refreshPage}/>}
-                user={<AuthentificationData username={username}/>}
+                    logo={<Logo className={"logo-order-page"} reload={refreshPage} />}
+                    user={<AuthentificationData username={username} />}
                 />
                 <Main />
             </div>
@@ -32,5 +32,8 @@ const OrderPageStyled = styled.div`
     .container {
         width: 1400px;
         height: 95vh;
+        display: flex;
+        flex-direction: column;
+        border-radius: ${theme.borderRadius.extraRound};
     }
 `;

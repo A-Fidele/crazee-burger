@@ -10,12 +10,12 @@ export default function Navbar(props) {
   )
 }
 const NavbarStyled = styled.div`
-  height: 100px;
-  width: 1400px;
+  height: 10vh;
   border-radius: ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound} 0px 0px;
   background-color: ${theme.colors.background_white};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
- 
+  //border: 1px solid black;
+
 `;
