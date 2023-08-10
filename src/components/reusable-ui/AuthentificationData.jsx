@@ -18,7 +18,6 @@ export default function AuthentificationData(props) {
 }
 
 const AuthentificationDataStyled = styled.div`
-    //border: 1px solid green;
     margin-right: 70px;
     width: 200px;
     display: flex;
@@ -29,7 +28,7 @@ const AuthentificationDataStyled = styled.div`
     h1 {
       font-family: 'Open sans', sans-serif;
       font-size: ${theme.fonts.P0};
-      color: ${theme.colors.greyBlue};
+      color: ${theme.colors.greyB};
     }
     span {
       color:${theme.colors.primary};
@@ -42,7 +41,7 @@ const AuthentificationDataStyled = styled.div`
     }
     .circle-icon {
       margin-top: 15px;
-      color: ${theme.colors.greyBlue};
+      color: ${theme.colors.greyB};
       transform: scale(3.5);
     }
 `;

@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme/design";
 
-export default function SubmitButton(props) {
+export default function SubmitButton(props) {            
     return (
-        <SubmitButtonStyled >
+        <SubmitButtonStyled className={props.className}>
             <span>{props.label}</span>
             {props.IconButton && props.IconButton}
         </SubmitButtonStyled>
