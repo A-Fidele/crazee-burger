@@ -8,8 +8,7 @@ const menu = fakeMenu2.map((data) => {
   return <Menu key={data.id} image={data.imageSource} title={data.title} price={data.price} />
 })
 
-
-  return (
+return (
     <MainStyled>
       {menu}
     </MainStyled>
@@ -26,5 +25,6 @@ const MainStyled = styled.div`
   flex-direction: row;
   padding-top: 50px;
   flex-wrap: wrap;
-  align-content: flex-start;
+  align-content: space-between;
+  overflow: scroll;
 `;

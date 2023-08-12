@@ -1,16 +1,21 @@
 import styled from "styled-components";
 import { theme } from "../../theme/design";
 import SubmitButton from "./SubmitButton";
+import { formatPrice } from "../../utils/math"; 
 
 export default function Menu(props) {
+
+const price = formatPrice(props.price);
 
   return (
     <MenuStyled>
         <div className="menu">
         <img src={props.image} />
-        <h1>{props.title}</h1>
+        <div className='title'>
+          <h1>{props.title}</h1>
+        </div>
         <div className="add-section">
-          <p className="price">{props.price} €</p>
+          <p className="price"> {price}</p>
           <SubmitButton label={'Ajouter'} className={'className'}/>
         </div>
           </div>
@@ -21,16 +26,11 @@ export default function Menu(props) {
 const MenuStyled = styled.div`
   background-color: ${theme.colors.background_white};
   width: 240;
-  height: 330px;
-  //box-shadow: 0px 8px 20px 8px rgba(0,0,0,0.2) inset;
+  height: 390px;
   display: flex;
   border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
   flex-direction: row;
-  //flex-wrap: wrap;
-  //justify-content: center;
-  //align-items: flex-start;
-  border: 1px solid black;
-
+ 
  .menu {
   border-radius: ${theme.borderRadius.extraRound};
   width: 240px;
@@ -39,8 +39,7 @@ const MenuStyled = styled.div`
   flex-direction: column;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   background-color: ${theme.colors.white};
-  //margin-left: 90px;
-  margin-right: 85px;
+  margin-left: 85px;
   justify-content: center;
   align-items: center;
 
@@ -48,6 +47,14 @@ const MenuStyled = styled.div`
     width: 200px;
     height: 145px;
     margin: 20, 50, 20, 135;
+  }
+
+  .title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 190px;
+    height: 46px;
   }
 
   h1 {
