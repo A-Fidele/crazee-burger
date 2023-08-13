@@ -25,10 +25,12 @@ export default function OrderPage() {
 
 const OrderPageStyled = styled.div`
     height: 100vh;
+    width: 1512px;
     background-color: ${theme.colors.primary};
     display:flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
     .container {
         width: 1400px;
         height: 95vh;

@@ -7,12 +7,21 @@ export default function Menu(props) {
 
 const price = formatPrice(props.price);
 
+const burgerTitle = () => {   
+if (props.title.length > 17){
+  return (props.title.slice(0,1) + '...')
+} else {
+  return props.title
+}
+
+ }
+
   return (
     <MenuStyled>
         <div className="menu">
         <img src={props.image} />
         <div className='title'>
-          <h1>{props.title}</h1>
+          <h1>{burgerTitle()}</h1>
         </div>
         <div className="add-section">
           <p className="price"> {price}</p>
@@ -25,11 +34,9 @@ const price = formatPrice(props.price);
 
 const MenuStyled = styled.div`
   background-color: ${theme.colors.background_white};
-  width: 240;
+  width: 330px;
   height: 390px;
   display: flex;
-  border-radius: 0px 0px ${theme.borderRadius.extraRound} ${theme.borderRadius.extraRound};
-  flex-direction: row;
  
  .menu {
   border-radius: ${theme.borderRadius.extraRound};
