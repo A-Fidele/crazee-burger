@@ -21,13 +21,14 @@ const LogoStyled = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-   
+    margin-left: -80px;
+
     .logo-order-page {
         display: flex;
         flex-direction: row;
         transform: scale(0.5);
         cursor: pointer;
-        //border: 1px solid black;
+       
     }
     h1 {
         display: inline;

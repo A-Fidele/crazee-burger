@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
 import { theme } from "../../theme/design";
 
-export default function SubmitButton(props) {
+export default function SubmitButton(props) {            
     return (
-        <SubmitButtonStyled >
+        <SubmitButtonStyled className={props.className}>
             <span>{props.label}</span>
             {props.IconButton && props.IconButton}
         </SubmitButtonStyled>
@@ -28,7 +28,7 @@ const SubmitButtonStyled = styled.button`
         &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
-    }
+        }
         &:hover:not(:disabled) {
         background-color: ${theme.colors.white};
         border: 1px solid ${theme.colors.primary_burger};
