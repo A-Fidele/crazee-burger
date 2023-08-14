@@ -28,7 +28,7 @@ const SubmitButtonStyled = styled.button`
         &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
-    }
+        }
         &:hover:not(:disabled) {
         background-color: ${theme.colors.white};
         border: 1px solid ${theme.colors.primary_burger};

@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { theme } from "../../theme/design";
-import SubmitButton from "./SubmitButton";
-import { formatPrice } from "../../utils/math"; 
+import { theme } from "../../../../theme/design";
+import SubmitButton from "../../../reusable-ui/SubmitButton";
+import { formatPrice } from "../../../../utils/math"; 
 
 export default function Menu(props) {
 
 const price = formatPrice(props.price);
 
 const burgerTitle = () => {   
-if (props.title.length > 17){
+if (props.title.length > 18){
   return (props.title.slice(0,1) + '...')
 } else {
   return props.title
@@ -34,19 +34,25 @@ if (props.title.length > 17){
 
 const MenuStyled = styled.div`
   background-color: ${theme.colors.background_white};
-  width: 330px;
-  height: 390px;
+  width: 250px;
+  height: 300px;
   display: flex;
- 
+  padding: 20px;
+  padding-bottom: 10px;
+  padding: 20px;
+  padding-bottom: 10px;
+  justify-content: flex-end;
+
+
  .menu {
   border-radius: ${theme.borderRadius.extraRound};
-  width: 240px;
-  height: 330px;
+  //width: 290px;
+  //height: 330px;
   display: flex;
   flex-direction: column;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   background-color: ${theme.colors.white};
-  margin-left: 85px;
+  margin-left: 90px;
   justify-content: center;
   align-items: center;
 
@@ -54,6 +60,7 @@ const MenuStyled = styled.div`
     width: 200px;
     height: 145px;
     margin: 20, 50, 20, 135;
+    object-fit: contain;
   }
 
   .title {
@@ -73,6 +80,7 @@ const MenuStyled = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 20px;
     width: 190px;
     height: 46px;
     

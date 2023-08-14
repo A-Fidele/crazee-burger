@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { theme } from "../../theme/design";
+import { theme } from "../../../../theme/design";
 
 export default function Navbar(props) {
   return (
@@ -16,5 +16,4 @@ const NavbarStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-`;
+  `;
