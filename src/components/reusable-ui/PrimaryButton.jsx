@@ -26,7 +26,7 @@ const PrimaryButtonStyled = styled.button`
   font-size: 15px;
   font-weight: 800;
   color: white;
-  background-color: #ff9f1b;
+  background-color: ${theme.colors.primary};
   border: 1px solid #ff9f1b;
 
   :hover {

@@ -32,7 +32,7 @@ export default function NavbarRightSide({ username }) {
 
   return (
     <NavbarRightSideStyled className="right-side">
-      <ToggleButton onToggle={onToogle} labelIfChecked="Désactivez le mode Admin" labelIfUnchecked="Activer le mode Admin"/>
+      <ToggleButton isChecked={isChecked} onToggle={onToogle} labelIfChecked="Désactivez le mode Admin" labelIfUnchecked="Activer le mode Admin"/>
       <ToastContainer className="toaster" bodyClassName="body-toast" />
       <Profile username={username} />
     </NavbarRightSideStyled>
