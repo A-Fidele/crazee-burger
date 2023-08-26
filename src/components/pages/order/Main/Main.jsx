@@ -1,21 +1,56 @@
 import styled from "styled-components"
 import { theme } from "../../../../theme"
 import Menu from "./Menu"
-import { FiChevronUp } from 'react-icons/fi'
+import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { MdModeEditOutline } from 'react-icons/md'
-
+import { useState } from "react"
 
 export default function Main() {
+
+  const [isPanelVisible, setIsPanelVisible] = useState(false);
+  const [isPanelOptionVisible, setIsPaneloptionVisible] = useState(false);
+  const [chevron, setChevron] = useState(<FiChevronDown />);
+  const [classIcon, setClassIcon] = useState("up-down-icon");
+  const [classActionAjout, setClassActionAjout] = useState("ajouter-modifier");
+  const [classActionModif, setClassActionModif] = useState("ajouter-modifier");
+
+  const [action, setAction] = useState("");
+
+  const handleHidePanel = () => {
+    if(isPanelVisible) {
+      setIsPanelVisible(false);
+      setChevron(<FiChevronUp />);
+      setClassIcon("dark-up-down-icon");
+    } else {
+      setIsPanelVisible(true);
+      setChevron(<FiChevronDown />);
+      setClassIcon("up-down-icon");
+    }
+
+  }
+
+    const handleClickAjouter = () => {
+      setAction("Ajouter un produit");
+      setClassActionAjout("dark-ajouter-modifier");
+      setClassActionModif("ajouter-modifier");
+    }
+
+    const handleClickModifier = () => {
+      setAction("Modifier un produit");
+      setClassActionModif("dark-ajouter-modifier");
+      setClassActionAjout("ajouter-modifier");
+    }
+
   return (
     <MainStyled className="main">
       <div className="panel-container">      
         <div className="panel-option">
-          <button className="up-down-icon"><FiChevronUp /></button>
-          <button className="ajouter-modifier"><AiOutlinePlus /> Ajouter un produit</button>
-          <button className="ajouter-modifier"><MdModeEditOutline /> Modifier un produit</button>
+          <button className={classIcon} onClick={handleHidePanel}>{chevron}</button>
+          <button className={classActionAjout} onClick={handleClickAjouter}><AiOutlinePlus /> Ajouter un produit </button>
+          <button className={classActionModif} onClick={handleClickModifier}><MdModeEditOutline /> Modifier un produit </button>
         </div>
-        <div className="panel">PANEL</div>
+        { isPanelVisible && <div className="panel"> {action} </div> }
     </div>
       <Menu />
     </MainStyled>
@@ -53,12 +88,26 @@ const MainStyled = styled.div`
     height: 43px;
     margin-left: 71px;
     background:  ${theme.colors.background_white};
+  }
 
+  .dark-up-down-icon {
+    width: 62px;
+    height: 43px;
+    margin-left: 71px;
+    color: ${theme.colors.white};
+    background:  ${theme.colors.background_dark};
   }
   
   .ajouter-modifier {
     height: 44px;
     background:  ${theme.colors.background_white};
+
+  }
+
+  .dark-ajouter-modifier {
+    height: 44px;
+    color: ${theme.colors.white};
+    background:  ${theme.colors.background_dark};
 
   }
   
