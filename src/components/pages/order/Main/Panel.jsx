@@ -2,33 +2,52 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
+import Option from "../../../reusable-ui/Option";
+import { useState } from "react";
 
 export default function Panel({
   handleHidePanel,
-  handleClickAjouter,
-  handleClickModifier,
   chevron,
-  action,
   isPanelVisible,
   classIcon,
-  classActionAjout,
-  classActionModif,
 }) {
-  
+  const [classActionAjout, setClassActionAjout] = useState("ajouter-modifier");
+  const [classActionModif, setClassActionModif] = useState("ajouter-modifier");
+  const [action, setAction] = useState("");
+
+  const handleClickAjouter = () => {
+    setAction("Ajouter un produit");
+    setClassActionAjout("dark-ajouter-modifier");
+    setClassActionModif("ajouter-modifier");
+  };
+
+  const handleClickModifier = () => {
+    setAction("Modifier un produit");
+    setClassActionModif("dark-ajouter-modifier");
+    setClassActionAjout("ajouter-modifier");
+  };
 
   return (
     <PanelStyled>
       <div className="panel-container">
         <div className="panel-option">
-          <button className={classIcon} onClick={handleHidePanel}>
-            {chevron}
-          </button>
-          <button className={classActionAjout} onClick={handleClickAjouter}>
-            <AiOutlinePlus /> Ajouter un produit{" "}
-          </button>
-          <button className={classActionModif} onClick={handleClickModifier}>
-            <MdModeEditOutline /> Modifier un produit{" "}
-          </button>
+          <div className="option">
+            <button className={classIcon} onClick={handleHidePanel}>
+              {chevron}
+            </button>
+            <Option
+              className={classActionAjout}
+              onClick={handleClickAjouter}
+              icon={<AiOutlinePlus />}
+              label="Ajouter un produit"
+            />
+            <Option
+              className={classActionModif}
+              onClick={handleClickModifier}
+              icon={<MdModeEditOutline />}
+              label="Modifier un produit"
+            />
+          </div>
         </div>
         {isPanelVisible && <div className="panel"> {action} </div>}
       </div>
@@ -42,6 +61,11 @@ const PanelStyled = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 1400px;
+
+  .option {
+    display: flex;
+    flex-direction: row;
+  }
 
   .panel-option {
     background: rgba(255, 0, 0, opacity);
@@ -66,7 +90,6 @@ const PanelStyled = styled.div`
     background: ${theme.colors.background_dark};
     border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
     border: none;
-
   }
 
   .ajouter-modifier {
@@ -88,7 +111,6 @@ const PanelStyled = styled.div`
     color: ${theme.colors.white};
     background: ${theme.colors.background_dark};
     border: none;
-
   }
 
   .panel {

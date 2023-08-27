@@ -7,12 +7,10 @@ import Panel from "./Panel";
 import UserContext from "../../../../context/Usercontext";
 
 export default function Main() {
+  
   const [isPanelVisible, setIsPanelVisible] = useState(false);
   const [chevron, setChevron] = useState(<FiChevronUp />);
   const [classIcon, setClassIcon] = useState("up-down-icon");
-  const [classActionAjout, setClassActionAjout] = useState("ajouter-modifier");
-  const [classActionModif, setClassActionModif] = useState("ajouter-modifier");
-  const [action, setAction] = useState("");
 
   const { admin, setAdmin } = useContext(UserContext);
 
@@ -29,30 +27,13 @@ export default function Main() {
     }
   };
 
-  const handleClickAjouter = () => {
-    setAction("Ajouter un produit");
-    setClassActionAjout("dark-ajouter-modifier");
-    setClassActionModif("ajouter-modifier");
-  };
-
-  const handleClickModifier = () => {
-    setAction("Modifier un produit");
-    setClassActionModif("dark-ajouter-modifier");
-    setClassActionAjout("ajouter-modifier");
-  };
-
   return (
     <MainStyled className="main">
         { admin && <Panel
           handleHidePanel={handleHidePanel}
           chevron={chevron}
-          handleClickAjouter={handleClickAjouter}
-          handleClickModifier={handleClickModifier}
-          action={action}
           isPanelVisible={isPanelVisible}
           classIcon={classIcon}
-          classActionAjout={classActionAjout}
-          classActionModif={classActionModif}
         />}
         <Menu />
     </MainStyled>
