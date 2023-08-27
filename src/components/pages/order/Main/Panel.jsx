@@ -54,6 +54,8 @@ const PanelStyled = styled.div`
     height: 43px;
     margin-left: 71px;
     background: ${theme.colors.background_white};
+    border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
+    border: none;
   }
 
   .dark-up-down-icon {
@@ -62,22 +64,37 @@ const PanelStyled = styled.div`
     margin-left: 71px;
     color: ${theme.colors.white};
     background: ${theme.colors.background_dark};
+    border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
+    border: none;
+
   }
 
   .ajouter-modifier {
-    height: 44px;
+    height: 43px;
+    width: 220px;
     background: ${theme.colors.background_white};
+    font-size: ${theme.fonts.size.P0};
+    font-weight: ${theme.fonts.weights.regular};
+    color: ${theme.colors.greySemiDark};
+    border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
+    border: none;
   }
 
   .dark-ajouter-modifier {
-    height: 44px;
+    height: 43px;
+    width: 220px;
+    font-size: ${theme.fonts.size.P0};
+    border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
     color: ${theme.colors.white};
     background: ${theme.colors.background_dark};
+    border: none;
+
   }
 
   .panel {
     background: ${theme.colors.background_white};
     width: 100%;
     height: 250px;
+    border-top: 1px solid ${theme.colors.greyLight};
   }
 `;
