@@ -1,42 +1,49 @@
 import { styled } from "styled-components";
 import Profile from "./Profile";
 import { theme } from "../../../../theme";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-//import { ToggleButton } from "./ToggleButton";
 import { useState } from "react";
 import ToggleButton from "./ToggleButton";
+import UserContext from "../../../../context/UserContext";
+import { useContext } from "react";
 
 export default function NavbarRightSide({ username }) {
   const [isChecked, setIsChecked] = useState(false);
-  
+  const { admin, setAdmin } = useContext(UserContext);
+
   const onToogle = () => {
-    if (!isChecked){
+    if (!isChecked) {
+      setAdmin(true);
       setIsChecked(true);
       toast.info("Mode admin activé", {
-      // icon: <FaUserSecret size={30} />,
-      theme: "dark",
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+        theme: "dark",
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
-     } else {
-      setIsChecked(false)
+    } else {
+      setIsChecked(false);
+      setAdmin(false);
     }
-  }  
-    
+  };
 
   return (
     <NavbarRightSideStyled className="right-side">
-      <ToggleButton isChecked={isChecked} onToggle={onToogle} labelIfChecked="Désactivez le mode Admin" labelIfUnchecked="Activer le mode Admin"/>
+      <ToggleButton
+        isChecked={isChecked}
+        onToggle={onToogle}
+        labelIfChecked="Désactivez le mode Admin"
+        labelIfUnchecked="Activer le mode Admin"
+      />
       <ToastContainer className="toaster" bodyClassName="body-toast" />
       <Profile username={username} />
     </NavbarRightSideStyled>
-  )
+  );
 }
 
 const NavbarRightSideStyled = styled.div`
@@ -54,7 +61,6 @@ const NavbarRightSideStyled = styled.div`
 
   .toaster {
     max-width: 300px;
-
   }
 
   .Toastify__toast.Toastify__toast-theme--dark.Toastify__toast--info {
@@ -70,4 +76,4 @@ const NavbarRightSideStyled = styled.div`
       line-height: 1.3em;
     }
   }
-`
+`;

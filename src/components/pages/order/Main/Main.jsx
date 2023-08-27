@@ -1,24 +1,24 @@
-import styled from "styled-components"
-import { theme } from "../../../../theme"
-import Menu from "./Menu"
-import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
-import { AiOutlinePlus } from 'react-icons/ai'
-import { MdModeEditOutline } from 'react-icons/md'
-import { useState } from "react"
+import styled from "styled-components";
+import { theme } from "../../../../theme";
+import Menu from "./Menu";
+import { FiChevronUp, FiChevronDown } from "react-icons/fi";
+import { useContext, useState } from "react";
+import Panel from "./Panel";
+import UserContext from "../../../../context/Usercontext";
 
 export default function Main() {
-
   const [isPanelVisible, setIsPanelVisible] = useState(false);
-  const [isPanelOptionVisible, setIsPaneloptionVisible] = useState(false);
-  const [chevron, setChevron] = useState(<FiChevronDown />);
+  const [chevron, setChevron] = useState(<FiChevronUp />);
   const [classIcon, setClassIcon] = useState("up-down-icon");
   const [classActionAjout, setClassActionAjout] = useState("ajouter-modifier");
   const [classActionModif, setClassActionModif] = useState("ajouter-modifier");
-
   const [action, setAction] = useState("");
 
+  const { admin, setAdmin } = useContext(UserContext);
+
+  //panel pcipal
   const handleHidePanel = () => {
-    if(isPanelVisible) {
+    if (isPanelVisible) {
       setIsPanelVisible(false);
       setChevron(<FiChevronUp />);
       setClassIcon("dark-up-down-icon");
@@ -27,34 +27,36 @@ export default function Main() {
       setChevron(<FiChevronDown />);
       setClassIcon("up-down-icon");
     }
+  };
 
-  }
+  const handleClickAjouter = () => {
+    setAction("Ajouter un produit");
+    setClassActionAjout("dark-ajouter-modifier");
+    setClassActionModif("ajouter-modifier");
+  };
 
-    const handleClickAjouter = () => {
-      setAction("Ajouter un produit");
-      setClassActionAjout("dark-ajouter-modifier");
-      setClassActionModif("ajouter-modifier");
-    }
-
-    const handleClickModifier = () => {
-      setAction("Modifier un produit");
-      setClassActionModif("dark-ajouter-modifier");
-      setClassActionAjout("ajouter-modifier");
-    }
+  const handleClickModifier = () => {
+    setAction("Modifier un produit");
+    setClassActionModif("dark-ajouter-modifier");
+    setClassActionAjout("ajouter-modifier");
+  };
 
   return (
     <MainStyled className="main">
-      <div className="panel-container">      
-        <div className="panel-option">
-          <button className={classIcon} onClick={handleHidePanel}>{chevron}</button>
-          <button className={classActionAjout} onClick={handleClickAjouter}><AiOutlinePlus /> Ajouter un produit </button>
-          <button className={classActionModif} onClick={handleClickModifier}><MdModeEditOutline /> Modifier un produit </button>
-        </div>
-        { isPanelVisible && <div className="panel"> {action} </div> }
-    </div>
-      <Menu />
+        { admin && <Panel
+          handleHidePanel={handleHidePanel}
+          chevron={chevron}
+          handleClickAjouter={handleClickAjouter}
+          handleClickModifier={handleClickModifier}
+          action={action}
+          isPanelVisible={isPanelVisible}
+          classIcon={classIcon}
+          classActionAjout={classActionAjout}
+          classActionModif={classActionModif}
+        />}
+        <Menu />
     </MainStyled>
-  )
+  );
 }
 
 const MainStyled = styled.div`
@@ -87,7 +89,7 @@ const MainStyled = styled.div`
     width: 62px;
     height: 43px;
     margin-left: 71px;
-    background:  ${theme.colors.background_white};
+    background: ${theme.colors.background_white};
   }
 
   .dark-up-down-icon {
@@ -95,26 +97,23 @@ const MainStyled = styled.div`
     height: 43px;
     margin-left: 71px;
     color: ${theme.colors.white};
-    background:  ${theme.colors.background_dark};
+    background: ${theme.colors.background_dark};
   }
-  
+
   .ajouter-modifier {
     height: 44px;
-    background:  ${theme.colors.background_white};
-
+    background: ${theme.colors.background_white};
   }
 
   .dark-ajouter-modifier {
     height: 44px;
     color: ${theme.colors.white};
-    background:  ${theme.colors.background_dark};
-
+    background: ${theme.colors.background_dark};
   }
-  
+
   .panel {
-    background:  ${theme.colors.background_white};
+    background: ${theme.colors.background_white};
     width: 100%;
     height: 250px;
   }
-
-  `
+`;

@@ -8,9 +8,6 @@ export default function ToggleButton({
     labelIfUnchecked,
   }) {
 
-
-
-
   return (
     <ToggleButtonStyled>
       <input
