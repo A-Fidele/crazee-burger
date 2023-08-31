@@ -10,11 +10,11 @@ import { useContext } from "react";
 
 export default function NavbarRightSide({ username }) {
   const [isChecked, setIsChecked] = useState(false);
-  const { admin, setAdmin } = useContext(UserContext);
+  const { isAdmin, setIsAdmin } = useContext(UserContext);
 
   const onToogle = () => {
     if (!isChecked) {
-      setAdmin(true);
+      setIsAdmin(true);
       setIsChecked(true);
       toast.info("Mode admin activé", {
         theme: "dark",
@@ -28,7 +28,7 @@ export default function NavbarRightSide({ username }) {
       });
     } else {
       setIsChecked(false);
-      setAdmin(false);
+      setIsAdmin(false);
     }
   };
 

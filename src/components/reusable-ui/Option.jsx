@@ -1,20 +1,58 @@
 import styled from "styled-components";
+import { theme } from "../../theme";
 
-export default function Option({
-    onClick,
-    className,
-    icon,
-    label,
-}) {
+export default function Option({ onClick, className, Icon, label }) {
   return (
     <OptionStyled>
-      <button className={className} onClick={onClick}>
-        {icon && icon} {label}{" "}
-      </button>
+        <button className={className} onClick={onClick}>
+          <div className="icon">{Icon}</div>
+          {label && <span className="label">{label}</span>}
+        </button>
     </OptionStyled>
   );
 }
 
 const OptionStyled = styled.div`
   
+  height: 43px;
+  //padding: 0 22px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  position: relative;
+  top: 1px;
+
+  // fonts
+  font-size: ${theme.fonts.size.P0};
+  color: ${theme.colors.greySemiDark};
+
+  background: ${theme.colors.white};
+  box-shadow: ${theme.shadows.subtle};
+
+  // border
+  border-width: 1px 1px 2px 1px;
+  border-style: solid;
+  border-color: ${theme.colors.greyLight};
+
+  // border-radius
+  border-radius: ${theme.borderRadius.round};
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  
+  :hover {
+   //border-bottom: 2px solid ${theme.colors.white};
+    text-decoration: underline;
+  }
+
+  .icon {
+    display: flex;
+  }
+
+  .label {
+    margin-left: 13px;
+  }
 `;
