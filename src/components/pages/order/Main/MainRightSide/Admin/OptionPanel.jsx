@@ -4,7 +4,9 @@ import Usercontext from "../../../../../../context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import { tabsConfig } from "./tabsConfig";
+import { optionsConfig } from "./optionsConfig";
+import { AiOutlinePlus } from "react-icons/ai";
+import { MdModeEditOutline } from "react-icons/md";
 
 export default function OptionPanel() {
   const {
@@ -19,13 +21,32 @@ export default function OptionPanel() {
     setCurrentTabSelected(tabSelected);
   };
 
-  const tabs = tabsConfig;
-
-  return <OptionPanelStyled>
-     <Option
+  // const tabs = [
+  //   {
+  //     index: "add",
+  //     label: "Ajouter un produit",
+  //     Icon: <FiChevronDown />,
+  //   },
+  //   {
+  //     index: "edit",
+  //     label: "Modifier un produit",
+  //     Icon: <MdModeEditOutline />,
+  //   },
+  // ];
+  const tabs = optionsConfig;
+  return (
+    <OptionPanelStyled>
+      <Option
         index="chevron"
         label=""
         Icon={isCollapsed ? <FiChevronDown /> : <FiChevronUp />}
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className={!isCollapsed ? "is-active" : "not-active"}
+      />{" "}
+      <Option
+        index="chevron"
+        label="Ajouter"
+        Icon={<AiOutlinePlus />}
         onClick={() => setIsCollapsed(!isCollapsed)}
         className={!isCollapsed ? "is-active" : "not-active"}
       />
@@ -36,10 +57,13 @@ export default function OptionPanel() {
           label={tab.label}
           Icon={tab.Icon}
           onClick={() => selectTab(tab.index)}
-          className={currentTabSelected === tab.index ? "is-active" : "not-active"}
+          className={
+            currentTabSelected === tab.index ? "is-active" : "not-active"
+          }
         />
       ))}
-  </OptionPanelStyled>;
+    </OptionPanelStyled>
+  );
 }
 
 const OptionPanelStyled = styled.div`
@@ -55,7 +79,7 @@ const OptionPanelStyled = styled.div`
     height: 43px;
     padding: 0 22px;
   }
-  
+
   .not-active {
     padding: 0 22px;
   }
