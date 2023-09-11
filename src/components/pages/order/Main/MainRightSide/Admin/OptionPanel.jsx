@@ -4,7 +4,7 @@ import Usercontext from "../../../../../../context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import { optionsConfig } from "./optionsConfig";
+import { tabsConfig } from "./tabsConfig";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 
@@ -21,19 +21,7 @@ export default function OptionPanel() {
     setCurrentTabSelected(tabSelected);
   };
 
-  // const tabs = [
-  //   {
-  //     index: "add",
-  //     label: "Ajouter un produit",
-  //     Icon: <FiChevronDown />,
-  //   },
-  //   {
-  //     index: "edit",
-  //     label: "Modifier un produit",
-  //     Icon: <MdModeEditOutline />,
-  //   },
-  // ];
-  const tabs = optionsConfig;
+  const tabs = tabsConfig;
   return (
     <OptionPanelStyled>
       <Option
@@ -43,13 +31,6 @@ export default function OptionPanel() {
         onClick={() => setIsCollapsed(!isCollapsed)}
         className={!isCollapsed ? "is-active" : "not-active"}
       />{" "}
-      <Option
-        index="chevron"
-        label="Ajouter"
-        Icon={<AiOutlinePlus />}
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className={!isCollapsed ? "is-active" : "not-active"}
-      />
       {tabs.map((tab) => (
         <Option
           key={tab.index}
@@ -72,6 +53,10 @@ const OptionPanelStyled = styled.div`
   top: -43px;
   left: 5%;
 
+  :hover {
+    border-bottom: 1px solid ${theme.colors.white};
+  }
+
   .is-active {
     background-color: ${theme.colors.background_dark};
     border-color: ${theme.colors.background_dark};
@@ -86,7 +71,6 @@ const OptionPanelStyled = styled.div`
 
   button {
     margin-left: 1px;
-    border: none;
     background: ${theme.colors.white};
     color: ${theme.colors.greySemiDark};
     cursor: pointer;
