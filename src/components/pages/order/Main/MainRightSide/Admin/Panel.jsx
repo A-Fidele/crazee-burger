@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { useContext } from "react";
-import { getTabSelected } from "./tabsConfig";
+import { getTabSelected, tabsConfig } from "./tabsConfig";
 import Usercontext from "../../../../../../context/UserContext";
 
 export default function Panel() {
   const { currentTabSelected } = useContext(Usercontext);
 
-  // const tabs = tabsConfig;
-  const tabs = [];
+  const tabs = tabsConfig;
+
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return (
