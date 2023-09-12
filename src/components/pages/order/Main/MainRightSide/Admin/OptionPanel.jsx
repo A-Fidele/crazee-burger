@@ -39,7 +39,7 @@ export default function OptionPanel() {
           Icon={tab.Icon}
           onClick={() => selectTab(tab.index)}
           className={
-            currentTabSelected === tab.index ? "is-active" : "not-active"
+            currentTabSelected === tab.index ? "is-active" : ""
           }
         />
       ))}
@@ -53,19 +53,11 @@ const OptionPanelStyled = styled.div`
   top: -43px;
   left: 5%;
 
-  :hover {
-    border-bottom: 1px solid ${theme.colors.white};
-  }
-
   .is-active {
     background-color: ${theme.colors.background_dark};
     border-color: ${theme.colors.background_dark};
     color: ${theme.colors.white};
     height: 43px;
-    padding: 0 22px;
-  }
-
-  .not-active {
     padding: 0 22px;
   }
 

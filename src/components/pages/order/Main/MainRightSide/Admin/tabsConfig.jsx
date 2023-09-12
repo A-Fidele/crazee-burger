@@ -1,11 +1,11 @@
-import { FiChevronDown } from "react-icons/fi";
+import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 
 export const tabsConfig = [
   {
     index: "add",
     label: "Ajouter un produit",
-    Icon: <FiChevronDown />,
+    Icon: <AiOutlinePlus />,
   },
   {
     index: "edit",

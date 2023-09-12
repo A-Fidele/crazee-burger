@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 export default function Option({ onClick, className, Icon, label }) {
-  console.log(Icon);
+
   return (
     <OptionStyled className={className} onClick={onClick}>
       <div className="icon">{Icon}</div>
@@ -41,8 +41,8 @@ const OptionStyled = styled.button`
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
 
-  :hover {
-    //border-bottom: 2px solid ${theme.colors.white};
+  &:hover {
+    border-bottom: 2px solid ${theme.colors.white};
     text-decoration: underline;
   }
 
