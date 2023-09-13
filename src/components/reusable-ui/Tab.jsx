@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function Option({ onClick, className, Icon, label }) {
+export default function Tab({ onClick, className, Icon, label }) {
 
   return (
     <OptionStyled className={className} onClick={onClick}>
@@ -24,19 +24,16 @@ const OptionStyled = styled.button`
   position: relative;
   top: 1px;
 
-  // fonts
   font-size: ${theme.fonts.size.P0};
   color: ${theme.colors.greySemiDark};
 
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.subtle};
 
-  // border
   border-width: 1px 1px 2px 1px;
   border-style: solid;
   border-color: ${theme.colors.greyLight};
 
-  // border-radius
   border-radius: ${theme.borderRadius.round};
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;

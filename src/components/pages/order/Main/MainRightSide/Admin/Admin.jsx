@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import Panel from "./Panel";
-import OptionPanel from "./OptionPanel";
 import { useContext } from "react";
 import Usercontext from "../../../../../../context/UserContext";
+import AdminTabs from "./AdminTabs";
 
 export default function Admin() {
   const { isCollapsed } = useContext(Usercontext)
   return (
     <AdminStyled>
-      <OptionPanel />
-      {isCollapsed && <Panel />}
+      <AdminTabs />
+      {!isCollapsed && <Panel />}
     </AdminStyled>
   )
 }

@@ -1,14 +1,12 @@
 import { useContext } from "react";
-import Option from "../../../../../reusable-ui/Option";
+import Option from "../../../../../reusable-ui/Tab";
 import Usercontext from "../../../../../../context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
 import { tabsConfig } from "./tabsConfig";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 
-export default function OptionPanel() {
+export default function AdminTabs() {
   const {
     isCollapsed,
     setIsCollapsed,
@@ -17,7 +15,7 @@ export default function OptionPanel() {
   } = useContext(Usercontext);
 
   const selectTab = (tabSelected) => {
-    setIsCollapsed(true);
+    setIsCollapsed(false);
     setCurrentTabSelected(tabSelected);
   };
 
@@ -27,9 +25,9 @@ export default function OptionPanel() {
       <Option
         index="chevron"
         label=""
-        Icon={isCollapsed ? <FiChevronDown /> : <FiChevronUp />}
+        Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className={!isCollapsed ? "is-active" : "not-active"}
+        className={isCollapsed ? "is-active" : ""}
       />{" "}
       {tabs.map((tab) => (
         <Option
@@ -57,14 +55,9 @@ const OptionPanelStyled = styled.div`
     background-color: ${theme.colors.background_dark};
     border-color: ${theme.colors.background_dark};
     color: ${theme.colors.white};
-    height: 43px;
-    padding: 0 22px;
   }
 
   button {
     margin-left: 1px;
-    background: ${theme.colors.white};
-    color: ${theme.colors.greySemiDark};
-    cursor: pointer;
   }
 `;
