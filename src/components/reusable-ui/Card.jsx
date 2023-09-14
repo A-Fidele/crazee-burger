@@ -1,10 +1,28 @@
 import styled from "styled-components"
 import { theme } from "../../theme"
 import PrimaryButton from "./PrimaryButton"
+import { TiDelete } from "react-icons/ti"
+import UserContext from "../../context/UserContext";
+import { useContext, useState } from "react";
+import { fakeMenu2 } from "../../fakeData/fakeMenu";
 
 export default function Card({ title, imageSource, leftDescription }) {
+  const { isAdmin } = useContext(UserContext);
+  //const menu = fakeMenu2;
+  const [ menu, setMenu ] = useState(fakeMenu2);
+
+  const handleDelete = () => {
+     //alert(title);
+     setMenu( menu.filter((title) => title !== menu.title ))
+     console.log(menu)
+ }
+
+
   return (
-    <CardStyled className="produit">
+    <CardStyled className={isAdmin && "admin-mode"}>
+      {isAdmin && <div className="delete-icon"><TiDelete
+      className="icon"
+      onClick={handleDelete}/></div>}
       <div className="image">
         <img src={imageSource} alt={title} />
       </div>
@@ -32,12 +50,45 @@ const CardStyled = styled.div`
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
 
+
+&.admin-mode {
+  background: ${theme.colors.white};
+  width: 200px;
+  height: 300px;
+  display: grid;
+  grid-template-rows: 1% 65% 1fr;
+  padding: 20px;
+  padding-bottom: 10px;
+  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+  border-radius: ${theme.borderRadius.extraRound};
+}
+
+  .delete-icon {
+    //border: 1px solid ;
+    height: 30px;
+    width: 30px;
+    margin-left: auto; 
+    cursor: pointer;
+  
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+    color: ${theme.colors.primary};
+    :hover {
+      color:${theme.colors.red};
+      cursor: pointer;
+    }
+  }
+
   .image {
+    //border: 1px solid red;
     width: 100%;
     height: auto;
     margin-top: 30px;
     margin-bottom: 20px;
-
+    
     img {
       width: 100%;
       height: 100%;

@@ -9,10 +9,10 @@ export default function Panel() {
   const { currentTabSelected } = useContext(Usercontext);
 
   const tabs = tabsConfig;
-
   const tabSelected = getTabSelected(tabs, currentTabSelected);
+
   const inputFields = tabSelected.infoProduct.map((fields) => {
-    return <TextInput Icon={fields.addIcon} label={tabSelected.label} />
+    return <TextInput key={fields.addIndex} Icon={fields.addIcon} label={tabSelected.label} />
   })
 
   return (
@@ -22,7 +22,7 @@ export default function Panel() {
       <div className="add-container">
         <div className="image-preview">imagepreview</div>
         <div className="input-fields">{inputFields}</div>
-        <div className="submit-button">submitbutton</div>
+        <div className="submit-button"><button>Ajouter un produit</button></div>
       </div>
     </AdminPanelStyled>
   );
