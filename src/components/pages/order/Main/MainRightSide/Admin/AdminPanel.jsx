@@ -7,7 +7,7 @@ import { fakeMenu2 } from "../../../../../../fakeData/fakeMenu";
 import UserContext from "../../../../../../context/UserContext";
 
 export default function Panel() {
-  const { currentTabSelected, setMenu } = useContext(UserContext);
+  const { currentTabSelected, menu, setMenu } = useContext(UserContext);
   
   const tabs = tabsConfig;
   const tabSelected = getTabSelected(tabs, currentTabSelected);
@@ -21,15 +21,16 @@ export default function Panel() {
     />
   })
 
+
+
   const handleAddProduct = () => {
-   
-    const copyMenu = [...fakeMenu2];
-    const newId = fakeMenu2.length + 1;
+    const copyMenu = [...menu];
+    const newId = menu.length + 2;
     const newProduct =
     {
       id: { newId },
       imageSource: "/images/burger1.png",
-      title: "Burger 1",
+      title: "Nouveau Produit",
       price: 5.297,
       quantity: 0,
       isAvailable: true,
@@ -38,7 +39,7 @@ export default function Panel() {
     const menuUpdated = [newProduct,...copyMenu];
     setMenu(menuUpdated)
 
-    console.log("fakeMenu " + JSON.stringify(fakeMenu2))
+    //console.log("fakeMenu " + JSON.stringify(fakeMenu2))
 }
 
 return (

@@ -8,27 +8,28 @@ import UserContext from "../../../../context/UserContext"
 
 export default function Menu() {
   const { menu, setMenu } = useContext(UserContext);
-  
-  // const handleDelete = (title) => {
-  //   const menuUpdated = fakeMenu2.filter(data => data.title !== title)
-  //   console.log(JSON.stringify(menuUpdated) + "menu: " + menuUpdated)
-  //   setMenu(menuUpdated)
-  //   return menu;
-  // }
+
+  const handleDelete = (title) => {
+    
+    const menuUpdated = menu.filter(data => data.title !== title)
+    //console.log(JSON.stringify(menuUpdated) + "menu: " + menuUpdated)
+    setMenu(menuUpdated)
+    return menu;
+  }
 
   return (
     <MenuStyled className="menu">
-      {Array.isArray(menu) && menu.map(({ id, title, imageSource, price }) => {
+      { menu.length < 1 ? menu.map(({ id, title, imageSource, price }) => {
         return (
           <Card
             key={id}
             title={title}
             imageSource={imageSource}
             leftDescription={formatPrice(price)}
-            // onClick={() => handleDelete(title)}
+            onClick={() => handleDelete(title)}
           />
         )
-      })}
+      }) : <span> "Rupture de stock"</span>}
     </MenuStyled>
   )
 }
