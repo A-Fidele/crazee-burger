@@ -8,51 +8,57 @@ import UserContext from "../../../../../../context/UserContext";
 
 export default function Panel() {
   const { currentTabSelected, menu, handleAddProduct } = useContext(UserContext);
-  const [ field, setField] = useState("");
+  const [field, setField] = useState("");
 
   const tabs = tabsConfig;
   const tabSelected = getTabSelected(tabs, currentTabSelected);
+  
+  const product = {
+    id: "",
+    title: "",
+    imageSource: "",
+    price: "",
+  };
 
-  const handleChange = (event) => {
+  const [newProduct, setNewProduct] = useState(product);
+
+  const handleChange = (e) => {
     setField(e.target.value)
+    //console.log('target: ' + e.target.name + ' value: ' + field)
+    setNewProduct( {...newProduct,
+      id: new Date().getTime(),
+      [e.target.name]: [e.target.value],
+    } )
   }
-
+    
   const submit = () => {
     handleAddProduct(newProduct)
   }
 
-  const newProduct =
-  {
-    id: new Date().getTime(),
-    imageSource: "/images/burger1.png",
-    title: "Nouveau Produit",
-    price: 5.297,
-    quantity: 0,
-    isAvailable: true,
-    isAdvertised: false
-  }
-  
   const inputFields = tabSelected.infoProduct.map((fields) => {
     return <TextInput
-    key={fields.addIndex}
-    Icon={fields.addIcon}
-    placeholder={fields.addPlaceholder}
-    className={"input-fields-classname"}
-    onChange={handleChange}
-    value={field}
+      key={fields.addIndex}
+      Icon={fields.addIcon}
+      name={fields.name}
+      placeholder={fields.addPlaceholder}
+      className={"input-fields-classname"}
+      onChange={handleChange}
+      value={field}
     />
   })
 
-return (
-  <AdminPanelStyled>
-    {/* <p>{tabSelected && tabSelected.label}</p> */}
-    <div className="add-container">
-      <div className="image-preview">imagepreview</div>
-      <div className="input-fields">{inputFields}</div>
-      <div className="submit-button"><button onClick={() => submit()}>Ajouter un produit</button></div>
-    </div>
-  </AdminPanelStyled>
-);
+  return (
+    <AdminPanelStyled>
+      {/* <p>{tabSelected && tabSelected.label}</p> */}
+      <div className="add-container">
+        <div className="image-preview">imagepreview</div>
+        <div className="input-fields">{inputFields}</div>
+        <div className="submit-button">
+          <button onClick={() => submit()}>Ajouter un produit</button>
+        </div>
+      </div>
+    </AdminPanelStyled>
+  );
 }
 const AdminPanelStyled = styled.div`
   height: 250px;
