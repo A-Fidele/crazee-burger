@@ -7,19 +7,12 @@ import Card from "../../../reusable-ui/Card"
 import UserContext from "../../../../context/UserContext"
 
 export default function Menu() {
-  const { menu, setMenu } = useContext(UserContext);
+  const { menu, handleDelete } = useContext(UserContext);
 
-  const handleDelete = (title) => {
-    
-    const menuUpdated = menu.filter(data => data.title !== title)
-    //console.log(JSON.stringify(menuUpdated) + "menu: " + menuUpdated)
-    setMenu(menuUpdated)
-    return menu;
-  }
-
+  
   return (
     <MenuStyled className="menu">
-      { menu.length < 1 ? menu.map(({ id, title, imageSource, price }) => {
+      { menu.map(({ id, title, imageSource, price }) => {
         return (
           <Card
             key={id}
@@ -29,7 +22,7 @@ export default function Menu() {
             onClick={() => handleDelete(title)}
           />
         )
-      }) : <span> "Rupture de stock"</span>}
+      }) }
     </MenuStyled>
   )
 }

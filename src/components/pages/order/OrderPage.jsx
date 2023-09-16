@@ -14,6 +14,18 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add")
   const [menu, setMenu] = useState(fakeMenu2)
 
+  const handleAddProduct = (newProduct) => {
+    const copyMenu = [...menu];    
+    const menuUpdated = [newProduct,...copyMenu];
+    setMenu(menuUpdated)
+}
+
+const handleDelete = (title) => {
+  const copyMenu = [...menu];
+  const menuUpdated = copyMenu.filter(data => data.title !== title)
+  setMenu(menuUpdated)
+}
+
   const userContextValue = {
     isAdmin,
     setIsAdmin,
@@ -22,7 +34,8 @@ export default function OrderPage() {
     currentTabSelected, 
     setCurrentTabSelected,
     menu,
-    setMenu
+    handleAddProduct,
+    handleDelete
   };
 
   return (
