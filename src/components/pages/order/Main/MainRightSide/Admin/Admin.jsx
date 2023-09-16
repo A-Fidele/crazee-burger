@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Panel from "./Panel";
+import AdminPanel from "./AdminPanel";
 import { useContext } from "react";
 import Usercontext from "../../../../../../context/UserContext";
 import AdminTabs from "./AdminTabs";
@@ -9,7 +9,7 @@ export default function Admin() {
   return (
     <AdminStyled>
       <AdminTabs />
-      {!isCollapsed && <Panel />}
+      {!isCollapsed && <AdminPanel />}
     </AdminStyled>
   )
 }

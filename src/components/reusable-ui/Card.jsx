@@ -6,23 +6,15 @@ import UserContext from "../../context/UserContext";
 import { useContext, useState } from "react";
 import { fakeMenu2 } from "../../fakeData/fakeMenu";
 
-export default function Card({ title, imageSource, leftDescription }) {
+export default function Card({ title, imageSource, leftDescription, onClick }) {
   const { isAdmin } = useContext(UserContext);
-  //const menu = fakeMenu2;
-  const [ menu, setMenu ] = useState(fakeMenu2);
-
-  const handleDelete = () => {
-     //alert(title);
-     setMenu( menu.filter((title) => title !== menu.title ))
-     console.log(menu)
- }
-
-
+  
   return (
     <CardStyled className={isAdmin && "admin-mode"}>
       {isAdmin && <div className="delete-icon"><TiDelete
       className="icon"
-      onClick={handleDelete}/></div>}
+      onClick={() => onClick(title)}/>
+      </div>}
       <div className="image">
         <img src={imageSource} alt={title} />
       </div>
