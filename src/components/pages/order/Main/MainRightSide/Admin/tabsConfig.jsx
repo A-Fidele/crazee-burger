@@ -35,6 +35,14 @@ export const tabsConfig = [
     index: "edit",
     label: "Modifier un produit",
     Icon: <MdModeEditOutline />,
+    infoProduct: [
+      {
+        addIndex: 1,
+        name: "title",
+        addIcon: <FaHamburger />,
+        addPlaceholder: "Nom du produit (ex: Super Burger)",
+      },
+    ]
   },
 ];
 

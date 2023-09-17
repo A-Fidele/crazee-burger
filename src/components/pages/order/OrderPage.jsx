@@ -24,7 +24,6 @@ const handleDelete = (title) => {
   const copyMenu = [...menu];
   const menuUpdated = copyMenu.filter(data => data.title !== title)
   setMenu(menuUpdated)
-  alert("length :" + menu.length)
 }
 
   const userContextValue = {

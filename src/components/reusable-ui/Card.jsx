@@ -4,7 +4,8 @@ import PrimaryButton from "./PrimaryButton"
 import { TiDelete } from "react-icons/ti"
 import UserContext from "../../context/UserContext";
 import { useContext, useState } from "react";
-import { fakeMenu2 } from "../../fakeData/fakeMenu";
+
+const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Card({ title, imageSource, leftDescription, onClick }) {
   const { isAdmin } = useContext(UserContext);
@@ -16,7 +17,7 @@ export default function Card({ title, imageSource, leftDescription, onClick }) {
       onClick={() => onClick(title)}/>
       </div>}
       <div className="image">
-        <img src={imageSource} alt={title} />
+        <img src={ imageSource ? imageSource : DEFAULT_IMAGE } alt={title} />
       </div>
       <div className="text-info">
         <div className="title">{title}</div>
