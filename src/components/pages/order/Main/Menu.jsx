@@ -5,6 +5,8 @@ import { formatPrice } from "../../../../utils/maths"
 import Card from "../../../reusable-ui/Card"
 import UserContext from "../../../../context/UserContext"
 import PrimaryButton from "../../../reusable-ui/PrimaryButton"
+import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer"
+import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin"
 
 export default function Menu() {
   const { menu, isAdmin, handleDelete } = useContext(UserContext);
@@ -14,24 +16,29 @@ export default function Menu() {
     //menu ? alert(menu.length) : alert("finito")
   }
   const [emptyMessage, setEmptyMessage] = useState(
-    <div className="admin-empty-menu-container">
-      <div className="admin-empty-menu"><span className="title">LE MENU EST VIDE ?</span></div>
-      <div className="admin-empty-menu"><span>CLIQUEZ CI-DESSOUS POUR LE REINITIALISER</span></div>
+    <div className="empty-menu-container">
+      <div className="empty-menu"><span className="title">LE MENU EST VIDE ?</span></div>
+      <div className="empty-menu"><span>CLIQUEZ CI-DESSOUS POUR LE REINITIALISER</span></div>
       <PrimaryButton label="Générer de nouveaux produits" className="button" />
     </div>)
-//  if(!isAdmin) {
-//     setEmptyMessage(
-//     setEmptyMessage(<div className="admin-empty-menu-container">
-//        <div className="admin-empty-menu"><span className="title">VICTIME DE NOTRE SUCCES! :D</span></div>
-//        <div className="admin-empty-menu"><span>DE NOUVELLES RECETTES SONT EN COURS DE PREPARATION</span></div>
-//        <div className="admin-empty-menu"><span>A TRES VITE!</span></div>
-//      </div>)
-//     )
-// }
+
+
+
+  if (menu.length === 0) {
+    if (!isAdmin) {
+      return (
+        <EmptyMenuCustomer />
+      );
+    } else {
+      return (
+        <EmptyMenuAdmin />
+      );
+    }
+  }
 
   return (
     <MenuStyled className="menu">
-      { menu.length ? menu.map(({ id, title, imageSource, price }) => {
+      {menu.map(({ id, title, imageSource, price }) => {
         return (
           <Card
             key={id}
@@ -41,7 +48,7 @@ export default function Menu() {
             onClick={() => handleDelete(title)}
           />
         )
-      }) : emptyMessage}
+      })}
     </MenuStyled>
   )
 }
@@ -56,14 +63,14 @@ const MenuStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   overflow: scroll;
 
-  .admin-empty-menu-container {
+  .empty-menu-container {
     display: flex;
     width: 1400px;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
     margin-bottom: 200px;
-    .admin-empty-menu {
+    .empty-menu {
       margin-bottom: 30px;
       font-size: ${theme.fonts.size.P4};
       font-family: "Amatic SC";

@@ -12,10 +12,10 @@ export default function Card({ title, imageSource, leftDescription, onClick }) {
   
   return (
     <CardStyled className={isAdmin && "admin-mode"}>
-      {isAdmin && <div className="delete-icon"><TiDelete
+      {isAdmin && <button className="delete-icon"><TiDelete
       className="icon"
       onClick={() => onClick(title)}/>
-      </div>}
+      </button>}
       <div className="image">
         <img src={ imageSource ? imageSource : DEFAULT_IMAGE } alt={title} />
       </div>
@@ -60,6 +60,8 @@ const CardStyled = styled.div`
     //border: 1px solid ;
     height: 30px;
     width: 30px;
+    border: none;
+    background-color: ${theme.colors.white};
     margin-left: auto; 
     cursor: pointer;
   
