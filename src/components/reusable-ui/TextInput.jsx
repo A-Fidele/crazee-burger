@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import { theme } from "../../theme"
 
-export default function TextInput({ value, onChange, Icon, type, ...extraProps }) {
+export default function TextInput({ value, onChange, Icon, type, className, ...extraProps }) {
   return (
-    <InputStyled>
+    <InputStyled className={className}>
       {Icon && Icon}
       <input onChange={onChange} type={type} {...extraProps} />
     </InputStyled>
@@ -15,8 +15,7 @@ const InputStyled = styled.div`
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
-  padding: 18px 24px;
-  margin: 18px 0; 
+   
 
   .icon {
     font-size: ${theme.fonts.size.SM};

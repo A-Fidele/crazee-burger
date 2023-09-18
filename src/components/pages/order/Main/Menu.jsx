@@ -4,26 +4,12 @@ import { theme } from "../../../../theme"
 import { formatPrice } from "../../../../utils/maths"
 import Card from "../../../reusable-ui/Card"
 import UserContext from "../../../../context/UserContext"
-import PrimaryButton from "../../../reusable-ui/PrimaryButton"
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer"
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin"
 
 export default function Menu() {
   const { menu, isAdmin, handleDelete } = useContext(UserContext);
-  const handleClick = () => {
-    //menu.map(()=> alert(menu.length))
-    alert(menu.length)
-    //menu ? alert(menu.length) : alert("finito")
-  }
-  const [emptyMessage, setEmptyMessage] = useState(
-    <div className="empty-menu-container">
-      <div className="empty-menu"><span className="title">LE MENU EST VIDE ?</span></div>
-      <div className="empty-menu"><span>CLIQUEZ CI-DESSOUS POUR LE REINITIALISER</span></div>
-      <PrimaryButton label="Générer de nouveaux produits" className="button" />
-    </div>)
-
-
-
+  
   if (menu.length === 0) {
     if (!isAdmin) {
       return (
