@@ -13,18 +13,21 @@ export const tabsConfig = [
     infoProduct: [
       {
         addIndex: 1,
+        type: "text",
         name: "title",
         addIcon: <FaHamburger />,
         addPlaceholder: "Nom du produit (ex: Super Burger)",
       },
       {
         addIndex: 2,
+        type:"url",
         name: "imageSource",
         addIcon: <BsFillCameraFill />,
         addPlaceholder: "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)",
       },
       {
         addIndex: 3,
+        type:"text",
         name: "price",
         addIcon: <MdOutlineEuro />,
         addPlaceholder: "Prix",

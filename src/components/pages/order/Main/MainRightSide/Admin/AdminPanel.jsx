@@ -48,7 +48,7 @@ export default function Panel() {
       key={fields.addIndex}
       Icon={fields.addIcon}
       name={fields.name}
-      type={"url"}
+      type={fields.type}
       placeholder={fields.addPlaceholder}
       className={"input-fields-classname"}
       onChange={handleChange}
