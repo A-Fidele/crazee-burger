@@ -5,7 +5,7 @@ import { FiCheck } from "react-icons/fi";
 import { styled } from 'styled-components';
 import { theme } from '../../../../../../theme';
 
-export default function AddForm({tabSelected}) {
+export default function AddForm({ tabSelected }) {
     const [field, setField] = useState("");
     const [isSuccess, setIsSuccess] = useState("");
 
@@ -44,7 +44,7 @@ export default function AddForm({tabSelected}) {
             name={fields.name}
             type={fields.type}
             placeholder={fields.addPlaceholder}
-            className={"input-field-classname"}
+            version={"darklight"}
             onChange={handleChange}
             value={field}
         />
@@ -104,22 +104,22 @@ const AddFormStyled = styled.form`
   grid-area: 1/2/4/2;
   display: grid;
   grid-row-gap: 8px;
-  
+    
 }
 
 .submit-button {
   grid-area: 4/2/5/3;
 }
 
-p {
-    padding: 0 20px;
+.input-field-classname {
+     background-color: ${theme.colors.background_white};
+     &::placeholder {
+     background-color: ${theme.colors.greyLight};
+
+     }
   }
 
-  .input-field-classname {
-     background-color: ${theme.colors.greyLight};   
-  }
-
-  .add-product-button {
+.add-product-button {
     background-color:${theme.colors.success};
     border: none;
     height: 34px;

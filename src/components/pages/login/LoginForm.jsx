@@ -88,5 +88,9 @@ const LoginFormStyled = styled.form`
     padding: 18px 24px;
     margin: 18px 0;
     width: 400px;
+     &::placeholder {
+      background: ${theme.colors.white};
+      color: ${theme.colors.greyMedium};
+    }
   }
 `;
