@@ -31,7 +31,7 @@ export default function Menu() {
             title={title}
             imageSource={imageSource}
             leftDescription={formatPrice(price)}
-            onClick={() => handleDelete(title)}
+            onClick={() => handleDelete(id)}
           />
         )
       })}

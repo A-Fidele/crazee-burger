@@ -1,7 +1,7 @@
-import styled from "styled-components"
-import { theme } from "../../theme"
-import PrimaryButton from "./PrimaryButton"
-import { TiDelete } from "react-icons/ti"
+import styled from "styled-components";
+import { theme } from "../../theme";
+import PrimaryButton from "./PrimaryButton";
+import { TiDelete } from "react-icons/ti";
 import UserContext from "../../context/UserContext";
 import { useContext, useState } from "react";
 
@@ -9,15 +9,16 @@ const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Card({ title, imageSource, leftDescription, onClick }) {
   const { isAdmin } = useContext(UserContext);
-  
+
   return (
     <CardStyled className={isAdmin && "admin-mode"}>
-      {isAdmin && <button className="delete-icon"><TiDelete
-      className="icon"
-      onClick={() => onClick(title)}/>
-      </button>}
+      {isAdmin && (
+        <button className="delete-icon" onClick={() => onClick(title)}>
+          <TiDelete className="icon" />
+        </button>
+      )}
       <div className="image">
-        <img src={ imageSource ? imageSource : DEFAULT_IMAGE } alt={title} />
+        <img src={imageSource ? imageSource : DEFAULT_IMAGE} alt={title} />
       </div>
       <div className="text-info">
         <div className="title">{title}</div>
@@ -29,7 +30,7 @@ export default function Card({ title, imageSource, leftDescription, onClick }) {
         </div>
       </div>
     </CardStyled>
-  )
+  );
 }
 
 const CardStyled = styled.div`
@@ -42,29 +43,30 @@ const CardStyled = styled.div`
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
+  position: relative;
 
-
-&.admin-mode {
-  background: ${theme.colors.white};
-  width: 200px;
-  height: 300px;
-  display: grid;
-  grid-template-rows: 1% 65% 1fr;
-  padding: 20px;
-  padding-bottom: 10px;
-  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
-  border-radius: ${theme.borderRadius.extraRound};
-}
+  &.admin-mode {
+    background: ${theme.colors.white};
+    width: 200px;
+    height: 300px;
+    display: grid;
+    grid-template-rows: 65% 1fr;
+    padding: 20px;
+    padding-bottom: 10px;
+    box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+    border-radius: ${theme.borderRadius.extraRound};
+  }
 
   .delete-icon {
-    //border: 1px solid ;
     height: 30px;
     width: 30px;
     border: none;
     background-color: ${theme.colors.white};
-    margin-left: auto; 
+    margin-left: auto;
     cursor: pointer;
-  
+    position: absolute;
+    right: 0;
+    margin: 15px;
   }
 
   .icon {
@@ -72,7 +74,7 @@ const CardStyled = styled.div`
     height: 30px;
     color: ${theme.colors.primary};
     :hover {
-      color:${theme.colors.red};
+      color: ${theme.colors.red};
       cursor: pointer;
     }
   }
@@ -83,7 +85,7 @@ const CardStyled = styled.div`
     height: auto;
     margin-top: 30px;
     margin-bottom: 20px;
-    
+
     img {
       width: 100%;
       height: 100%;
@@ -141,4 +143,4 @@ const CardStyled = styled.div`
       }
     }
   }
-`
+`;

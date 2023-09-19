@@ -54,7 +54,7 @@ const extraStyleDarklight = css`
     font-size: ${theme.fonts.size.SM};
     margin-right: 13px;
     margin-left: 24px;
-    color: ${theme.colors.greySemiDark};
+    color: ${theme.colors.greyDark};
     
   }
   
