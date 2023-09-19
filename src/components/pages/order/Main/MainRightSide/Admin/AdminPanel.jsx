@@ -7,7 +7,7 @@ import AddForm from "./AddForm";
 
 
 export default function Panel() {
-  const { currentTabSelected, menu, handleAddProduct } = useContext(UserContext);
+  const { currentTabSelected } = useContext(UserContext);
 
   const tabs = tabsConfig;
   const tabSelected = getTabSelected(tabs, currentTabSelected);

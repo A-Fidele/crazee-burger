@@ -6,13 +6,15 @@ import Main from "./Main/Main";
 import UserContext from "../../../context/UserContext";
 import { useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
+import { emptyProduct } from "./Main/MainRightSide/Admin/AddForm";
 
 export default function OrderPage() {
   const { username } = useParams();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false)
-  const [currentTabSelected, setCurrentTabSelected] = useState("add")
-  const [menu, setMenu] = useState(fakeMenu2)
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [menu, setMenu] = useState(fakeMenu2);
+  const [newProduct, setNewProduct] = useState(emptyProduct);
 
   const handleAddProduct = (newProduct) => {
     const copyMenu = [...menu];    
@@ -26,6 +28,10 @@ const handleDelete = (title) => {
   setMenu(menuUpdated)
 }
 
+const resetMenu = () => {
+  setMenu(fakeMenu2)
+}
+
   const userContextValue = {
     isAdmin,
     setIsAdmin,
@@ -35,7 +41,10 @@ const handleDelete = (title) => {
     setCurrentTabSelected,
     menu,
     handleAddProduct,
-    handleDelete
+    handleDelete,
+    resetMenu,
+    newProduct,
+    setNewProduct,
   };
 
   return (

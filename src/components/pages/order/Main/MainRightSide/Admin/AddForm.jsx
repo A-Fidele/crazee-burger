@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import TextInput from "../../../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../../../reusable-ui/PrimaryButton";
 import { FiCheck } from "react-icons/fi";
 import { styled } from 'styled-components';
 import { theme } from '../../../../../../theme';
+import UserContext from '../../../../../../context/UserContext';
+
+export const emptyProduct = {
+    id: "",
+    title: "",
+    imageSource: "",
+    price: "",
+};
 
 export default function AddForm({ tabSelected }) {
     const [field, setField] = useState("");
     const [isSuccess, setIsSuccess] = useState("");
+    const { handleAddProduct, newProduct, setNewProduct } = useContext(UserContext);
 
-    const product = {
-        id: "",
-        title: "",
-        imageSource: "",
-        price: "",
-    };
-
-    const [newProduct, setNewProduct] = useState(product);
 
     const handleChange = (e) => {
         setField(e.target.value)
@@ -30,7 +31,7 @@ export default function AddForm({ tabSelected }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         handleAddProduct(newProduct)
-        setNewProduct(product)//vider les champs --> A REVOIR
+        setNewProduct(emptyProduct)//vider les champs --> A REVOIR
         setIsSuccess(true);
         setTimeout(() => {
             setIsSuccess(false)
@@ -55,7 +56,7 @@ export default function AddForm({ tabSelected }) {
             <div className="image-preview">
                 {newProduct.imageSource ?
                     <img src={newProduct.imageSource} alt={newProduct.title} /> :
-                    "No Image"}
+                    "Aucune Image"}
             </div>
             <div className="input-fields">{inputFields}</div>
             <div className="submit-button">
@@ -83,7 +84,6 @@ const AddFormStyled = styled.form`
 
 .image-preview {
   grid-area: 1/1/4/2;
-  border: 1px solid black;
   margin-right: 20px;
   display: flex;
   align-items: center;
@@ -94,9 +94,12 @@ const AddFormStyled = styled.form`
   border-radius: ${theme.borderRadius.round};
   justify-self: center;
   width: 100%;
-  .img {
+  height: 100%;
+  img {
     object-fit: contain;
     object-position: center;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -123,10 +126,12 @@ const AddFormStyled = styled.form`
     background-color:${theme.colors.success};
     border: none;
     height: 34px;
-    width: 50%;
+    width: 60%;
     margin-top: 20px;
-    font-weight: ${theme.fonts.weights.regular};
-    font-size: ${theme.fonts.size.SM};
+    font-weight: ${theme.fonts.weights.bold};
+    font-size: ${theme.fonts.size.sm};
+    padding: 10px, 29px, 9px, 29px;
+
     &:hover {
       color:white;
     }
