@@ -7,7 +7,7 @@ import UserContext from "../../../context/UserContext";
 import { useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 
-export const emptyProduct = {
+export const EMPTY_PRODUCT = {
   id: "",
   title: "",
   imageSource: "",
@@ -16,11 +16,11 @@ export const emptyProduct = {
 
 export default function OrderPage() {
   const { username } = useParams();
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState(fakeMenu2);
-  const [newProduct, setNewProduct] = useState(emptyProduct);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const handleAddProduct = (newProduct) => {
     const copyMenu = [...menu];

@@ -3,8 +3,6 @@ import { theme } from "../../../../../../theme";
 import { useContext } from "react";
 import { getTabSelected, tabsConfig } from "./tabsConfig";
 import UserContext from "../../../../../../context/UserContext";
-import AddForm from "./AddForm";
-
 
 export default function Panel() {
   const { currentTabSelected } = useContext(UserContext);
@@ -13,10 +11,7 @@ export default function Panel() {
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return (
-    <AdminPanelStyled>
-      {/* <p>{tabSelected && tabSelected.label}</p> */}
-      <AddForm tabSelected={tabSelected} />
-    </AdminPanelStyled >
+    <AdminPanelStyled>{tabSelected && tabSelected.content}</AdminPanelStyled>
   );
 }
 const AdminPanelStyled = styled.div`
@@ -26,6 +21,4 @@ const AdminPanelStyled = styled.div`
   box-shadow: ${theme.shadows.subtle};
   padding: 20px;
   box-sizing: border-box;
-
-
 `;

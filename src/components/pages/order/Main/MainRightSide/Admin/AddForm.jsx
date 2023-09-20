@@ -1,22 +1,24 @@
 import React, { useContext, useState } from "react";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../../../reusable-ui/PrimaryButton";
-import { FiCheck } from "react-icons/fi";
 import { styled } from "styled-components";
 import { theme } from "../../../../../../theme";
 import UserContext from "../../../../../../context/UserContext";
-import { emptyProduct } from "../../../OrderPage";
+import { EMPTY_PRODUCT } from "../../../OrderPage";
+import { getInputTextsConfig } from "./inputTextsConfig";
+import SubmitMessage from "./SubmitMessage";
+import ImagePreview from "./ImagePreview";
 
-export default function AddForm({ tabSelected }) {
-  const [txtField, setTxtField] = useState("");
+export default function AddForm() {
   const [isSuccess, setIsSuccess] = useState("");
   const { handleAddProduct, newProduct, setNewProduct } =
     useContext(UserContext);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     const productBeingChanged = {
       ...newProduct,
-      [e.target.name]: [e.target.value],
+      [name]: value,
     };
 
     setNewProduct(productBeingChanged);
@@ -28,51 +30,40 @@ export default function AddForm({ tabSelected }) {
       ...newProduct,
       id: crypto.randomUUID(),
     };
+
     handleAddProduct(newProductToAdd);
-    setNewProduct(emptyProduct);
+    setNewProduct(EMPTY_PRODUCT);
+
     setIsSuccess(true);
     setTimeout(() => {
       setIsSuccess(false);
     }, 2000);
   };
 
-  const inputFields = tabSelected.infoProduct.map((field) => {
-    return (
-      <TextInput
-        key={field.addIndex}
-        Icon={field.addIcon}
-        name={field.name}
-        type={field.type}
-        placeholder={field.addPlaceholder}
-        version={"darklight"}
-        onChange={handleChange}
-        value={txtField}
-      />
-    );
-  });
+  const inputTexts = getInputTextsConfig(newProduct);
 
   return (
     <AddFormStyled action="submit" onSubmit={handleSubmit}>
-      <div className="image-preview">
-        {newProduct.imageSource ? (
-          <img src={newProduct.imageSource} alt={newProduct.title} />
-        ) : (
-          "Aucune Image"
-        )}
+      <ImagePreview src={newProduct.imageSource} alt={newProduct.title} />
+      <div className="input-fields">
+        {inputTexts.map((input) => {
+          return (
+            <TextInput
+              key={input.id}
+              {...input}
+              onChange={handleChange}
+              version="darklight"
+            />
+          );
+        })}
       </div>
-      <div className="input-fields">{inputFields}</div>
       <div className="submit-button">
         <PrimaryButton
           className={"add-product-button"}
           label="Ajouter un nouveau produit au menu"
         />
         <span className="success-message">
-          {isSuccess && (
-            <span>
-              {" "}
-              <FiCheck /> Ajouté avec succès !
-            </span>
-          )}
+          {isSuccess && <SubmitMessage />}
         </span>
       </div>
     </AddFormStyled>
@@ -87,27 +78,6 @@ const AddFormStyled = styled.form`
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 20px;
   grid-row-gap: 8px;
-
-  .image-preview {
-    grid-area: 1/1/4/2;
-    margin-right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid ${theme.colors.greyLight};
-    line-height: 1.5;
-    color: ${theme.colors.greySemiDark};
-    border-radius: ${theme.borderRadius.round};
-    justify-self: center;
-    width: 100%;
-    height: 100%;
-    img {
-      object-fit: contain;
-      object-position: center;
-      width: 100%;
-      height: 100%;
-    }
-  }
 
   .input-fields {
     grid-area: 1/2/4/2;
