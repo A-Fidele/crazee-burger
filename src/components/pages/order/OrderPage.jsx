@@ -9,9 +9,9 @@ import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 
 export const EMPTY_PRODUCT = {
   id: "",
-  title: "",
+  title: "EMPTY_PRODUCT",
   imageSource: "",
-  price: "",
+  price: 0,
 };
 
 export default function OrderPage() {

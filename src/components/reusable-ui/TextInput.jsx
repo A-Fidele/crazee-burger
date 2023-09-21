@@ -12,7 +12,7 @@ export default function TextInput({
 }) {
   return (
     <InputStyled className={className} version={version}>
-      {Icon && Icon}
+      <div className="icon">{Icon && Icon}</div>
       <input onChange={onChange} type={type} {...extraProps} />
     </InputStyled>
   );
@@ -55,6 +55,8 @@ const extraStyleDarklight = css`
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
+  padding: 8px 16px;
+  color: ${theme.colors.greyBlue};
 
   .icon {
     font-size: ${theme.fonts.size.SM};

@@ -32,7 +32,7 @@ export default function AddForm() {
     };
 
     handleAddProduct(newProductToAdd);
-    setNewProduct(EMPTY_PRODUCT);
+    setNewProduct(EMPTY_PRODUCT); // remise a 0 des champs
 
     setIsSuccess(true);
     setTimeout(() => {
@@ -62,9 +62,7 @@ export default function AddForm() {
           className={"add-product-button"}
           label="Ajouter un nouveau produit au menu"
         />
-        <span className="success-message">
-          {isSuccess && <SubmitMessage />}
-        </span>
+        {isSuccess && <SubmitMessage />}
       </div>
     </AddFormStyled>
   );
@@ -114,12 +112,5 @@ const AddFormStyled = styled.form`
       color: ${theme.colors.success};
       border: 1px solid ${theme.colors.success};
     }
-  }
-
-  .success-message {
-    color: ${theme.colors.green};
-    margin-left: 5px;
-    font-size: ${theme.fonts.size.SM};
-    font-weight: ${theme.fonts.weights.regular};
   }
 `;
