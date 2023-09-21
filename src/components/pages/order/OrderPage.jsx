@@ -9,7 +9,7 @@ import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 
 export const EMPTY_PRODUCT = {
   id: "",
-  title: "EMPTY_PRODUCT",
+  title: "",
   imageSource: "",
   price: 0,
 };

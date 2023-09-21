@@ -17,6 +17,7 @@ const SubmitMessageStyled = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 5px;
+  display: inline;
 
   .icon {
     color: ${theme.colors.success};

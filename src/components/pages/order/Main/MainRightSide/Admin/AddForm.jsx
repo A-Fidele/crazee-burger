@@ -33,7 +33,7 @@ export default function AddForm() {
 
     handleAddProduct(newProductToAdd);
     setNewProduct(EMPTY_PRODUCT); // remise a 0 des champs
-
+    console.log("product : ", newProduct);
     setIsSuccess(true);
     setTimeout(() => {
       setIsSuccess(false);
@@ -44,7 +44,10 @@ export default function AddForm() {
 
   return (
     <AddFormStyled action="submit" onSubmit={handleSubmit}>
-      <ImagePreview src={newProduct.imageSource} alt={newProduct.title} />
+      <ImagePreview
+        imageSource={newProduct.imageSource}
+        title={newProduct.title}
+      />
       <div className="input-fields">
         {inputTexts.map((input) => {
           return (
@@ -57,6 +60,7 @@ export default function AddForm() {
           );
         })}
       </div>
+      <TextInput />
       <div className="submit-button">
         <PrimaryButton
           className={"add-product-button"}

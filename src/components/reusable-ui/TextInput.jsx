@@ -5,7 +5,6 @@ export default function TextInput({
   value,
   onChange,
   Icon,
-  type,
   className,
   version = "classic",
   ...extraProps
@@ -13,7 +12,7 @@ export default function TextInput({
   return (
     <InputStyled className={className} version={version}>
       <div className="icon">{Icon && Icon}</div>
-      <input onChange={onChange} type={type} {...extraProps} />
+      <input value={value} onChange={onChange} type="text" {...extraProps} />
     </InputStyled>
   );
 }
@@ -69,7 +68,7 @@ const extraStyleDarklight = css`
     border: none;
     font-size: ${theme.fonts.size.SM};
     color: ${theme.colors.dark};
-    width: 85%;
+    width: 90%;
     background: ${theme.colors.background_white};
 
     &::placeholder {
