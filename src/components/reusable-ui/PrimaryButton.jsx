@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function PrimaryButton({
-  label, Icon, className, onClick }) {
+export default function PrimaryButton({ label, Icon, className, onClick }) {
   return (
     <PrimaryButtonStyled className={className} onClick={onClick}>
       <span>{label}</span>
@@ -17,8 +16,8 @@ const PrimaryButtonStyled = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  position: relative; 
-  white-space: nowrap; 
+  position: relative;
+  white-space: nowrap;
   text-decoration: none;
   line-height: 1;
 
@@ -27,8 +26,8 @@ const PrimaryButtonStyled = styled.button`
   font-size: 15px;
   font-weight: 800;
   color: white;
-  background-color: #ff9f1b;
-  border: 1px solid #ff9f1b;
+  background-color: ${theme.colors.primary};
+  border: 1px solid ${theme.colors.primary};
 
   &:hover {
     color: ${theme.colors.primary};

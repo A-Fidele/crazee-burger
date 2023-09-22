@@ -5,20 +5,24 @@ import { TiDelete } from "react-icons/ti";
 import UserContext from "../../context/UserContext";
 import { useContext, useState } from "react";
 
-const DEFAULT_IMAGE = "/images/coming-soon.png";
-
-export default function Card({ title, imageSource, leftDescription, onClick }) {
+export default function Card({
+  title,
+  imageSource,
+  leftDescription,
+  hasButton,
+  onDelete,
+}) {
   const { isAdmin } = useContext(UserContext);
 
   return (
-    <CardStyled className={isAdmin && "admin-mode"}>
-      {isAdmin && (
-        <button className="delete-icon" onClick={() => onClick(title)}>
+    <CardStyled className={isAdmin && "delete-button"}>
+      {hasButton && (
+        <button className="delete-icon" onClick={onDelete}>
           <TiDelete className="icon" />
         </button>
       )}
       <div className="image">
-        <img src={imageSource ? imageSource : DEFAULT_IMAGE} alt={title} />
+        <img src={imageSource} alt={title} />
       </div>
       <div className="text-info">
         <div className="title">{title}</div>
@@ -45,7 +49,7 @@ const CardStyled = styled.div`
   border-radius: ${theme.borderRadius.extraRound};
   position: relative;
 
-  &.admin-mode {
+  &.delete-button {
     background: ${theme.colors.white};
     width: 200px;
     height: 300px;

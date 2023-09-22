@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import AdminPanel from "./AdminPanel";
 import { useContext } from "react";
-import Usercontext from "../../../../../../context/UserContext";
+import UserContext from "../../../../../../context/UserContext";
 import AdminTabs from "./AdminTabs";
 
 export default function Admin() {
-  const { isCollapsed } = useContext(Usercontext)
+  const { isCollapsed } = useContext(UserContext);
   return (
     <AdminStyled>
       <AdminTabs />
       {!isCollapsed && <AdminPanel />}
     </AdminStyled>
-  )
+  );
 }
 
 const AdminStyled = styled.div`

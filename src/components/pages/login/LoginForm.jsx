@@ -9,12 +9,11 @@ import { theme } from "../../../theme";
 
 export default function LoginForm() {
   // state
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("Aurelien");
   const navigate = useNavigate();
 
   // comportements
   const handleSubmit = (event) => {
-    console.log("submitted");
     event.preventDefault();
     setInputValue("");
     navigate(`order/${inputValue}`);
@@ -88,7 +87,7 @@ const LoginFormStyled = styled.form`
     padding: 18px 24px;
     margin: 18px 0;
     width: 400px;
-     &::placeholder {
+    &::placeholder {
       background: ${theme.colors.white};
       color: ${theme.colors.greyMedium};
     }

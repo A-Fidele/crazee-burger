@@ -33,7 +33,6 @@ export default function AddForm() {
 
     handleAddProduct(newProductToAdd);
     setNewProduct(EMPTY_PRODUCT); // remise a 0 des champs
-    console.log("product : ", newProduct);
     setIsSuccess(true);
     setTimeout(() => {
       setIsSuccess(false);
@@ -60,7 +59,6 @@ export default function AddForm() {
           );
         })}
       </div>
-      <TextInput />
       <div className="submit-button">
         <PrimaryButton
           className={"add-product-button"}
@@ -103,7 +101,6 @@ const AddFormStyled = styled.form`
     border: none;
     height: 34px;
     width: 60%;
-    margin-top: 20px;
     font-weight: ${theme.fonts.weights.bold};
     font-size: ${theme.fonts.size.sm};
     padding: 10px, 29px, 9px, 29px;

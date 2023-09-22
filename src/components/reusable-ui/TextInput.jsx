@@ -18,9 +18,6 @@ export default function TextInput({
 }
 
 const InputStyled = styled.div`
-  /* ${(props) => props.version === "classic" && extraStyleCassic};
-  ${(props) => props.version === "darklight" && extraStyleDarklight}; */
-
   ${(props) => extraStyle[props.version]}
 `;
 
@@ -54,13 +51,12 @@ const extraStyleDarklight = css`
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: 8px 24px;
   color: ${theme.colors.greyBlue};
 
   .icon {
     font-size: ${theme.fonts.size.SM};
     margin-right: 13px;
-    margin-left: 24px;
     color: ${theme.colors.greyDark};
   }
 
