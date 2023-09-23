@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import Option from "../../../../../reusable-ui/Option";
+import Option from "../../../../../reusable-ui/Tab";
 import Usercontext from "../../../../../../context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
 import { tabsConfig } from "./tabsConfig";
 
-export default function OptionPanel() {
+export default function AdminTabs() {
   const {
     isCollapsed,
     setIsCollapsed,
@@ -15,20 +15,20 @@ export default function OptionPanel() {
   } = useContext(Usercontext);
 
   const selectTab = (tabSelected) => {
-    setIsCollapsed(true);
+    setIsCollapsed(false);
     setCurrentTabSelected(tabSelected);
   };
 
   const tabs = tabsConfig;
-
-  return <OptionPanelStyled>
-     <Option
+  return (
+    <OptionPanelStyled>
+      <Option
         index="chevron"
         label=""
-        Icon={isCollapsed ? <FiChevronDown /> : <FiChevronUp />}
+        Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className={!isCollapsed ? "is-active" : "not-active"}
-      />
+        className={isCollapsed ? "is-active" : ""}
+      />{" "}
       {tabs.map((tab) => (
         <Option
           key={tab.index}
@@ -36,10 +36,13 @@ export default function OptionPanel() {
           label={tab.label}
           Icon={tab.Icon}
           onClick={() => selectTab(tab.index)}
-          className={currentTabSelected === tab.index ? "is-active" : "not-active"}
+          className={
+            currentTabSelected === tab.index ? "is-active" : ""
+          }
         />
       ))}
-  </OptionPanelStyled>;
+    </OptionPanelStyled>
+  );
 }
 
 const OptionPanelStyled = styled.div`
@@ -52,19 +55,9 @@ const OptionPanelStyled = styled.div`
     background-color: ${theme.colors.background_dark};
     border-color: ${theme.colors.background_dark};
     color: ${theme.colors.white};
-    height: 43px;
-    padding: 0 22px;
-  }
-  
-  .not-active {
-    padding: 0 22px;
   }
 
   button {
     margin-left: 1px;
-    border: none;
-    background: ${theme.colors.white};
-    color: ${theme.colors.greySemiDark};
-    cursor: pointer;
   }
 `;

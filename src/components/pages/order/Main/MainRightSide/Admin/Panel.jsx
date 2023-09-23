@@ -5,16 +5,17 @@ import { getTabSelected, tabsConfig } from "./tabsConfig";
 import Usercontext from "../../../../../../context/UserContext";
 
 export default function Panel() {
-  const { currentTabSelected } = useContext(Usercontext)
+  const { currentTabSelected } = useContext(Usercontext);
 
   const tabs = tabsConfig;
+
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return (
     <AdminPanelStyled>
       <p>{tabSelected && tabSelected.label}</p>
     </AdminPanelStyled>
-  )
+  );
 }
 const AdminPanelStyled = styled.div`
   height: 250px;
@@ -25,4 +26,4 @@ const AdminPanelStyled = styled.div`
   p {
     padding: 0 20px;
   }
-`
+`;

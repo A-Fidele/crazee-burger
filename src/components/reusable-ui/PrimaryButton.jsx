@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import { theme } from "../../theme"
+import styled from "styled-components";
+import { theme } from "../../theme";
 
 export default function PrimaryButton({ label, Icon, className }) {
   return (
@@ -7,7 +7,7 @@ export default function PrimaryButton({ label, Icon, className }) {
       <span>{label}</span>
       {Icon && Icon}
     </PrimaryButtonStyled>
-  )
+  );
 }
 
 const PrimaryButtonStyled = styled.button`
@@ -26,16 +26,16 @@ const PrimaryButtonStyled = styled.button`
   font-size: 15px;
   font-weight: 800;
   color: white;
-  background-color: ${theme.colors.primary};
+  background-color: #ff9f1b;
   border: 1px solid #ff9f1b;
 
-  :hover {
+  &:hover {
     color: ${theme.colors.primary};
     background-color: ${theme.colors.white};
     border: 1px solid ${theme.colors.primary};
     transition: all 200ms ease-out;
   }
-  :active {
+  &:active {
     background-color: ${theme.colors.primary};
     color: ${theme.colors.white};
   }
@@ -60,4 +60,4 @@ const PrimaryButtonStyled = styled.button`
       color: ${theme.colors.primary};
     }
   }
-`
+`;

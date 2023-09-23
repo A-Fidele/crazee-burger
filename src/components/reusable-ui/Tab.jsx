@@ -1,21 +1,19 @@
 import styled from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "../../theme";  
 
-export default function Option({ onClick, className, Icon, label }) {
+export default function Tab({ onClick, className, Icon, label }) {
+
   return (
-    <OptionStyled>
-        <button className={className} onClick={onClick}>
-          <div className="icon">{Icon}</div>
-          {label && <span className="label">{label}</span>}
-        </button>
+    <OptionStyled className={className} onClick={onClick}>
+      <div className="icon">{Icon}</div>
+      {label && <span className="label">{label}</span>}
     </OptionStyled>
   );
 }
 
-const OptionStyled = styled.div`
-  
+const OptionStyled = styled.button`
   height: 43px;
-  //padding: 0 22px;
+  padding: 0 22px;
 
   display: flex;
   justify-content: center;
@@ -26,25 +24,22 @@ const OptionStyled = styled.div`
   position: relative;
   top: 1px;
 
-  // fonts
   font-size: ${theme.fonts.size.P0};
   color: ${theme.colors.greySemiDark};
 
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.subtle};
 
-  // border
   border-width: 1px 1px 2px 1px;
   border-style: solid;
   border-color: ${theme.colors.greyLight};
 
-  // border-radius
   border-radius: ${theme.borderRadius.round};
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
-  
-  :hover {
-   //border-bottom: 2px solid ${theme.colors.white};
+
+  &:hover {
+    border-bottom: 2px solid ${theme.colors.white};
     text-decoration: underline;
   }
 

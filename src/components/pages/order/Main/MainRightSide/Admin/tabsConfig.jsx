@@ -5,15 +5,15 @@ export const tabsConfig = [
   {
     index: "add",
     label: "Ajouter un produit",
-    //Icon: <AiOutlinePlus />,
+    Icon: <AiOutlinePlus />,
   },
   {
     index: "edit",
     label: "Modifier un produit",
-    //Icon: <MdModeEditOutline />,
+    Icon: <MdModeEditOutline />,
   },
-]
+];
 
 export const getTabSelected = (tabs, currentTabSelected) => {
-  return tabs.find((tab) => tab.index === currentTabSelected)
-}
+  return tabs.find((tab) => tab.index === currentTabSelected);
+};

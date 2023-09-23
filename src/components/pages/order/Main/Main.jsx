@@ -1,17 +1,10 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import Menu from "./Menu";
-import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import { useContext, useState } from "react";
-import Panel from "./MainRightSide/Admin/Panel";
-import UserContext from "../../../../context/Usercontext";
 import MainRightSide from "./MainRightSide/MainRightSide";
 
 export default function Main() {
-
   return (
     <MainStyled className="main">
-      
       {/* <Basket /> */}
       <MainRightSide />
     </MainStyled>
