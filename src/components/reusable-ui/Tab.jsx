@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import { theme } from "../../theme";  
+import { theme } from "../../theme";
 
 export default function Tab({ onClick, className, Icon, label }) {
-
   return (
-    <OptionStyled className={className} onClick={onClick}>
+    <TabStyled className={className} onClick={onClick}>
       <div className="icon">{Icon}</div>
       {label && <span className="label">{label}</span>}
-    </OptionStyled>
+    </TabStyled>
   );
 }
 
-const OptionStyled = styled.button`
+const TabStyled = styled.button`
   height: 43px;
   padding: 0 22px;
 

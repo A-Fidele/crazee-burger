@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Option from "../../../../../reusable-ui/Tab";
+import Tab from "../../../../../reusable-ui/Tab";
 import Usercontext from "../../../../../../context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
@@ -21,8 +21,8 @@ export default function AdminTabs() {
 
   const tabs = tabsConfig;
   return (
-    <OptionPanelStyled>
-      <Option
+    <AdminTabsStyled>
+      <Tab
         index="chevron"
         label=""
         Icon={isCollapsed ? <FiChevronUp /> : <FiChevronDown />}
@@ -30,22 +30,20 @@ export default function AdminTabs() {
         className={isCollapsed ? "is-active" : ""}
       />{" "}
       {tabs.map((tab) => (
-        <Option
+        <Tab
           key={tab.index}
           index={tab.index}
           label={tab.label}
           Icon={tab.Icon}
           onClick={() => selectTab(tab.index)}
-          className={
-            currentTabSelected === tab.index ? "is-active" : ""
-          }
+          className={currentTabSelected === tab.index ? "is-active" : ""}
         />
       ))}
-    </OptionPanelStyled>
+    </AdminTabsStyled>
   );
 }
 
-const OptionPanelStyled = styled.div`
+const AdminTabsStyled = styled.div`
   display: flex;
   position: absolute;
   top: -43px;

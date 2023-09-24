@@ -1,10 +1,26 @@
-import styled from "styled-components"
-import { theme } from "../../theme"
-import PrimaryButton from "./PrimaryButton"
+import styled from "styled-components";
+import { theme } from "../../theme";
+import PrimaryButton from "./PrimaryButton";
+import { TiDelete } from "react-icons/ti";
+import UserContext from "../../context/UserContext";
+import { useContext, useState } from "react";
 
-export default function Card({ title, imageSource, leftDescription }) {
+export default function Card({
+  title,
+  imageSource,
+  leftDescription,
+  hasButton,
+  onDelete,
+}) {
+  const { isAdmin } = useContext(UserContext);
+
   return (
-    <CardStyled className="produit">
+    <CardStyled className={isAdmin && "delete-button"}>
+      {hasButton && (
+        <button className="delete-icon" onClick={onDelete}>
+          <TiDelete className="icon" />
+        </button>
+      )}
       <div className="image">
         <img src={imageSource} alt={title} />
       </div>
@@ -18,7 +34,7 @@ export default function Card({ title, imageSource, leftDescription }) {
         </div>
       </div>
     </CardStyled>
-  )
+  );
 }
 
 const CardStyled = styled.div`
@@ -31,8 +47,44 @@ const CardStyled = styled.div`
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
+  position: relative;
+
+  &.delete-button {
+    background: ${theme.colors.white};
+    width: 200px;
+    height: 300px;
+    display: grid;
+    grid-template-rows: 65% 1fr;
+    padding: 20px;
+    padding-bottom: 10px;
+    box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+    border-radius: ${theme.borderRadius.extraRound};
+  }
+
+  .delete-icon {
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: ${theme.colors.white};
+    margin-left: auto;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    margin: 15px;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+    color: ${theme.colors.primary};
+    :hover {
+      color: ${theme.colors.red};
+      cursor: pointer;
+    }
+  }
 
   .image {
+    //border: 1px solid red;
     width: 100%;
     height: auto;
     margin-top: 30px;
@@ -95,4 +147,4 @@ const CardStyled = styled.div`
       }
     }
   }
-`
+`;

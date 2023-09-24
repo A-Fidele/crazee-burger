@@ -5,20 +5,52 @@ import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import UserContext from "../../../context/UserContext";
 import { useState } from "react";
+import { fakeMenu2 } from "../../../fakeData/fakeMenu";
+
+export const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 0,
+};
 
 export default function OrderPage() {
   const { username } = useParams();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false)
-  const [currentTabSelected, setCurrentTabSelected] = useState("add")
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [menu, setMenu] = useState(fakeMenu2);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+
+  const handleAddProduct = (newProduct) => {
+    const copyMenu = [...menu];
+    const menuUpdated = [newProduct, ...copyMenu];
+    setMenu(menuUpdated);
+  };
+
+  const handleDelete = (id) => {
+    const copyMenu = [...menu];
+    const menuUpdated = copyMenu.filter((data) => data.id !== id);
+    setMenu(menuUpdated);
+  };
+
+  const resetMenu = () => {
+    setMenu(fakeMenu2);
+  };
 
   const userContextValue = {
     isAdmin,
     setIsAdmin,
     isCollapsed,
     setIsCollapsed,
-    currentTabSelected, 
-    setCurrentTabSelected
+    currentTabSelected,
+    setCurrentTabSelected,
+    menu,
+    handleAddProduct,
+    handleDelete,
+    resetMenu,
+    newProduct,
+    setNewProduct,
   };
 
   return (
@@ -41,7 +73,6 @@ const OrderPageStyled = styled.div`
   align-items: center;
 
   .container {
-    background: red;
     height: 95vh;
     width: 1400px;
     display: flex;
