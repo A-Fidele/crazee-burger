@@ -83,13 +83,12 @@ const LoginFormStyled = styled.form`
     font-size: ${theme.fonts.size.SM};
     margin-left: 10px;
 
-  .button :hover {
-    color: ${theme.colors.primary};
-    background-color: ${theme.colors.white};
-    border: 1px solid ${theme.colors.primary};
-    transition: all 200ms ease-out;
-  }
-  
+    .button :hover {
+      color: ${theme.colors.primary};
+      background-color: ${theme.colors.white};
+      border: 1px solid ${theme.colors.primary};
+      transition: all 200ms ease-out;
+    }
   }
 
   .text-input-form {
