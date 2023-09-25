@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
@@ -10,15 +10,18 @@ import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdmin, handleDelete } = useContext(UserContext);
+  const { menu, isAdmin, handleDelete, handleSelectCard } =
+    useContext(UserContext);
 
   if (menu.length === 0) {
-    if (!isAdmin) {
-      return <EmptyMenuCustomer />;
-    } else {
-      return <EmptyMenuAdmin />;
-    }
+    if (!isAdmin) return <EmptyMenuCustomer />;
+    return <EmptyMenuAdmin />;
   }
+
+  const [isCardSelected, setIsCardSelected] = useState(false);
+  const [adminClassName, setAdminClassName] = useState("delete-button");
+  //const [cardTitle, setCardTitle] = useState("");
+  //const inputComposantRef = useRef();
 
   return (
     <MenuStyled className="menu">
@@ -31,6 +34,7 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
             hasButton={isAdmin}
             onDelete={() => handleDelete(id)}
+            onSelect={() => handleSelectCard(id)}
           />
         );
       })}

@@ -21,6 +21,14 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState(fakeMenu2);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+
+  const handleSelectCard = (id) => {
+    setIsCollapsed(false);
+    setCurrentTabSelected("edit");
+
+    setProductSelected(menu.find((data) => data.id === id));
+  };
 
   const handleAddProduct = (newProduct) => {
     const copyMenu = [...menu];
@@ -51,6 +59,8 @@ export default function OrderPage() {
     resetMenu,
     newProduct,
     setNewProduct,
+    handleSelectCard,
+    productSelected,
   };
 
   return (

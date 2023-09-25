@@ -11,20 +11,12 @@ export default function Card({
   leftDescription,
   hasButton,
   onDelete,
+  onSelect,
 }) {
-  const { isAdmin, isCollapsed, setIsCollapsed, setCurrentTabSelected } =
-    useContext(UserContext);
-  const [isCardSelected, setIsCardSelected] = useState(false);
-  const [adminClassName, setAdminClassName] = useState("delete-button");
-
-  const handleClick = () => {
-    setIsCollapsed(false);
-    setCurrentTabSelected("edit");
-    setIsCardSelected(true);
-  };
+  const { isAdmin } = useContext(UserContext);
 
   return (
-    <CardStyled className={isAdmin && adminClassName} onClick={handleClick}>
+    <CardStyled className={isAdmin && "delete-icon"} onClick={onSelect}>
       {hasButton && (
         <button className="delete-icon" onClick={onDelete}>
           <TiDelete className="icon" />
@@ -58,12 +50,6 @@ const CardStyled = styled.div`
   border-radius: ${theme.borderRadius.extraRound};
   position: relative;
 
-  &:active {
-    &.delete-button {
-      background-color: ${theme.colors.primary};
-    }
-  }
-
   &.delete-button {
     background: ${theme.colors.white};
     width: 200px;
@@ -75,16 +61,16 @@ const CardStyled = styled.div`
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
     border-radius: ${theme.borderRadius.extraRound};
 
-    &:active {
-      background: orange;
-    }
-
     &:hover {
       width: 210px;
       height: 315px;
       border: 1px solid ${theme.colors.primary};
       transition: all 200ms ease-out;
     }
+  }
+
+  &.card-selected {
+    background: orange;
   }
 
   .delete-icon {
