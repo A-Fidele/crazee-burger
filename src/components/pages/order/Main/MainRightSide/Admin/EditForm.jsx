@@ -1,10 +1,11 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../../theme";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import UserContext from "../../../../../../context/UserContext";
 import { getInputTextsConfig } from "./inputTextsConfig";
+import InstructionMessage from "./InstructionMessage";
 
 export default function EditForm() {
   const { productSelected, setProductSelected, handleEdit, inputEditRef } =
@@ -39,9 +40,7 @@ export default function EditForm() {
           );
         })}
       </div>
-      <div className="consigne">
-        <span>Cliquer sur un produit pour le modifier en temps réel</span>
-      </div>
+      <InstructionMessage />
     </EditFormStyled>
   );
 }
@@ -70,11 +69,5 @@ const EditFormStyled = styled.div`
     &::placeholder {
       background-color: ${theme.colors.greyLight};
     }
-  }
-
-  .consigne {
-    display: grid;
-    grid-area: 4/2/4/3;
-    color: ${theme.colors.primary};
   }
 `;

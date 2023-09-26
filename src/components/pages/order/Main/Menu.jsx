@@ -35,9 +35,10 @@ export default function Menu() {
     if (!isAdmin) return;
     await setIsCollapsed(false);
     await setCurrentTabSelected("edit");
-    await setProductSelected(
-      menu.find((data) => data.id === idOfProductSelected)
+    const productClickedOn = menu.find(
+      (data) => data.id === idOfProductSelected
     );
+    await setProductSelected(productClickedOn);
     inputEditRef.current.focus();
   };
 
