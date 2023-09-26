@@ -9,6 +9,7 @@ import { getInputTextsConfig } from "./inputTextsConfig";
 export default function EditForm() {
   const { productSelected, setProductSelected, handleEdit, inputEditRef } =
     useContext(UserContext);
+
   const inputTexts = getInputTextsConfig(productSelected);
 
   const handleChange = (e) => {
@@ -21,9 +22,6 @@ export default function EditForm() {
 
   return (
     <EditFormStyled>
-      {/* <span className="titre">Cliquer sur le produit pour le modifier</span>
-      <HiCursorClick className="Icon" /> */}
-
       <ImagePreview
         imageSource={productSelected.imageSource}
         title={productSelected.title}
@@ -72,5 +70,11 @@ const EditFormStyled = styled.div`
     &::placeholder {
       background-color: ${theme.colors.greyLight};
     }
+  }
+
+  .consigne {
+    display: grid;
+    grid-area: 4/2/4/3;
+    color: ${theme.colors.primary};
   }
 `;

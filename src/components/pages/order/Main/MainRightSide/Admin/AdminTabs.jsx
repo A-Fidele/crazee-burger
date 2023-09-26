@@ -4,7 +4,7 @@ import Usercontext from "../../../../../../context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import { tabsConfig } from "./tabsConfig";
+import { getTabsConfig } from "./getTabsConfig";
 
 export default function AdminTabs() {
   const {
@@ -19,7 +19,7 @@ export default function AdminTabs() {
     setCurrentTabSelected(tabSelected);
   };
 
-  const tabs = tabsConfig;
+  const tabs = getTabsConfig();
   return (
     <AdminTabsStyled>
       <Tab

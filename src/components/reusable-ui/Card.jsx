@@ -2,29 +2,25 @@ import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
-import UserContext from "../../context/UserContext";
-import { useContext, useState } from "react";
 
 export default function Card({
   title,
   imageSource,
   leftDescription,
-  hasButton,
+  hasDeleteButton,
   onDelete,
   onSelect,
   ishoverable,
   isSelected,
 }) {
-  const { isAdmin } = useContext(UserContext);
-
   return (
     <CardStyled
-      className={isAdmin && "delete-icon"}
-      ishoverable={ishoverable}
+      className={hasDeleteButton && "delete-icon"}
+      $ishoverable={ishoverable}
       onClick={onSelect}
     >
-      <div className={hasButton && isSelected ? "selected-card" : "card"}>
-        {hasButton && (
+      <div className={hasDeleteButton && isSelected ? "selected-card" : "card"}>
+        {hasDeleteButton && (
           <button className="delete-icon" onClick={onDelete}>
             <TiDelete className="icon" />
           </button>
@@ -37,7 +33,7 @@ export default function Card({
           <div className="description">
             <div
               className={
-                hasButton && isSelected
+                hasDeleteButton && isSelected
                   ? "selected-card-left-description"
                   : "left-description"
               }
@@ -47,7 +43,7 @@ export default function Card({
             <div className="right-description">
               <PrimaryButton
                 className={
-                  hasButton && isSelected
+                  hasDeleteButton && isSelected
                     ? "selected-card-button"
                     : "primary-button"
                 }
@@ -64,7 +60,7 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  ${(props) => props.ishoverable && hoverableStyle}
+  ${({ $ishoverable }) => $ishoverable && hoverableStyle}
   height: 330px;
   border-radius: ${theme.borderRadius.extraRound};
 
@@ -320,6 +316,12 @@ const CardStyled = styled.div`
     background-color: ${theme.colors.white};
     color: ${theme.colors.primary};
     cursor: pointer;
+
+    &:active {
+      background-color: ${theme.colors.primary};
+      color: ${theme.colors.white};
+      border: 1px solid ${theme.colors.white};
+    }
   }
 `;
 

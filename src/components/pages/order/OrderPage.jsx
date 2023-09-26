@@ -25,16 +25,6 @@ export default function OrderPage() {
 
   const inputEditRef = useRef();
 
-  const handleSelectCard = async (idOfProductSelected) => {
-    if (!isAdmin) return;
-    await setIsCollapsed(false);
-    await setCurrentTabSelected("edit");
-    await setProductSelected(
-      menu.find((data) => data.id === idOfProductSelected)
-    );
-    inputEditRef.current.focus();
-  };
-
   const handleEdit = (productEdit) => {
     const menuCopy = JSON.parse(JSON.stringify(menu));
     const indexProduct = menu.findIndex((data) => data.id === productEdit.id);
@@ -48,9 +38,9 @@ export default function OrderPage() {
     setMenu(menuUpdated);
   };
 
+  //gestionnaire de state
   const handleDelete = (id) => {
-    const copyMenu = [...menu];
-    const menuUpdated = copyMenu.filter((data) => data.id !== id);
+    const menuUpdated = menu.filter((data) => data.id !== id);
     setMenu(menuUpdated);
   };
 
@@ -71,7 +61,6 @@ export default function OrderPage() {
     resetMenu,
     newProduct,
     setNewProduct,
-    handleSelectCard,
     productSelected,
     setProductSelected,
     handleEdit,

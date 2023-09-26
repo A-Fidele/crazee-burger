@@ -6,28 +6,46 @@ import Card from "../../../reusable-ui/Card";
 import UserContext from "../../../../context/UserContext";
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
+import { EMPTY_PRODUCT } from "../OrderPage";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdmin, handleDelete, handleSelectCard, productSelected } =
-    useContext(UserContext);
+  const {
+    menu,
+    isAdmin,
+    setIsCollapsed,
+    setCurrentTabSelected,
+    handleDelete,
+    productSelected,
+    setProductSelected,
+    inputEditRef,
+  } = useContext(UserContext);
 
   if (menu.length === 0) {
     if (!isAdmin) return <EmptyMenuCustomer />;
     return <EmptyMenuAdmin />;
   }
 
-  const [isCardSelected, setIsCardSelected] = useState(false);
-  const [adminClassName, setAdminClassName] = useState("delete-button");
-
-  const chechProductIsClicked = (idPrductedCliked, productSelected) => {
-    return idPrductedCliked === productSelected.id;
+  const checkProductIsClicked = (idProductedCliked, productSelected) => {
+    return idProductedCliked === productSelected.id;
   };
 
-  const handleCardDelete = (id, event) => {
+  const handleSelectCard = async (idOfProductSelected) => {
+    if (!isAdmin) return;
+    await setIsCollapsed(false);
+    await setCurrentTabSelected("edit");
+    await setProductSelected(
+      menu.find((data) => data.id === idOfProductSelected)
+    );
+    inputEditRef.current.focus();
+  };
+
+  //gestionnaire d'evenement
+  const handleOnDelete = (id, event) => {
     event.stopPropagation();
     handleDelete(id);
+    setProductSelected(EMPTY_PRODUCT);
   };
 
   return (
@@ -39,11 +57,11 @@ export default function Menu() {
             title={title}
             imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
             leftDescription={formatPrice(price)}
-            hasButton={isAdmin}
-            onDelete={() => handleCardDelete(id, event)}
+            hasDeleteButton={isAdmin}
+            onDelete={(event) => handleOnDelete(id, event)}
             onSelect={() => handleSelectCard(id)}
             ishoverable={isAdmin}
-            isSelected={chechProductIsClicked(id, productSelected)}
+            isSelected={checkProductIsClicked(id, productSelected)}
           />
         );
       })}

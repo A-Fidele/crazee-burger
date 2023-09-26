@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { useContext } from "react";
-import { getTabSelected, tabsConfig } from "./tabsConfig";
+import { getTabSelected, getTabsConfig } from "./getTabsConfig";
 import UserContext from "../../../../../../context/UserContext";
+import { EMPTY_PRODUCT } from "../../../OrderPage";
 
 export default function Panel() {
-  const { currentTabSelected } = useContext(UserContext);
+  const { currentTabSelected, productSelected } = useContext(UserContext);
 
-  const tabs = tabsConfig;
+  const hasAlreadyBeenClicked = productSelected !== EMPTY_PRODUCT;
+  const tabs = getTabsConfig(hasAlreadyBeenClicked);
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return (
