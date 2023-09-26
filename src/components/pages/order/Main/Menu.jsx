@@ -20,8 +20,15 @@ export default function Menu() {
 
   const [isCardSelected, setIsCardSelected] = useState(false);
   const [adminClassName, setAdminClassName] = useState("delete-button");
-  //const [cardTitle, setCardTitle] = useState("");
-  //const inputComposantRef = useRef();
+
+  const chechProductIsClicked = (idPrductedCliked, productSelected) => {
+    return idPrductedCliked === productSelected.id;
+  };
+
+  const handleCardDelete = (id, event) => {
+    event.stopPropagation();
+    handleDelete(id);
+  };
 
   return (
     <MenuStyled className="menu">
@@ -33,10 +40,10 @@ export default function Menu() {
             imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
             leftDescription={formatPrice(price)}
             hasButton={isAdmin}
-            onDelete={() => handleDelete(id)}
+            onDelete={() => handleCardDelete(id, event)}
             onSelect={() => handleSelectCard(id)}
             isHoverable={isAdmin}
-            isSelected={id === productSelected.id}
+            isSelected={chechProductIsClicked(id, productSelected)}
           />
         );
       })}

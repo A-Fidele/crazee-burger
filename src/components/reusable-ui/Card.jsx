@@ -53,6 +53,7 @@ export default function Card({
                 }
                 version="admin"
                 label={"Ajouter"}
+                onClick={(event) => event.stopPropagation()}
               />
             </div>
           </div>

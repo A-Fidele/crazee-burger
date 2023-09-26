@@ -24,6 +24,7 @@ export default function OrderPage() {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
   const handleSelectCard = (idOfProductSelected) => {
+    if (!isAdmin) return;
     setIsCollapsed(false);
     setCurrentTabSelected("edit");
     setProductSelected(menu.find((data) => data.id === idOfProductSelected));
