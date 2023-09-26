@@ -4,7 +4,7 @@ import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import UserContext from "../../../context/UserContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 
 export const EMPTY_PRODUCT = {
@@ -23,12 +23,16 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
-  const handleSelectCard = (idOfProductSelected) => {
+  const inputEditRef = useRef();
+
+  const handleSelectCard = async (idOfProductSelected) => {
     if (!isAdmin) return;
-    setIsCollapsed(false);
-    setCurrentTabSelected("edit");
-    setProductSelected(menu.find((data) => data.id === idOfProductSelected));
-    console.log("productSelected", productSelected);
+    await setIsCollapsed(false);
+    await setCurrentTabSelected("edit");
+    await setProductSelected(
+      menu.find((data) => data.id === idOfProductSelected)
+    );
+    inputEditRef.current.focus();
   };
 
   const handleEdit = (productEdit) => {
@@ -71,6 +75,7 @@ export default function OrderPage() {
     productSelected,
     setProductSelected,
     handleEdit,
+    inputEditRef,
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../../theme";
 import ImagePreview from "./ImagePreview";
@@ -7,7 +7,7 @@ import UserContext from "../../../../../../context/UserContext";
 import { getInputTextsConfig } from "./inputTextsConfig";
 
 export default function EditForm() {
-  const { productSelected, setProductSelected, handleEdit } =
+  const { productSelected, setProductSelected, handleEdit, inputEditRef } =
     useContext(UserContext);
   const inputTexts = getInputTextsConfig(productSelected);
 
@@ -36,6 +36,7 @@ export default function EditForm() {
               {...input}
               onChange={handleChange}
               version="darklight"
+              ref={input.name === "title" ? inputEditRef : null}
             />
           );
         })}

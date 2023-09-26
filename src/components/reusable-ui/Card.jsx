@@ -12,7 +12,7 @@ export default function Card({
   hasButton,
   onDelete,
   onSelect,
-  isHoverable,
+  ishoverable,
   isSelected,
 }) {
   const { isAdmin } = useContext(UserContext);
@@ -20,7 +20,7 @@ export default function Card({
   return (
     <CardStyled
       className={isAdmin && "delete-icon"}
-      isHoverable={isHoverable}
+      ishoverable={ishoverable}
       onClick={onSelect}
     >
       <div className={hasButton && isSelected ? "selected-card" : "card"}>
@@ -64,7 +64,7 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  ${(props) => props.isHoverable && hoverableStyle}
+  ${(props) => props.ishoverable && hoverableStyle}
   height: 330px;
   border-radius: ${theme.borderRadius.extraRound};
 
