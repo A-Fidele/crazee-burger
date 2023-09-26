@@ -10,7 +10,7 @@ import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdmin, handleDelete, handleSelectCard } =
+  const { menu, isAdmin, handleDelete, handleSelectCard, productSelected } =
     useContext(UserContext);
 
   if (menu.length === 0) {
@@ -35,6 +35,8 @@ export default function Menu() {
             hasButton={isAdmin}
             onDelete={() => handleDelete(id)}
             onSelect={() => handleSelectCard(id)}
+            isHoverable={isAdmin}
+            isSelected={id === productSelected.id}
           />
         );
       })}

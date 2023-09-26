@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
@@ -12,25 +12,49 @@ export default function Card({
   hasButton,
   onDelete,
   onSelect,
+  isHoverable,
+  isSelected,
 }) {
   const { isAdmin } = useContext(UserContext);
 
   return (
-    <CardStyled className={isAdmin && "delete-icon"} onClick={onSelect}>
-      {hasButton && (
-        <button className="delete-icon" onClick={onDelete}>
-          <TiDelete className="icon" />
-        </button>
-      )}
-      <div className="image">
-        <img src={imageSource} alt={title} />
-      </div>
-      <div className="text-info">
-        <div className="title">{title}</div>
-        <div className="description">
-          <div className="left-description">{leftDescription}</div>
-          <div className="right-description">
-            <PrimaryButton className="primary-button" label={"Ajouter"} />
+    <CardStyled
+      className={isAdmin && "delete-icon"}
+      isHoverable={isHoverable}
+      onClick={onSelect}
+    >
+      <div className={hasButton && isSelected ? "selected-card" : "card"}>
+        {hasButton && (
+          <button className="delete-icon" onClick={onDelete}>
+            <TiDelete className="icon" />
+          </button>
+        )}
+        <div className="image">
+          <img src={imageSource} alt={title} />
+        </div>
+        <div className="text-info">
+          <div className="title">{title}</div>
+          <div className="description">
+            <div
+              className={
+                hasButton && isSelected
+                  ? "selected-card-left-description"
+                  : "left-description"
+              }
+            >
+              {leftDescription}
+            </div>
+            <div className="right-description">
+              <PrimaryButton
+                className={
+                  hasButton && isSelected
+                    ? "selected-card-button"
+                    : "primary-button"
+                }
+                version="admin"
+                label={"Ajouter"}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -39,124 +63,270 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  background: ${theme.colors.white};
-  width: 200px;
-  height: 300px;
-  display: grid;
-  grid-template-rows: 65% 1fr;
-  padding: 20px;
-  padding-bottom: 10px;
-  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+  ${(props) => props.isHoverable && hoverableStyle}
+  height: 330px;
   border-radius: ${theme.borderRadius.extraRound};
-  position: relative;
 
-  &.delete-button {
+  .card {
     background: ${theme.colors.white};
-    width: 200px;
-    height: 300px;
+    box-sizing: border-box;
+    width: 240px;
+    height: 330px;
     display: grid;
     grid-template-rows: 65% 1fr;
     padding: 20px;
     padding-bottom: 10px;
-    box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+    box-shadow: ${theme.shadows.medium};
     border-radius: ${theme.borderRadius.extraRound};
+    position: relative;
 
-    &:hover {
-      width: 210px;
-      height: 315px;
-      border: 1px solid ${theme.colors.primary};
-      transition: all 200ms ease-out;
-    }
-  }
-
-  &.card-selected {
-    background: orange;
-  }
-
-  .delete-icon {
-    height: 30px;
-    width: 30px;
-    border: none;
-    background-color: ${theme.colors.white};
-    margin-left: auto;
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    margin: 15px;
-  }
-
-  .icon {
-    width: 30px;
-    height: 30px;
-    color: ${theme.colors.primary};
-    :hover {
-      color: ${theme.colors.red};
-      cursor: pointer;
-    }
-  }
-
-  .image {
-    //border: 1px solid red;
-    width: 100%;
-    height: auto;
-    margin-top: 30px;
-    margin-bottom: 20px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
-
-  .text-info {
-    display: grid;
-    grid-template-rows: 30% 70%;
-    padding: 5px;
-
-    .title {
-      margin: auto 0;
-      font-size: ${theme.fonts.size.P4};
-      position: relative;
-      bottom: 10px;
-      font-weight: ${theme.fonts.weights.bold};
-      color: ${theme.colors.dark};
-      text-align: left;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 100%;
-      text-overflow: ellipsis;
-      font-family: "Amatic SC", cursive;
-    }
-
-    .description {
+    &.delete-button {
+      background: ${theme.colors.primary};
+      width: 200px;
+      height: 300px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 65% 1fr;
+      padding: 20px;
+      padding-bottom: 10px;
+      box-shadow: ${theme.shadows.medium};
+      border-radius: ${theme.borderRadius.extraRound};
+    }
 
-      .left-description {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        font-weight: ${theme.fonts.weights.medium};
+    .delete-icon {
+      height: 30px;
+      width: 30px;
+      border: none;
+      background-color: ${theme.colors.white};
+      margin-left: auto;
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      margin: 15px;
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      color: ${theme.colors.primary};
+      :hover {
+        color: ${theme.colors.red};
+        cursor: pointer;
+      }
+    }
+
+    .image {
+      width: 100%;
+      height: auto;
+      margin-top: 30px;
+      margin-bottom: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .text-info {
+      display: grid;
+      grid-template-rows: 30% 70%;
+      padding: 5px;
+
+      .title {
+        margin: auto 0;
+        font-size: ${theme.fonts.size.P4};
+        position: relative;
+        bottom: 10px;
+        font-weight: ${theme.fonts.weights.bold};
+        color: ${theme.colors.dark};
+        text-align: left;
         white-space: nowrap;
         overflow: hidden;
+        width: 100%;
         text-overflow: ellipsis;
-        font-weight: ${theme.fonts.weights.medium};
-        color: ${theme.colors.primary};
+        font-family: "Amatic SC", cursive;
       }
 
-      .right-description {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        font-size: ${theme.fonts.size.P1};
+      .description {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
 
-        .primary-button {
-          font-size: ${theme.fonts.size.XS};
-          cursor: pointer;
-          padding: 12px;
+        .left-description {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          font-weight: ${theme.fonts.weights.medium};
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: ${theme.fonts.weights.medium};
+          color: ${theme.colors.primary};
+        }
+
+        .right-description {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          font-size: ${theme.fonts.size.P1};
+
+          .primary-button {
+            font-size: ${theme.fonts.size.XS};
+            cursor: pointer;
+            padding: 12px;
+          }
         }
       }
     }
+  }
+
+  .selected-card {
+    background: ${theme.colors.primary};
+    box-sizing: border-box;
+    width: 240px;
+    height: 330px;
+    display: grid;
+    grid-template-rows: 65% 1fr;
+    padding: 20px;
+    padding-bottom: 10px;
+    box-shadow: ${theme.shadows.medium};
+    border-radius: ${theme.borderRadius.extraRound};
+    position: relative;
+
+    &.delete-button {
+      background: ${theme.colors.primary};
+      width: 200px;
+      height: 300px;
+      display: grid;
+      grid-template-rows: 65% 1fr;
+      padding: 20px;
+      padding-bottom: 10px;
+      box-shadow: ${theme.shadows.medium};
+      border-radius: ${theme.borderRadius.extraRound};
+    }
+
+    .delete-icon {
+      height: 30px;
+      width: 30px;
+      border: none;
+      background-color: ${theme.colors.primary};
+      margin-left: auto;
+      cursor: pointer;
+      position: absolute;
+      right: 0;
+      margin: 15px;
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      color: ${theme.colors.white};
+      :hover {
+        color: ${theme.colors.red};
+        cursor: pointer;
+      }
+    }
+
+    .image {
+      width: 100%;
+      height: auto;
+      margin-top: 30px;
+      margin-bottom: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .text-info {
+      display: grid;
+      grid-template-rows: 30% 70%;
+      padding: 5px;
+
+      .title {
+        margin: auto 0;
+        font-size: ${theme.fonts.size.P4};
+        position: relative;
+        bottom: 10px;
+        font-weight: ${theme.fonts.weights.bold};
+        color: ${theme.colors.dark};
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        text-overflow: ellipsis;
+        font-family: "Amatic SC", cursive;
+      }
+
+      .description {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .left-description {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          font-weight: ${theme.fonts.weights.medium};
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: ${theme.fonts.weights.medium};
+          color: ${theme.colors.primary};
+        }
+
+        .right-description {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          font-size: ${theme.fonts.size.P1};
+
+          .primary-button {
+            font-size: ${theme.fonts.size.XS};
+            cursor: pointer;
+            padding: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .selected-card-left-description {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: ${theme.fonts.weights.medium};
+    color: white;
+  }
+
+  .selected-card-button {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    line-height: 1;
+    height: 38px;
+    padding: 18px 24px;
+    border-radius: ${theme.borderRadius.round};
+    font-size: ${theme.fonts.size.sm};
+    font-weight: ${theme.fonts.weights.heavy};
+    background-color: ${theme.colors.white};
+    color: ${theme.colors.primary};
+    cursor: pointer;
+  }
+`;
+
+const hoverableStyle = css`
+  &:hover {
+    transform: scale(1.05);
+    transition: ease-out 0.4s;
+    box-shadow: ${theme.shadows.orangeHighlight};
+    cursor: pointer;
   }
 `;
