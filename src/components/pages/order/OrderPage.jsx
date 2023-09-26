@@ -23,11 +23,18 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
-  const handleSelectCard = (id) => {
+  const handleSelectCard = (idOfProductSelected) => {
     setIsCollapsed(false);
     setCurrentTabSelected("edit");
+    setProductSelected(menu.find((data) => data.id === idOfProductSelected));
+    console.log("productSelected", productSelected);
+  };
 
-    setProductSelected(menu.find((data) => data.id === id));
+  const handleEdit = (productEdit) => {
+    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const indexProduct = menu.findIndex((data) => data.id === productEdit.id);
+    menuCopy[indexProduct] = productEdit;
+    setMenu(menuCopy);
   };
 
   const handleAddProduct = (newProduct) => {
@@ -61,6 +68,8 @@ export default function OrderPage() {
     setNewProduct,
     handleSelectCard,
     productSelected,
+    setProductSelected,
+    handleEdit,
   };
 
   return (

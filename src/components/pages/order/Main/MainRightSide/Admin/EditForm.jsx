@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { HiCursorClick } from "react-icons/hi";
+import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../../theme";
 import ImagePreview from "./ImagePreview";
@@ -8,10 +7,17 @@ import UserContext from "../../../../../../context/UserContext";
 import { getInputTextsConfig } from "./inputTextsConfig";
 
 export default function EditForm() {
-  const { newProduct, productSelected } = useContext(UserContext);
-  const inputTexts = getInputTextsConfig(newProduct);
+  const { productSelected, setProductSelected, handleEdit } =
+    useContext(UserContext);
+  const inputTexts = getInputTextsConfig(productSelected);
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const productUpdated = { ...productSelected, [name]: value };
+
+    setProductSelected(productUpdated); //update affichage
+    handleEdit(productUpdated); //update menu
+  };
 
   return (
     <EditFormStyled>
@@ -19,8 +25,8 @@ export default function EditForm() {
       <HiCursorClick className="Icon" /> */}
 
       <ImagePreview
-      // imageSource={newProduct.imageSource}
-      //title={newProduct.title}
+        imageSource={productSelected.imageSource}
+        title={productSelected.title}
       />
       <div className="input-fields">
         {inputTexts.map((input) => {

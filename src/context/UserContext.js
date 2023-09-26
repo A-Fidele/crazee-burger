@@ -20,4 +20,6 @@ export default createContext({
 
     handleSelectCard: () => {},
     productSelected: {},
+    setProductSelected: () => {},
+    handleEdit: () => {},
 });
