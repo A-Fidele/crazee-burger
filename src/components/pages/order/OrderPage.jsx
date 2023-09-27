@@ -6,13 +6,8 @@ import Main from "./Main/Main";
 import UserContext from "../../../context/UserContext";
 import { useRef, useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
-
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -26,14 +21,14 @@ export default function OrderPage() {
   const inputEditRef = useRef();
 
   const handleEdit = (productEdit) => {
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy = deepClone(menu);
     const indexProduct = menu.findIndex((data) => data.id === productEdit.id);
     menuCopy[indexProduct] = productEdit;
     setMenu(menuCopy);
   };
 
   const handleAddProduct = (newProduct) => {
-    const copyMenu = [...menu];
+    const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
     setMenu(menuUpdated);
   };

@@ -6,7 +6,7 @@ import Card from "../../../reusable-ui/Card";
 import UserContext from "../../../../context/UserContext";
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
-import { EMPTY_PRODUCT } from "../OrderPage";
+import { EMPTY_PRODUCT } from "../../../../enums/product";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 

@@ -4,15 +4,22 @@ import PrimaryButton from "../../../../../reusable-ui/PrimaryButton";
 import { styled } from "styled-components";
 import { theme } from "../../../../../../theme";
 import UserContext from "../../../../../../context/UserContext";
-import { EMPTY_PRODUCT } from "../../../OrderPage";
 import { getInputTextsConfig } from "./inputTextsConfig";
 import SubmitMessage from "./SubmitMessage";
 import ImagePreview from "./ImagePreview";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 export default function AddForm() {
   const [isSuccess, setIsSuccess] = useState("");
   const { handleAddProduct, newProduct, setNewProduct } =
     useContext(UserContext);
+
+  const displaySucessMessage = () => {
+    setIsSuccess(true);
+    setTimeout(() => {
+      setIsSuccess(false);
+    }, 2000);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,10 +40,7 @@ export default function AddForm() {
 
     handleAddProduct(newProductToAdd);
     setNewProduct(EMPTY_PRODUCT); // remise a 0 des champs
-    setIsSuccess(true);
-    setTimeout(() => {
-      setIsSuccess(false);
-    }, 2000);
+    displaySucessMessage();
   };
 
   const inputTexts = getInputTextsConfig(newProduct);

@@ -3,7 +3,7 @@ import { theme } from "../../../../../../theme";
 import { useContext } from "react";
 import { getTabSelected, getTabsConfig } from "./getTabsConfig";
 import UserContext from "../../../../../../context/UserContext";
-import { EMPTY_PRODUCT } from "../../../OrderPage";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 export default function Panel() {
   const { currentTabSelected, productSelected } = useContext(UserContext);
