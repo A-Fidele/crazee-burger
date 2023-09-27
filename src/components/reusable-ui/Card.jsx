@@ -47,7 +47,7 @@ export default function Card({
                     ? "selected-card-button"
                     : "primary-button"
                 }
-                version="admin"
+                version="classic"
                 label={"Ajouter"}
                 onClick={(event) => event.stopPropagation()}
               />
@@ -98,7 +98,7 @@ const CardStyled = styled.div`
       cursor: pointer;
       position: absolute;
       right: 0;
-      margin: 15px;
+      margin: 24px;
     }
 
     .icon {

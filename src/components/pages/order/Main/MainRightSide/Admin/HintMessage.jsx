@@ -8,7 +8,7 @@ export default function HintMessage() {
     <HintMessageStyled>
       {" "}
       <span className="titre">Cliquer sur le produit pour le modifier</span>
-      <HiCursorClick className="Icon" />
+      <HiCursorClick className="icon" />
     </HintMessageStyled>
   );
 }

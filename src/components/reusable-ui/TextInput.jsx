@@ -27,7 +27,7 @@ const InputStyled = styled.div`
 `;
 
 const extraStyleCassic = css`
-  background-color: #fff;
+  background-color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;

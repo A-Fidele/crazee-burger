@@ -65,7 +65,8 @@ export default function AddForm() {
       </div>
       <div className="submit-button">
         <PrimaryButton
-          className={"add-product-button"}
+          className={"add-button"}
+          version="success"
           label="Ajouter un nouveau produit au menu"
         />
         {isSuccess && <SubmitMessage />}
@@ -100,22 +101,7 @@ const AddFormStyled = styled.form`
     }
   }
 
-  .add-product-button {
-    background-color: ${theme.colors.success};
-    border: none;
-    height: 34px;
+  .add-button {
     width: 60%;
-    font-weight: ${theme.fonts.weights.bold};
-    font-size: ${theme.fonts.size.sm};
-    padding: 10px, 29px, 9px, 29px;
-
-    &:hover {
-      color: white;
-    }
-    &:active {
-      background-color: ${theme.colors.white};
-      color: ${theme.colors.success};
-      border: 1px solid ${theme.colors.success};
-    }
   }
 `;
