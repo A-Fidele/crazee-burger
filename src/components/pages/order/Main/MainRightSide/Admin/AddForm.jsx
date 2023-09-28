@@ -102,6 +102,6 @@ const AddFormStyled = styled.form`
   }
 
   .add-button {
-    width: 60%;
+    width: 50%;
   }
 `;
