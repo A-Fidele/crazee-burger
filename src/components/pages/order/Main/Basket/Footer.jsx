@@ -18,7 +18,7 @@ const FooterStyled = styled.div`
   .slogan {
     font-family: "Amatic SC";
     color: ${theme.colors.white};
-    font-size: ${theme.fonts.size.md};
+    font-size: ${theme.fonts.size.P2};
     font-weight: ${theme.fonts.weights.bold};
   }
 `;
