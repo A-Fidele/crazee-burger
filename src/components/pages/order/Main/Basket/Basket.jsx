@@ -56,6 +56,7 @@ const BasketStyled = styled.div`
     align-items: center;
     justify-content: center;
     background-color: ${theme.colors.background_white};
+    box-shadow: ${theme.shadows.basket};
 
     .title {
       font-family: "Amatic SC";

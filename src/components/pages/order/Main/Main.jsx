@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import MainRightSide from "./MainRightSide/MainRightSide";
-import Basket from "./MainLeftSide/Basket";
+import Basket from "./Basket/Basket";
 
 export default function Main() {
   return (
@@ -22,5 +22,6 @@ const MainStyled = styled.div`
 
   display: grid;
   grid-template-columns: 25% 1fr;
-  overflow-y: scroll;
+  //overflow-y: scroll;
+  overflow: hidden;
 `;
