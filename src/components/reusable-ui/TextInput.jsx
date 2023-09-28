@@ -8,7 +8,7 @@ const TextInput = React.forwardRef(
     ref
   ) => {
     return (
-      <InputStyled className={className} version={version}>
+      <TextInputStyled className={className} version={version}>
         <div className="icon">{Icon && Icon}</div>
         <input
           ref={ref}
@@ -17,12 +17,12 @@ const TextInput = React.forwardRef(
           type="text"
           {...extraProps}
         />
-      </InputStyled>
+      </TextInputStyled>
     );
   }
 );
 
-const InputStyled = styled.div`
+const TextInputStyled = styled.div`
   ${(props) => extraStyle[props.version]}
 `;
 
