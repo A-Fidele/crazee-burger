@@ -4,15 +4,10 @@ import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import UserContext from "../../../context/UserContext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { fakeMenu2 } from "../../../fakeData/fakeMenu";
-
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
+import { EMPTY_PRODUCT } from "../../../enums/product";
+import { deepClone } from "../../../utils/array";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -21,16 +16,26 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState(fakeMenu2);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+
+  const inputEditRef = useRef();
+
+  const handleEdit = (productEdit) => {
+    const menuCopy = deepClone(menu);
+    const indexProduct = menu.findIndex((data) => data.id === productEdit.id);
+    menuCopy[indexProduct] = productEdit;
+    setMenu(menuCopy);
+  };
 
   const handleAddProduct = (newProduct) => {
-    const copyMenu = [...menu];
+    const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
     setMenu(menuUpdated);
   };
 
+  //gestionnaire de state
   const handleDelete = (id) => {
-    const copyMenu = [...menu];
-    const menuUpdated = copyMenu.filter((data) => data.id !== id);
+    const menuUpdated = menu.filter((data) => data.id !== id);
     setMenu(menuUpdated);
   };
 
@@ -51,6 +56,10 @@ export default function OrderPage() {
     resetMenu,
     newProduct,
     setNewProduct,
+    productSelected,
+    setProductSelected,
+    handleEdit,
+    inputEditRef,
   };
 
   return (

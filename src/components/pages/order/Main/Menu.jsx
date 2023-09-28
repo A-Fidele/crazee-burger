@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
@@ -6,19 +6,48 @@ import Card from "../../../reusable-ui/Card";
 import UserContext from "../../../../context/UserContext";
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
+import { EMPTY_PRODUCT } from "../../../../enums/product";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { menu, isAdmin, handleDelete } = useContext(UserContext);
+  const {
+    menu,
+    isAdmin,
+    setIsCollapsed,
+    setCurrentTabSelected,
+    handleDelete,
+    productSelected,
+    setProductSelected,
+    inputEditRef,
+  } = useContext(UserContext);
 
   if (menu.length === 0) {
-    if (!isAdmin) {
-      return <EmptyMenuCustomer />;
-    } else {
-      return <EmptyMenuAdmin />;
-    }
+    if (!isAdmin) return <EmptyMenuCustomer />;
+    return <EmptyMenuAdmin />;
   }
+
+  const checkProductIsClicked = (idProductedCliked, productSelected) => {
+    return idProductedCliked === productSelected.id;
+  };
+
+  const handleSelectCard = async (idOfProductSelected) => {
+    if (!isAdmin) return;
+    await setIsCollapsed(false);
+    await setCurrentTabSelected("edit");
+    const productClickedOn = menu.find(
+      (data) => data.id === idOfProductSelected
+    );
+    await setProductSelected(productClickedOn);
+    inputEditRef.current.focus();
+  };
+
+  //gestionnaire d'evenement
+  const handleOnDelete = (id, event) => {
+    event.stopPropagation();
+    handleDelete(id);
+    setProductSelected(EMPTY_PRODUCT);
+  };
 
   return (
     <MenuStyled className="menu">
@@ -29,8 +58,11 @@ export default function Menu() {
             title={title}
             imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
             leftDescription={formatPrice(price)}
-            hasButton={isAdmin}
-            onDelete={() => handleDelete(id)}
+            hasDeleteButton={isAdmin}
+            onDelete={(event) => handleOnDelete(id, event)}
+            onSelect={() => handleSelectCard(id)}
+            ishoverable={isAdmin}
+            isSelected={checkProductIsClicked(id, productSelected)}
           />
         );
       })}

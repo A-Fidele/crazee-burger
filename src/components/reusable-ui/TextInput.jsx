@@ -1,28 +1,33 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
+import React from "react";
 
-export default function TextInput({
-  value,
-  onChange,
-  Icon,
-  className,
-  version = "classic",
-  ...extraProps
-}) {
-  return (
-    <InputStyled className={className} version={version}>
-      <div className="icon">{Icon && Icon}</div>
-      <input value={value} onChange={onChange} type="text" {...extraProps} />
-    </InputStyled>
-  );
-}
+const TextInput = React.forwardRef(
+  (
+    { value, onChange, Icon, className, version = "classic", ...extraProps },
+    ref
+  ) => {
+    return (
+      <TextInputStyled className={className} version={version}>
+        <div className="icon">{Icon && Icon}</div>
+        <input
+          ref={ref}
+          value={value}
+          onChange={onChange}
+          type="text"
+          {...extraProps}
+        />
+      </TextInputStyled>
+    );
+  }
+);
 
-const InputStyled = styled.div`
+const TextInputStyled = styled.div`
   ${(props) => extraStyle[props.version]}
 `;
 
 const extraStyleCassic = css`
-  background-color: #fff;
+  background-color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
@@ -77,3 +82,5 @@ const extraStyle = {
   classic: extraStyleCassic,
   darklight: extraStyleDarklight,
 };
+
+export default TextInput;
