@@ -15,6 +15,7 @@ const FooterStyled = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+
   .slogan {
     font-family: "Amatic SC";
     color: ${theme.colors.white};

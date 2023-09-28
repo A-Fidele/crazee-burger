@@ -9,7 +9,7 @@ import { getInputTextsConfig } from "./inputTextsConfig";
 import SubmitMessage from "./SubmitMessage";
 import ImagePreview from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
-import { useSuccessMessage } from "../../../../../../hook/useSuccessMessage";
+import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct } =
@@ -99,6 +99,6 @@ const AddFormStyled = styled.form`
   }
 
   .add-button {
-    width: 50%;
+    width: 65%;
   }
 `;

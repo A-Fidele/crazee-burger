@@ -1,6 +1,5 @@
 import React from "react";
 import { styled } from "styled-components";
-import { theme } from "../../../../../theme";
 import Header from "../../../../reusable-ui/Header";
 import { formatPrice } from "../../../../../utils/maths";
 import Total from "./Total";
