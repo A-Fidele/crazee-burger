@@ -6,6 +6,7 @@ import Header from "../../../../reusable-ui/Header";
 export default function Total({ amountToPay }) {
   return (
     <Header>
+      {/*header a l'interieur du composant*/}
       <TotalStyled>
         <span className="total">Total</span>
         <span className="amount">{amountToPay}</span>

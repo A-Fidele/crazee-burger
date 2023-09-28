@@ -1,9 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
+import { styled } from "styled-components";
+import { theme } from "../../../../../theme";
 
-export class Footer extends Component {
-  render() {
-    return <div></div>;
-  }
+export default function Footer() {
+  return (
+    <FooterStyled>
+      <span className="slogan">Codé avec ❤️ et React.JS</span>
+    </FooterStyled>
+  );
 }
 
-export default Footer;
+const FooterStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .slogan {
+    font-family: "Amatic SC";
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.md};
+    font-weight: ${theme.fonts.weights.bold};
+  }
+`;

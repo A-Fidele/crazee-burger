@@ -4,6 +4,7 @@ import { theme } from "../../../../../theme";
 import Header from "../../../../reusable-ui/Header";
 import { formatPrice } from "../../../../../utils/maths";
 import Total from "./Total";
+import Footer from "./Footer";
 
 export default function Basket() {
   return (
@@ -12,10 +13,9 @@ export default function Basket() {
       <div className="body">
         <span className="title">Votre commande est vide</span>
       </div>
-      <Header></Header>
-      {/* <div className="footer">
-        <span className="slogan">Codé avec ❤️ et React.JS</span>
-      </div> */}
+      <Header>
+        <Footer />
+      </Header>
     </BasketStyled>
   );
 }
@@ -47,14 +47,5 @@ const BasketStyled = styled.div`
   }
 
   .footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .slogan {
-      font-family: "Amatic SC";
-      color: ${theme.colors.white};
-      font-size: ${theme.fonts.size.md};
-      font-weight: ${theme.fonts.weights.bold};
-    }
   }
 `;
