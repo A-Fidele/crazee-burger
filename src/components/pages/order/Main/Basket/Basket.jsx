@@ -2,19 +2,17 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import Header from "../../../../reusable-ui/Header";
+import { formatPrice } from "../../../../../utils/maths";
+import Total from "./Total";
 
 export default function Basket() {
   return (
     <BasketStyled>
-      {/* <div className="head">
-        <span className="total">Total</span>
-        <span className="price">0,00 €</span>
-      </div> */}
-      <Header />
+      <Total amountToPay={formatPrice(0)} />
       <div className="body">
         <span className="title">Votre commande est vide</span>
       </div>
-      <Header />
+      <Header></Header>
       {/* <div className="footer">
         <span className="slogan">Codé avec ❤️ et React.JS</span>
       </div> */}
@@ -30,25 +28,6 @@ const BasketStyled = styled.div`
   height: 100%;
 
   .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 13px;
-    padding-right: 17px;
-
-    .total {
-      font-family: "Amatic SC";
-      font-weight: ${theme.fonts.weights.regular};
-      font-size: ${theme.fonts.size.P4};
-      color: ${theme.colors.primary};
-    }
-
-    .price {
-      font-family: "Amatic SC";
-      font-weight: ${theme.fonts.weights.regular};
-      font-size: ${theme.fonts.size.P4};
-      color: ${theme.colors.primary};
-    }
   }
 
   .body {
