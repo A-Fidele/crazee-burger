@@ -1,20 +1,23 @@
 import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
+import Header from "../../../../reusable-ui/Header";
 
 export default function Basket() {
   return (
     <BasketStyled>
-      <div className="head">
+      {/* <div className="head">
         <span className="total">Total</span>
         <span className="price">0,00 €</span>
-      </div>
+      </div> */}
+      <Header />
       <div className="body">
         <span className="title">Votre commande est vide</span>
       </div>
-      <div className="footer">
+      <Header />
+      {/* <div className="footer">
         <span className="slogan">Codé avec ❤️ et React.JS</span>
-      </div>
+      </div> */}
     </BasketStyled>
   );
 }
@@ -27,8 +30,6 @@ const BasketStyled = styled.div`
   height: 100%;
 
   .head {
-    height: 70px;
-    background-color: ${theme.colors.background_dark};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,8 +68,6 @@ const BasketStyled = styled.div`
   }
 
   .footer {
-    height: 70px;
-    background-color: ${theme.colors.background_dark};
     display: flex;
     align-items: center;
     justify-content: center;
