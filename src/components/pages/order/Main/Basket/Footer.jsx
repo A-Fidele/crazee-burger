@@ -1,12 +1,15 @@
 import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
+import Header from "../../../../reusable-ui/Header";
 
 export default function Footer() {
   return (
-    <FooterStyled>
-      <span className="slogan">Codé avec ❤️ et React.JS</span>
-    </FooterStyled>
+    <Header>
+      <FooterStyled>
+        <span className="slogan">Codé avec ❤️ et React.JS</span>
+      </FooterStyled>
+    </Header>
   );
 }
 

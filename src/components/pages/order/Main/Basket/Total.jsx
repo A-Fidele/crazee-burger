@@ -22,7 +22,7 @@ const TotalStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   font-family: "Amatic SC";
-  font-weight: ${theme.fonts.weights.regular};
+  font-weight: ${theme.fonts.weights.bold};
   font-size: ${theme.fonts.size.P4};
   color: ${theme.colors.primary};
   letter-spacing: 2px;
