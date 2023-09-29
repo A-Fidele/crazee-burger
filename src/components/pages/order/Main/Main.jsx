@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import MainRightSide from "./MainRightSide/MainRightSide";
+import Basket from "./Basket/Basket";
 
 export default function Main() {
   return (
     <MainStyled className="main">
-      {/* <Basket /> */}
+      <Basket />
       <MainRightSide />
     </MainStyled>
   );
@@ -20,6 +21,7 @@ const MainStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 
   display: grid;
-  grid-template-columns: 1fr;
-  overflow-y: scroll;
+  grid-template-columns: 25% 1fr;
+  //overflow-y: scroll;
+  overflow: hidden;
 `;

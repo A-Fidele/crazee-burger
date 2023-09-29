@@ -5,43 +5,27 @@ import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import UserContext from "../../../context/UserContext";
 import { useRef, useState } from "react";
-import { fakeMenu2 } from "../../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../../enums/product";
-import { deepClone } from "../../../utils/array";
+import { useMenu } from "../../../hooks/useMenu";
 
 export default function OrderPage() {
   const { username } = useParams();
   const [isAdmin, setIsAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
-  const [menu, setMenu] = useState(fakeMenu2);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
+  const {
+    menu,
+    setMenu,
+    handleEdit,
+    handleAddProduct,
+    handleDelete,
+    resetMenu,
+  } = useMenu();
+
   const inputEditRef = useRef();
-
-  const handleEdit = (productEdit) => {
-    const menuCopy = deepClone(menu);
-    const indexProduct = menu.findIndex((data) => data.id === productEdit.id);
-    menuCopy[indexProduct] = productEdit;
-    setMenu(menuCopy);
-  };
-
-  const handleAddProduct = (newProduct) => {
-    const copyMenu = deepClone(menu);
-    const menuUpdated = [newProduct, ...copyMenu];
-    setMenu(menuUpdated);
-  };
-
-  //gestionnaire de state
-  const handleDelete = (id) => {
-    const menuUpdated = menu.filter((data) => data.id !== id);
-    setMenu(menuUpdated);
-  };
-
-  const resetMenu = () => {
-    setMenu(fakeMenu2);
-  };
 
   const userContextValue = {
     isAdmin,

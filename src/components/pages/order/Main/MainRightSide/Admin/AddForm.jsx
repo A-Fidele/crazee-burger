@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React from "react";
+import { useContext } from "react";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import PrimaryButton from "../../../../../reusable-ui/PrimaryButton";
 import { styled } from "styled-components";
@@ -8,18 +9,13 @@ import { getInputTextsConfig } from "./inputTextsConfig";
 import SubmitMessage from "./SubmitMessage";
 import ImagePreview from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 export default function AddForm() {
-  const [isSuccess, setIsSuccess] = useState("");
   const { handleAddProduct, newProduct, setNewProduct } =
     useContext(UserContext);
 
-  const displaySucessMessage = () => {
-    setIsSuccess(true);
-    setTimeout(() => {
-      setIsSuccess(false);
-    }, 2000);
-  };
+  const { isSuccess, displaySuccessMessage } = useSuccessMessage();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +36,8 @@ export default function AddForm() {
 
     handleAddProduct(newProductToAdd);
     setNewProduct(EMPTY_PRODUCT); // remise a 0 des champs
-    displaySucessMessage();
+
+    displaySuccessMessage();
   };
 
   const inputTexts = getInputTextsConfig(newProduct);
@@ -102,6 +99,6 @@ const AddFormStyled = styled.form`
   }
 
   .add-button {
-    width: 50%;
+    width: 65%;
   }
 `;
