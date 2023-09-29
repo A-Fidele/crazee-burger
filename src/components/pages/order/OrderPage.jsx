@@ -15,6 +15,7 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const [basketProduct, setBasketProduct] = useState([]);
 
   const {
     menu,
@@ -44,6 +45,8 @@ export default function OrderPage() {
     setProductSelected,
     handleEdit,
     inputEditRef,
+    basketProduct,
+    setBasketProduct,
   };
 
   return (

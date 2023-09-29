@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
 
 export default function Card({
   title,
@@ -13,6 +15,22 @@ export default function Card({
   ishoverable,
   isSelected,
 }) {
+  const { basketProduct, setBasketProduct } = useContext(UserContext);
+
+  const handleAddProduct = (event) => {
+    event.stopPropagation();
+
+    const productToAdd = {
+      title,
+      imageSource,
+      leftDescription,
+    };
+    //basketProduct.push(productToAdd);
+    setBasketProduct([productToAdd, ...basketProduct]);
+
+    console.log("basketProduct: ", basketProduct);
+  };
+
   return (
     <CardStyled
       className={hasDeleteButton && "delete-icon"}
@@ -49,7 +67,7 @@ export default function Card({
                 }
                 version="classic"
                 label={"Ajouter"}
-                onClick={(event) => event.stopPropagation()}
+                onClick={(event) => handleAddProduct(event)}
               />
             </div>
           </div>

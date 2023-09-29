@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
-import Header from "../../../../reusable-ui/Header";
+import UserContext from "../../../../../context/UserContext";
+import BasketCard from "../../../../reusable-ui/BasketCard";
 
 export default function BasketBody() {
+  const { basketProduct } = useContext(UserContext);
+
   return (
     <BasketBodyStyled>
-      <span className="title">Votre commande est vide.</span>
+      {/*<span className="title">Votre commande est vide.</span>*/}
+      <div className="basket-card">
+        {basketProduct &&
+          basketProduct.map((product, i) => {
+            console.log("bsk Body: ", product.title);
+            return (
+              <BasketCard
+                key={i}
+                title={product.title}
+                imageSource={product.imageSource}
+                price={product.leftDescription}
+              />
+            );
+          })}
+      </div>
     </BasketBodyStyled>
   );
 }
@@ -19,6 +36,16 @@ const BasketBodyStyled = styled.div`
   background-color: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.basket};
   flex: 1;
+  flex-direction: column;
+
+  .basket-card {
+    border: 1px solid black;
+    margin-top: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-direction: flex-start;
+  }
 
   .title {
     font-family: "Amatic SC", cursive;
