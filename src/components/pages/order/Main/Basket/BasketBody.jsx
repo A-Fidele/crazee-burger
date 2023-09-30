@@ -1,11 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import UserContext from "../../../../../context/UserContext";
 import BasketCard from "../../../../reusable-ui/BasketCard";
 
 export default function BasketBody() {
-  const { basketProduct } = useContext(UserContext);
+  const { basketProduct, totalPrice, setTotalPrice } = useContext(UserContext);
+
+  useEffect(() => {
+    basketProduct &&
+      basketProduct.map((product, i) => {
+        setTotalPrice(totalPrice + parseFloat(product.leftDescription));
+        //setTotalPrice(50);
+        console.log("leftDescription", totalPrice);
+      });
+  }, [basketProduct]);
 
   return (
     <BasketBodyStyled>
@@ -13,7 +22,6 @@ export default function BasketBody() {
       <div className="basket-card">
         {basketProduct &&
           basketProduct.map((product, i) => {
-            console.log("bsk Body: ", product.title);
             return (
               <BasketCard
                 key={i}
@@ -37,9 +45,11 @@ const BasketBodyStyled = styled.div`
   box-shadow: ${theme.shadows.basket};
   flex: 1;
   flex-direction: column;
+  overflow: scroll;
+  scrollbar-color: transparent transparent;
 
   .basket-card {
-    border: 1px solid black;
+    // border: 1px solid black;
     margin-top: 20px;
     height: 100%;
     display: flex;

@@ -1,12 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
-export default function BasketCard({
-  title = "New York Fries",
-  imageSource = "http://localhost:5173/images/fries3.png",
-  price = "3",
-}) {
+export default function BasketCard({ title, imageSource, price }) {
   return (
     <BasketCardStyled>
       <div className="image">
@@ -17,26 +14,34 @@ export default function BasketCard({
         <div className="price">{price}</div>
       </div>
       <div className="delete-product">
-        <span>delete</span>
+        <span>x1</span>
+        <MdOutlineDeleteForever className="icon" />
       </div>
     </BasketCardStyled>
   );
 }
 
 const BasketCardStyled = styled.div`
-  border: 1px solid black;
-  width: 100%;
+  //border: 1px solid black;
+  width: 95%;
   height: 86px;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
+  margin-left: 16px;
+  margin-right: 16px;
+  background-color: ${theme.colors.white};
+  border-radius: ${theme.borderRadius.round};
+  box-shadow: ${theme.shadows.cardBasket};
+  position: sticky;
 
   .image {
+    //border: 2px solid blue;
     width: 85px;
     height: 100%;
-    border: 2px solid blue;
-
+    display: flex;
+    align-items: center;
     img {
       width: 85px;
       height: 70px;
@@ -45,13 +50,13 @@ const BasketCardStyled = styled.div`
   }
 
   .title-price-container {
-    border: 2px solid red;
     height: 100%;
     width: 130px;
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     font-family: "Amatic SC", cursive;
     font-weight: ${theme.fonts.weights.bold};
 
@@ -64,14 +69,38 @@ const BasketCardStyled = styled.div`
     .price {
       font-size: ${theme.fonts.size.SM};
       font-weight: ${theme.fonts.weights.regular};
+      margin-bottom: 16px;
+      color: ${theme.colors.primary};
+      font-family: "Open sans";
     }
   }
 
   .delete-product {
-    border: 2px solid green;
     height: 100%;
-    width: 76px;
+    width: 80px;
     display: flex;
     align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: red;
+
+      span {
+        display: none;
+      }
+    }
+    .icon {
+      transform: scale(1.5);
+      color: white;
+
+      &:hover {
+        color: black;
+      }
+    }
+    &:active {
+      .icon {
+        color: white;
+      }
+    }
   }
 `;

@@ -16,6 +16,7 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [basketProduct, setBasketProduct] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const {
     menu,
@@ -47,6 +48,8 @@ export default function OrderPage() {
     inputEditRef,
     basketProduct,
     setBasketProduct,
+    totalPrice,
+    setTotalPrice,
   };
 
   return (
