@@ -25,7 +25,7 @@ export default function Card({
       imageSource,
       leftDescription,
     };
-    //basketProduct.push(productToAdd);
+
     setBasketProduct([productToAdd, ...basketProduct]);
 
     console.log("basketProduct: ", basketProduct);

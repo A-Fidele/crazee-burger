@@ -7,6 +7,7 @@ import UserContext from "../../../context/UserContext";
 import { useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
+import { useBasket } from "../../../hooks/useBasket";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -15,9 +16,8 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
-  const [basketProduct, setBasketProduct] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
 
+  const [totalPrice, setTotalPrice] = useState(0);
   const {
     menu,
     setMenu,
@@ -26,6 +26,7 @@ export default function OrderPage() {
     handleDelete,
     resetMenu,
   } = useMenu();
+  const { basketProduct } = useBasket();
 
   const inputEditRef = useRef();
 
@@ -47,7 +48,7 @@ export default function OrderPage() {
     handleEdit,
     inputEditRef,
     basketProduct,
-    setBasketProduct,
+    //setBasketProduct,
     totalPrice,
     setTotalPrice,
   };

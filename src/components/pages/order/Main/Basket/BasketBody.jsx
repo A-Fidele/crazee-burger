@@ -4,8 +4,8 @@ import { theme } from "../../../../../theme";
 import UserContext from "../../../../../context/UserContext";
 import BasketCard from "../../../../reusable-ui/BasketCard";
 
-export default function BasketBody() {
-  const { basketProduct, totalPrice, setTotalPrice } = useContext(UserContext);
+export default function BasketBody({ basketProduct }) {
+  const { totalPrice, setTotalPrice } = useContext(UserContext);
 
   useEffect(() => {
     basketProduct &&
@@ -18,17 +18,13 @@ export default function BasketBody() {
 
   return (
     <BasketBodyStyled>
-      {/*<span className="title">Votre commande est vide.</span>*/}
       <div className="basket-card">
         {basketProduct &&
           basketProduct.map((product, i) => {
             return (
-              <BasketCard
-                key={i}
-                title={product.title}
-                imageSource={product.imageSource}
-                price={product.leftDescription}
-              />
+              <div className="card">
+                <BasketCard key={i} {...product} />
+              </div>
             );
           })}
       </div>
@@ -45,7 +41,7 @@ const BasketBodyStyled = styled.div`
   box-shadow: ${theme.shadows.basket};
   flex: 1;
   flex-direction: column;
-  overflow: scroll;
+  overflow-y: scroll;
   scrollbar-color: transparent transparent;
 
   .basket-card {
@@ -55,17 +51,10 @@ const BasketBodyStyled = styled.div`
     display: flex;
     flex-direction: column;
     flex-direction: flex-start;
+    margin-left: 16px;
+    margin-right: 16px;
   }
-
-  .title {
-    font-family: "Amatic SC", cursive;
-    font-weight: ${theme.fonts.weights.regular};
-    font-size: ${theme.fonts.size.P4};
-    color: ${theme.colors.greyBlue};
-    line-height: 2;
-    display: flex;
-    height: calc(95vh - 10vh - 70px - 70px);
-    text-align: center;
-    align-items: center;
+  .card {
+    margin-bottom: 20px;
   }
 `;

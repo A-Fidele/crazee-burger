@@ -2,19 +2,21 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import { formatPrice } from "../../utils/maths";
+const DEFAULT_IMAGE = "/images/coming-soon.png";
 
-export default function BasketCard({ title, imageSource, price }) {
+export default function BasketCard({ title, imageSource, price, quantity }) {
   return (
     <BasketCardStyled>
       <div className="image">
-        <img src={imageSource} alt={title} />
+        <img src={imageSource ? imageSource : DEFAULT_IMAGE} alt={title} />
       </div>
       <div className="title-price-container">
         <div className="title">{title}</div>
-        <div className="price">{price}</div>
+        <div className="price">{formatPrice(price)}</div>
       </div>
       <div className="delete-product">
-        <span>x1</span>
+        <span>x {quantity}</span>
         <MdOutlineDeleteForever className="icon" />
       </div>
     </BasketCardStyled>
@@ -22,22 +24,18 @@ export default function BasketCard({ title, imageSource, price }) {
 }
 
 const BasketCardStyled = styled.div`
-  //border: 1px solid black;
-  width: 95%;
+  border: 2px solid black;
+  width: 100%;
   height: 86px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
-  margin-left: 16px;
-  margin-right: 16px;
   background-color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};
   box-shadow: ${theme.shadows.cardBasket};
-  position: sticky;
 
   .image {
-    //border: 2px solid blue;
+    border: 2px solid blue;
     width: 85px;
     height: 100%;
     display: flex;
@@ -50,6 +48,7 @@ const BasketCardStyled = styled.div`
   }
 
   .title-price-container {
+    border: 1px solid green;
     height: 100%;
     width: 130px;
     margin-left: 20px;
@@ -65,6 +64,7 @@ const BasketCardStyled = styled.div`
       font-size: ${theme.fonts.size.P3};
       font-weight: ${theme.fonts.weights.bold};
       color: ${theme.colors.dark};
+      text-overflow: ellipsis;
     }
     .price {
       font-size: ${theme.fonts.size.SM};
@@ -76,6 +76,8 @@ const BasketCardStyled = styled.div`
   }
 
   .delete-product {
+    border: 1px solid red;
+
     height: 100%;
     width: 80px;
     display: flex;
