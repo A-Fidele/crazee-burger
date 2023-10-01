@@ -35,6 +35,7 @@ export default function BasketBody({ basketProduct }) {
 const BasketBodyStyled = styled.div`
   width: 100%;
   height: 100%;
+  flex: 1;
   display: flex;
   justify-content: center;
   background-color: ${theme.colors.background_white};

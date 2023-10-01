@@ -5,13 +5,15 @@ import { theme } from "../../../../../theme";
 export default function EmptyBasket() {
   return (
     <EmptyBasketStyled>
-      <span className="title">Votre commande est vide.</span>
+      <span className="empty-message">Votre commande est vide.</span>
     </EmptyBasketStyled>
   );
 }
 
 const EmptyBasketStyled = styled.div`
-  .title {
+  flex: 1;
+  box-shadow: ${theme.shadows.basket};
+  .empty-message {
     font-family: "Amatic SC", cursive;
     font-weight: ${theme.fonts.weights.regular};
     font-size: ${theme.fonts.size.P4};

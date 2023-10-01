@@ -28,5 +28,6 @@ export default createContext({
     setBasketProduct: () => {},
 
     totalPrice: {},
-    setTotalPrice: () => {},
+    handleAddToBasket: (idOfProducToAdd) => {},
+
 });
