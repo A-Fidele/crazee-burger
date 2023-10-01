@@ -7,14 +7,14 @@ import BasketCard from "../../../../reusable-ui/BasketCard";
 export default function BasketBody({ basketProduct }) {
   const { totalPrice, setTotalPrice } = useContext(UserContext);
 
-  useEffect(() => {
-    basketProduct &&
-      basketProduct.map((product, i) => {
-        setTotalPrice(totalPrice + parseFloat(product.leftDescription));
-        //setTotalPrice(50);
-        console.log("leftDescription", totalPrice);
-      });
-  }, [basketProduct]);
+  // useEffect(() => {
+  //   basketProduct &&
+  //     basketProduct.map((product, i) => {
+  //       setTotalPrice(totalPrice + parseFloat(product.leftDescription));
+  //       //setTotalPrice(50);
+  //       console.log("leftDescription", totalPrice);
+  //     });
+  // }, [basketProduct]);
 
   return (
     <BasketBodyStyled>
@@ -22,8 +22,8 @@ export default function BasketBody({ basketProduct }) {
         {basketProduct &&
           basketProduct.map((product, i) => {
             return (
-              <div className="card">
-                <BasketCard key={i} {...product} />
+              <div className="card" key={i}>
+                <BasketCard {...product} />
               </div>
             );
           })}

@@ -8,7 +8,7 @@ export const useBasket = () => {
 
   const handleAddToBasket = (productToAdd) => {
     const basketProductCopy = deepClone(basketProduct);
-    const productFound = basketProductCopy.find(
+    const productFound = basketProduct.find(
       (data) => data.id === productToAdd.id
     );
 
@@ -16,8 +16,13 @@ export const useBasket = () => {
       const newBasketProduct = { ...productToAdd, quantity: 1 };
       const basketProductUpdated = [newBasketProduct, ...basketProductCopy];
       setBasketProduct(basketProductUpdated);
+    } else {
+      const indexOfProductToChangeQuantity = basketProduct.findIndex(
+        (product) => product.id === productToAdd.id
+      );
+      basketProductCopy[indexOfProductToChangeQuantity].quantity += 1;
+      setBasketProduct(basketProductCopy);
     }
-    return;
   };
 
   return { basketProduct, handleAddToBasket };

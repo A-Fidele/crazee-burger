@@ -28,7 +28,7 @@ export default function BasketCard({ title, imageSource, price, quantity }) {
 }
 
 const BasketCardStyled = styled.div`
-  border: 2px solid black;
+  //border: 2px solid black;
   width: 100%;
   height: 86px;
   display: flex;
