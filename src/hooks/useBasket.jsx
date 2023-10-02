@@ -4,7 +4,6 @@ import { deepClone } from "../utils/array";
 
 export const useBasket = () => {
   const [basketProduct, setBasketProduct] = useState([]);
-  const [newQuantity, setNewQuantity] = useState(0);
 
   const handleAddToBasket = (productToAdd) => {
     const basketProductCopy = deepClone(basketProduct);
@@ -16,13 +15,13 @@ export const useBasket = () => {
       const newBasketProduct = { ...productToAdd, quantity: 1 };
       const basketProductUpdated = [newBasketProduct, ...basketProductCopy];
       setBasketProduct(basketProductUpdated);
-    } else {
-      const indexOfProductToChangeQuantity = basketProduct.findIndex(
-        (product) => product.id === productToAdd.id
-      );
-      basketProductCopy[indexOfProductToChangeQuantity].quantity += 1;
-      setBasketProduct(basketProductCopy);
+      return;
     }
+    const indexOfProductToChangeQuantity = basketProduct.findIndex(
+      (product) => product.id === productToAdd.id
+    );
+    basketProductCopy[indexOfProductToChangeQuantity].quantity += 1;
+    setBasketProduct(basketProductCopy);
   };
 
   return { basketProduct, handleAddToBasket };

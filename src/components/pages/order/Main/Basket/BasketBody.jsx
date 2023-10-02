@@ -5,17 +5,6 @@ import UserContext from "../../../../../context/UserContext";
 import BasketCard from "../../../../reusable-ui/BasketCard";
 
 export default function BasketBody({ basketProduct }) {
-  const { totalPrice, setTotalPrice } = useContext(UserContext);
-
-  // useEffect(() => {
-  //   basketProduct &&
-  //     basketProduct.map((product, i) => {
-  //       setTotalPrice(totalPrice + parseFloat(product.leftDescription));
-  //       //setTotalPrice(50);
-  //       console.log("leftDescription", totalPrice);
-  //     });
-  // }, [basketProduct]);
-
   return (
     <BasketBodyStyled>
       <div className="basket-card">
