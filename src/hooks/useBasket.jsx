@@ -5,6 +5,19 @@ import { deepClone } from "../utils/array";
 export const useBasket = () => {
   const [basketProduct, setBasketProduct] = useState([]);
 
+  const handleDeleteBasketProduct = (idProducToDelete) => {
+    const basketProductUpdated = basketProduct.filter(
+      (product) => product.id !== idProducToDelete
+    );
+    console.log(
+      "basketProductUpdated",
+      basketProductUpdated,
+      "idProducToDelete",
+      idProducToDelete
+    );
+    setBasketProduct(basketProductUpdated);
+  };
+
   const handleAddToBasket = (productToAdd) => {
     const basketProductCopy = deepClone(basketProduct);
     const productFound = basketProduct.find(
@@ -24,5 +37,5 @@ export const useBasket = () => {
     setBasketProduct(basketProductCopy);
   };
 
-  return { basketProduct, handleAddToBasket };
+  return { basketProduct, handleAddToBasket, handleDeleteBasketProduct };
 };

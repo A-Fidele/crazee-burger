@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
-import UserContext from "../../../../../context/UserContext";
 import BasketCard from "../../../../reusable-ui/BasketCard";
+import UserContext from "../../../../../context/UserContext";
 
 export default function BasketBody({ basketProduct }) {
+  const { handleDeleteBasketProduct } = useContext(UserContext);
   return (
     <BasketBodyStyled>
       <div className="basket-card">
@@ -12,7 +13,10 @@ export default function BasketBody({ basketProduct }) {
           basketProduct.map((product, i) => {
             return (
               <div className="card" key={i}>
-                <BasketCard {...product} />
+                <BasketCard
+                  {...product}
+                  onDelete={() => handleDeleteBasketProduct(product.id)}
+                />
               </div>
             );
           })}

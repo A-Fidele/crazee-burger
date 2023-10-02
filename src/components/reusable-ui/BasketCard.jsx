@@ -5,7 +5,13 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import { formatPrice } from "../../utils/maths";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
-export default function BasketCard({ title, imageSource, price, quantity }) {
+export default function BasketCard({
+  title,
+  imageSource,
+  price,
+  quantity,
+  onDelete,
+}) {
   return (
     <BasketCardStyled>
       <div className="image">
@@ -18,7 +24,7 @@ export default function BasketCard({ title, imageSource, price, quantity }) {
           </div>
           <div className="price">{formatPrice(price)}</div>
         </div>
-        <div className="delete-product">
+        <div className="delete-product" onClick={onDelete}>
           <span className="quantity">x {quantity}</span>
           <MdOutlineDeleteForever className="icon" />
         </div>
@@ -76,6 +82,7 @@ const BasketCardStyled = styled.div`
     }
     .title {
       //box-sizing: border-box;
+      user-select: none;
       border: 1px solid green;
       line-height: 32px;
       width: 100px;
@@ -94,6 +101,7 @@ const BasketCardStyled = styled.div`
       }
     }
     .price {
+      user-select: none;
       font-size: ${theme.fonts.size.SM};
       font-weight: ${theme.fonts.weights.regular};
       margin-bottom: 16px;

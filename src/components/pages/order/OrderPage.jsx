@@ -26,7 +26,8 @@ export default function OrderPage() {
     handleDelete,
     resetMenu,
   } = useMenu();
-  const { basketProduct, handleAddToBasket } = useBasket();
+  const { basketProduct, handleAddToBasket, handleDeleteBasketProduct } =
+    useBasket();
 
   const inputEditRef = useRef();
 
@@ -49,8 +50,7 @@ export default function OrderPage() {
     inputEditRef,
     basketProduct,
     handleAddToBasket,
-    totalPrice,
-    setTotalPrice,
+    handleDeleteBasketProduct,
   };
 
   return (
