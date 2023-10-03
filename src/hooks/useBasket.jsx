@@ -9,12 +9,6 @@ export const useBasket = () => {
     const basketProductUpdated = basketProduct.filter(
       (product) => product.id !== idProducToDelete
     );
-    console.log(
-      "basketProductUpdated",
-      basketProductUpdated,
-      "idProducToDelete",
-      idProducToDelete
-    );
     setBasketProduct(basketProductUpdated);
   };
 

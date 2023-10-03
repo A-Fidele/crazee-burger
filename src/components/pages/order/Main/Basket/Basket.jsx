@@ -6,9 +6,11 @@ import Footer from "./Footer";
 import BasketBody from "./BasketBody";
 import UserContext from "../../../../../context/UserContext";
 import EmptyBasket from "./EmptyBasket";
+import { theme } from "../../../../../theme";
 
 export default function Basket() {
-  const { basketProduct } = useContext(UserContext);
+  const { basketProduct, isAdmin, handleDeleteBasketProduct } =
+    useContext(UserContext);
 
   const basketTotal = basketProduct.reduce((total, basketProduct) => {
     total += basketProduct.price * basketProduct.quantity;
@@ -19,7 +21,11 @@ export default function Basket() {
     <BasketStyled>
       <Total amountToPay={formatPrice(basketTotal)} />
       {basketProduct.length > 0 ? (
-        <BasketBody basketProduct={basketProduct} />
+        <BasketBody
+          basketProduct={basketProduct}
+          isModeAdmin={isAdmin}
+          handleDeleteBasketProduct={handleDeleteBasketProduct}
+        />
       ) : (
         <EmptyBasket />
       )}
@@ -29,9 +35,21 @@ export default function Basket() {
 }
 
 const BasketStyled = styled.div`
+  background: ${theme.colors.background_white};
+  box-shadow: ${theme.shadows.basket};
   display: flex;
   flex-direction: column;
-  //  height: 100%;
-  overflow-y: scroll;
-  scrollbar-color: transparent transparent;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  height: 85vh;
+
+  .head {
+    position: sticky;
+    top: 0;
+  }
+
+  .footer {
+    border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    position: sticky;
+    bottom: 0;
+  }
 `;

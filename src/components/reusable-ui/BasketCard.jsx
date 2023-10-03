@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme";
-import { MdOutlineDeleteForever } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 import { formatPrice } from "../../utils/maths";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -11,22 +11,28 @@ export default function BasketCard({
   price,
   quantity,
   onDelete,
+  ismodeadmin,
 }) {
   return (
-    <BasketCardStyled>
-      <div className="image">
-        <img src={imageSource ? imageSource : DEFAULT_IMAGE} alt={title} />
+    <BasketCardStyled $ismodeadmin={ismodeadmin}>
+      <div className="delete-button" onClick={onDelete}>
+        <MdDeleteForever className="icon" />
       </div>
-      <div className="title-price-container">
+      <div className="delete-button" onClick={onDelete}>
+        <MdDeleteForever className="icon" />
+      </div>
+      <div className="image">
+        <img src={imageSource} alt={title} />
+      </div>
+      <div className="text-info">
         <div className="left-info">
           <div className="title">
-            <span className="burger-title">{title}</span>
+            <span>{title}</span>
           </div>
-          <div className="price">{formatPrice(price)}</div>
+          <span className="price">{formatPrice(price)}</span>
         </div>
-        <div className="delete-product" onClick={onDelete}>
-          <span className="quantity">x {quantity}</span>
-          <MdOutlineDeleteForever className="icon" />
+        <div className="quantity">
+          <span>x {quantity}</span>
         </div>
       </div>
     </BasketCardStyled>
@@ -34,116 +40,119 @@ export default function BasketCard({
 }
 
 const BasketCardStyled = styled.div`
-  //border: 2px solid black;
-  width: 100%;
+  cursor: ${({ $ismodeadmin }) => ($ismodeadmin ? "pointer" : "auto")};
+  box-sizing: border-box;
   height: 86px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.borderRadius.round};
-  box-shadow: ${theme.shadows.cardBasket};
-  padding: 8px 16px 8px 16px;
+  padding: 8px 16px;
   display: grid;
   grid-template-columns: 30% 1fr;
+  border-radius: ${theme.borderRadius.round};
+  background: ${theme.colors.white};
+  box-shadow: ${theme.shadows.cardBasket};
   position: relative;
-  box-sizing: border-box;
 
   .image {
-    //border: 2px solid blue;
     box-sizing: border-box;
-    width: 85px;
     height: 70px;
-    display: flex;
-    align-items: center;
+
     img {
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
       padding: 5px;
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
       object-fit: contain;
     }
   }
 
-  .title-price-container {
-    //border: 1px solid green;
+  .text-info {
+    height: 70px;
+    user-select: none;
     box-sizing: border-box;
-    height: 100%;
-    width: 130px;
-    margin-left: 20px;
     display: grid;
     grid-template-columns: 70% 1fr;
-    font-family: "Amatic SC", cursive;
-    font-weight: ${theme.fonts.weights.bold};
+    font-size: ${theme.fonts.size.P0};
+    color: ${theme.colors.primary};
 
     .left-info {
       display: grid;
       grid-template-rows: 60% 40%;
+      margin-left: 21px;
+
+      .title {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        font-family: "Amatic SC";
+        font-size: ${theme.fonts.size.P3};
+        line-height: 32px;
+        font-weight: ${theme.fonts.weights.bold};
+        color: ${theme.colors.dark};
+        min-width: 0;
+
+        span {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .price {
+        font-size: ${theme.fonts.size.SM};
+        font-weight: ${theme.fonts.weights.medium};
+        font-family: "Open sans";
+      }
     }
-    .title {
-      //box-sizing: border-box;
-      user-select: none;
-      border: 1px solid green;
-      line-height: 32px;
-      width: 100px;
-      align-items: center;
-      font-size: ${theme.fonts.size.P3};
-      font-weight: ${theme.fonts.weights.bold};
-      color: ${theme.colors.dark};
-      //overflow: hidden;
+
+    .quantity {
+      box-sizing: border-box;
+      font-weight: ${theme.fonts.weights.medium};
       display: flex;
       align-items: center;
-      text-overflow: ellipsis;
-      .burger-title {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-    }
-    .price {
-      user-select: none;
+      justify-content: flex-end;
+      margin-right: 20px;
       font-size: ${theme.fonts.size.SM};
-      font-weight: ${theme.fonts.weights.regular};
-      margin-bottom: 16px;
-      color: ${theme.colors.primary};
-      font-family: "Open sans";
     }
   }
-  .delete-product {
-    //border: 1px solid red;
-    height: 100%;
-    width: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    &:hover {
-      background: red;
+  .delete-button {
+    display: none;
+    z-index: 1;
+  }
 
-      span {
-        display: none;
+  &:hover {
+    .delete-button {
+      border: none;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 76px;
+      border-top-right-radius: ${theme.borderRadius.round};
+      border-bottom-right-radius: ${theme.borderRadius.round};
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: ${theme.colors.red};
+      color: ${theme.colors.white};
+      cursor: pointer;
+
+      .icon {
+        width: ${theme.fonts.size.P3};
+        height: ${theme.fonts.size.P3};
       }
-    }
-    .icon {
-      transform: scale(1.5);
-      color: white;
 
       &:hover {
-        color: black;
+        .icon {
+          color: ${theme.colors.dark};
+        }
+        &:active {
+          .icon {
+            color: ${theme.colors.white};
+          }
+        }
       }
-    }
-    &:active {
-      .icon {
-        color: white;
-      }
-    }
-    .quantity {
-      color: ${theme.colors.primary};
-      font-size: ${theme.fonts.size.SM};
-      font-weight: ${theme.fonts.weights.medium};
-      font-family: "Open sans";
-      box-sizing: border-box;
-      justify-content: flex-end;
     }
   }
 `;
