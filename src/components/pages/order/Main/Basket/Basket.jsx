@@ -1,31 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
-import Total from "./Total";
-import Footer from "./Footer";
 import BasketBody from "./BasketBody";
 import UserContext from "../../../../../context/UserContext";
-import EmptyBasket from "./EmptyBasket";
 import { theme } from "../../../../../theme";
+import BasketFooter from "./BasketFooter.jsx";
+import BasketHeader from "./BasketHeader.jsx";
+import { calculateBasketTotal } from "../../../../../helper/calculate";
 
 export default function Basket() {
-  const { basketProduct, isAdmin, handleDeleteBasketProduct } =
-    useContext(UserContext);
-
-  const basketTotal = basketProduct.reduce((total, basketProduct) => {
-    total += basketProduct.price * basketProduct.quantity;
-    return total;
-  }, 0);
+  const { basketProduct } = useContext(UserContext);
+  const basketTotal = calculateBasketTotal(basketProduct);
+  const isBasketEmpty = basketProduct.length === 0;
 
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(basketTotal)} />
-      <BasketBody
-        basketProduct={basketProduct}
-        isModeAdmin={isAdmin}
-        handleDeleteBasketProduct={handleDeleteBasketProduct}
-      />
-      <Footer />
+      <BasketHeader amountToPay={formatPrice(basketTotal)} />
+      <BasketBody isBasketEmpty={isBasketEmpty} />
+      <BasketFooter />
     </BasketStyled>
   );
 }

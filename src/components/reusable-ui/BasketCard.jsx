@@ -50,6 +50,7 @@ const BasketCardStyled = styled.div`
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.cardBasket};
   position: relative;
+
   @supports (-webkit-margin-start: 0) or (margin-inline-start: 0) {
     margin-inline-start: 8px;
     margin-inline-end: initial;
@@ -71,6 +72,8 @@ const BasketCardStyled = styled.div`
       height: 100%;
       width: 100%;
       object-fit: contain;
+      margin-top: 8px;
+      margin-left: 10px;
     }
   }
 
