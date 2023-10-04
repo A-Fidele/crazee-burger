@@ -11,10 +11,10 @@ export default function BasketCard({
   price,
   quantity,
   onDelete,
-  ismodeadmin,
+  isModeAdmin,
 }) {
   return (
-    <BasketCardStyled $ismodeadmin={ismodeadmin}>
+    <BasketCardStyled $isModeAdmin={isModeAdmin}>
       <div className="delete-button" onClick={onDelete}>
         <MdDeleteForever className="icon" />
       </div>
@@ -40,7 +40,7 @@ export default function BasketCard({
 }
 
 const BasketCardStyled = styled.div`
-  cursor: ${({ $ismodeadmin }) => ($ismodeadmin ? "pointer" : "auto")};
+  cursor: ${({ $isModeAdmin }) => ($isModeAdmin ? "pointer" : "auto")};
   box-sizing: border-box;
   height: 86px;
   padding: 8px 16px;
@@ -50,6 +50,16 @@ const BasketCardStyled = styled.div`
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.cardBasket};
   position: relative;
+  @supports (-webkit-margin-start: 0) or (margin-inline-start: 0) {
+    margin-inline-start: 8px;
+    margin-inline-end: initial;
+    margin-block-start: 20px;
+    margin-block-end: 20px;
+    padding-inline-start: initial;
+    padding-inline-end: initial;
+    padding-block-start: initial;
+    padding-block-end: initial;
+  }
 
   .image {
     box-sizing: border-box;

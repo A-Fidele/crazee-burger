@@ -15,7 +15,7 @@ export default function BasketBody({
             <BasketCard
               {...product}
               onDelete={() => handleDeleteBasketProduct(product.id)}
-              ismodeadmin={isModeAdmin}
+              isModeAdmin={isModeAdmin}
             />
           </div>
         );
@@ -31,7 +31,7 @@ const BasketBodyStyled = styled.div`
   scrollbar-color: transparent transparent;
 
   .basket-card {
-    margin-left: 16px;
+    margin-left: 14px;
     height: 86px;
     box-sizing: border-box;
     margin-bottom: 20px;
