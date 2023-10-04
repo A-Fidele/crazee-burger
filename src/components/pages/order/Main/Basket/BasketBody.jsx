@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import BasketCard from "../../../../reusable-ui/BasketCard";
+import EmptyBasket from "./EmptyBasket";
 
 export default function BasketBody({
   basketProduct,
@@ -8,19 +9,25 @@ export default function BasketBody({
   isModeAdmin,
 }) {
   return (
-    <BasketBodyStyled>
-      {basketProduct.map((product) => {
-        return (
-          <div className="basket-card" key={product.id}>
-            <BasketCard
-              {...product}
-              onDelete={() => handleDeleteBasketProduct(product.id)}
-              isModeAdmin={isModeAdmin}
-            />
-          </div>
-        );
-      })}
-    </BasketBodyStyled>
+    <>
+      {basketProduct.length > 0 ? (
+        <BasketBodyStyled>
+          {basketProduct.map((product) => {
+            return (
+              <div className="basket-card" key={product.id}>
+                <BasketCard
+                  {...product}
+                  onDelete={() => handleDeleteBasketProduct(product.id)}
+                  isModeAdmin={isModeAdmin}
+                />
+              </div>
+            );
+          })}
+        </BasketBodyStyled>
+      ) : (
+        <EmptyBasket />
+      )}
+    </>
   );
 }
 

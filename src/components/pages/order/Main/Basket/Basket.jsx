@@ -20,15 +20,11 @@ export default function Basket() {
   return (
     <BasketStyled>
       <Total amountToPay={formatPrice(basketTotal)} />
-      {basketProduct.length > 0 ? (
-        <BasketBody
-          basketProduct={basketProduct}
-          isModeAdmin={isAdmin}
-          handleDeleteBasketProduct={handleDeleteBasketProduct}
-        />
-      ) : (
-        <EmptyBasket />
-      )}
+      <BasketBody
+        basketProduct={basketProduct}
+        isModeAdmin={isAdmin}
+        handleDeleteBasketProduct={handleDeleteBasketProduct}
+      />
       <Footer />
     </BasketStyled>
   );
