@@ -53,7 +53,7 @@ const BasketCardStyled = styled.div`
 
   @supports (-webkit-margin-start: 0) or (margin-inline-start: 0) {
     margin-inline-start: 8px;
-    margin-inline-end: initial;
+    margin-inline-end: 16px;
     margin-block-start: 20px;
     margin-block-end: 20px;
     padding-inline-start: initial;
@@ -100,6 +100,7 @@ const BasketCardStyled = styled.div`
         line-height: 32px;
         font-weight: ${theme.fonts.weights.bold};
         color: ${theme.colors.dark};
+        margin-top: 15px;
         min-width: 0;
 
         span {
@@ -110,6 +111,7 @@ const BasketCardStyled = styled.div`
       }
 
       .price {
+        margin-top: 5px;
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.medium};
         font-family: "Open sans";
@@ -117,12 +119,13 @@ const BasketCardStyled = styled.div`
     }
 
     .quantity {
+      margin-top: 20px;
       box-sizing: border-box;
       font-weight: ${theme.fonts.weights.medium};
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      margin-right: 20px;
+      margin-right: 18px;
+      margin-left: 11px;
       font-size: ${theme.fonts.size.SM};
     }
   }
