@@ -13,19 +13,12 @@ export default function OrderPage() {
   const { username } = useParams();
   const [isAdmin, setIsAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [currentTabSelected, setCurrentTabSelected] = useState("edit");
+  const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
-  const [totalPrice, setTotalPrice] = useState(0);
-  const {
-    menu,
-    setMenu,
-    handleEdit,
-    handleAddProduct,
-    handleDelete,
-    resetMenu,
-  } = useMenu();
+  const { menu, handleEdit, handleAddProduct, handleDelete, resetMenu } =
+    useMenu();
   const { basketProduct, handleAddToBasket, handleDeleteBasketProduct } =
     useBasket();
 

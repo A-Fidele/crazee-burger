@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "../../../../../theme";
 import { MdDeleteForever } from "react-icons/md";
-import { formatPrice } from "../../utils/maths";
+import { formatPrice } from "../../../../../utils/maths";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function BasketCard({
@@ -22,7 +22,7 @@ export default function BasketCard({
         <MdDeleteForever className="icon" />
       </div>
       <div className="image">
-        <img src={imageSource} alt={title} />
+        <img src={imageSource ? imageSource : DEFAULT_IMAGE} alt={title} />
       </div>
       <div className="text-info">
         <div className="left-info">

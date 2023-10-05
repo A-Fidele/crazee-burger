@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import BasketCard from "../../../../reusable-ui/BasketCard";
+import BasketCard from "./BasketCard";
 import { useContext } from "react";
 import UserContext from "../../../../../context/UserContext";
 

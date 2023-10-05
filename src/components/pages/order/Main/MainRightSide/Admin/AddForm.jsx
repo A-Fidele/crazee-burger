@@ -10,6 +10,7 @@ import SubmitMessage from "./SubmitMessage";
 import ImagePreview from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
+import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
 
 export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct } =
@@ -19,6 +20,7 @@ export default function AddForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     const productBeingChanged = {
       ...newProduct,
       [name]: value,
@@ -29,9 +31,11 @@ export default function AddForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const newProductToAdd = {
       ...newProduct,
       id: crypto.randomUUID(),
+      price: replaceFrenchCommaWithDot(newProduct.price),
     };
 
     handleAddProduct(newProductToAdd);
