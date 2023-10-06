@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
-import Total from "./Total";
-import Footer from "./Footer";
 import BasketBody from "./BasketBody";
+import UserContext from "../../../../../context/UserContext";
+import { theme } from "../../../../../theme";
+import BasketFooter from "./BasketFooter.jsx";
+import BasketHeader from "./BasketHeader.jsx";
+import { calculateBasketTotal } from "../../../../../helper/calculate";
 
 export default function Basket() {
+  const { basketProduct } = useContext(UserContext);
+  const basketTotal = calculateBasketTotal(basketProduct);
+  const isBasketEmpty = basketProduct.length === 0;
+
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(0)} />
-      <BasketBody />
-      <Footer />
+      <BasketHeader amountToPay={formatPrice(basketTotal)} />
+      <BasketBody isBasketEmpty={isBasketEmpty} />
+      <BasketFooter />
     </BasketStyled>
   );
 }
 
 const BasketStyled = styled.div`
+  background: ${theme.colors.background_white};
+  box-shadow: ${theme.shadows.basket};
   display: flex;
   flex-direction: column;
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  height: 85vh;
+
+  .head {
+    position: sticky;
+    top: 0;
+  }
+
+  .footer {
+    border-bottom-left-radius: ${theme.borderRadius.extraRound};
+    position: sticky;
+    bottom: 0;
+  }
 `;

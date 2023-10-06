@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { LARGE } from "../fakeData/fakeMenu";
+import { LARGE, LARGE_WEIRD } from "../fakeData/fakeMenu";
 import { deepClone } from "../utils/array";
 
 export const useMenu = () => {
-  const [menu, setMenu] = useState(LARGE);
+  const [menu, setMenu] = useState(LARGE_WEIRD);
   const handleEdit = (productEdit) => {
     const menuCopy = deepClone(menu);
     const indexProduct = menu.findIndex((data) => data.id === productEdit.id);

@@ -35,7 +35,7 @@ export default function NavbarRightSide({ username }) {
   return (
     <NavbarRightSideStyled className="right-side">
       <ToggleButton
-        isChecked={isChecked}
+        isChecked={isAdmin}
         onToggle={onToogle}
         labelIfChecked="Désactivez le mode Admin"
         labelIfUnchecked="Activer le mode Admin"

@@ -12,6 +12,7 @@ export default function Card({
   onSelect,
   ishoverable,
   isSelected,
+  handleAddProduct,
 }) {
   return (
     <CardStyled
@@ -49,7 +50,7 @@ export default function Card({
                 }
                 version="classic"
                 label={"Ajouter"}
-                onClick={(event) => event.stopPropagation()}
+                onClick={(event) => handleAddProduct(event)}
               />
             </div>
           </div>

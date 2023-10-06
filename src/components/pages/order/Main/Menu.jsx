@@ -20,6 +20,7 @@ export default function Menu() {
     productSelected,
     setProductSelected,
     inputEditRef,
+    handleAddToBasket,
   } = useContext(UserContext);
 
   if (menu.length === 0) {
@@ -49,6 +50,13 @@ export default function Menu() {
     setProductSelected(EMPTY_PRODUCT);
   };
 
+  const handleAddProduct = (event, id) => {
+    event.stopPropagation();
+
+    const productToAdd = menu.find((product) => product.id === id);
+    handleAddToBasket(productToAdd);
+  };
+
   return (
     <MenuStyled className="menu">
       {menu.map(({ id, title, imageSource, price }) => {
@@ -63,6 +71,7 @@ export default function Menu() {
             onSelect={() => handleSelectCard(id)}
             ishoverable={isAdmin}
             isSelected={checkProductIsClicked(id, productSelected)}
+            handleAddProduct={(event) => handleAddProduct(event, id)}
           />
         );
       })}

@@ -7,6 +7,7 @@ import UserContext from "../../../context/UserContext";
 import { useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
+import { useBasket } from "../../../hooks/useBasket";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -16,14 +17,10 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
-  const {
-    menu,
-    setMenu,
-    handleEdit,
-    handleAddProduct,
-    handleDelete,
-    resetMenu,
-  } = useMenu();
+  const { menu, handleEdit, handleAddProduct, handleDelete, resetMenu } =
+    useMenu();
+  const { basketProduct, handleAddToBasket, handleDeleteBasketProduct } =
+    useBasket();
 
   const inputEditRef = useRef();
 
@@ -44,6 +41,9 @@ export default function OrderPage() {
     setProductSelected,
     handleEdit,
     inputEditRef,
+    basketProduct,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
   };
 
   return (
