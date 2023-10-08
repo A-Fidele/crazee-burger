@@ -4,6 +4,7 @@ import { deepClone } from "../utils/array";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(LARGE_WEIRD);
+
   const handleEdit = (productEdit) => {
     const menuCopy = deepClone(menu);
     const indexProduct = menu.findIndex((data) => data.id === productEdit.id);

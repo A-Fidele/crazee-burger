@@ -14,13 +14,11 @@ export default function Menu() {
   const {
     menu,
     isAdmin,
-    setIsCollapsed,
-    setCurrentTabSelected,
     handleDelete,
     productSelected,
     setProductSelected,
-    inputEditRef,
     handleAddToBasket,
+    handleSelectCard,
   } = useContext(UserContext);
 
   if (menu.length === 0) {
@@ -30,17 +28,6 @@ export default function Menu() {
 
   const checkProductIsClicked = (idProductedCliked, productSelected) => {
     return idProductedCliked === productSelected.id;
-  };
-
-  const handleSelectCard = async (idOfProductSelected) => {
-    if (!isAdmin) return;
-    await setIsCollapsed(false);
-    await setCurrentTabSelected("edit");
-    const productClickedOn = menu.find(
-      (data) => data.id === idOfProductSelected
-    );
-    await setProductSelected(productClickedOn);
-    inputEditRef.current.focus();
   };
 
   //gestionnaire d'evenement

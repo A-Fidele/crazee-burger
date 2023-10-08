@@ -19,10 +19,25 @@ export default function OrderPage() {
 
   const { menu, handleEdit, handleAddProduct, handleDelete, resetMenu } =
     useMenu();
-  const { basketProduct, handleAddToBasket, handleDeleteBasketProduct } =
-    useBasket();
+  const {
+    basketProduct,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+    handleEditBasket,
+  } = useBasket();
 
   const inputEditRef = useRef();
+
+  const handleSelectCard = async (idOfProductSelected) => {
+    if (!isAdmin) return;
+    await setIsCollapsed(false);
+    await setCurrentTabSelected("edit");
+    const productClickedOn = menu.find(
+      (data) => data.id === idOfProductSelected
+    );
+    await setProductSelected(productClickedOn);
+    inputEditRef.current.focus();
+  };
 
   const userContextValue = {
     isAdmin,
@@ -44,6 +59,8 @@ export default function OrderPage() {
     basketProduct,
     handleAddToBasket,
     handleDeleteBasketProduct,
+    handleEditBasket,
+    handleSelectCard,
   };
 
   return (

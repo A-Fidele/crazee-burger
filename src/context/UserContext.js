@@ -21,6 +21,7 @@ export default createContext({
     productSelected: {},
     setProductSelected: () => {},
     handleEdit: () => {},
+    handleSelectCard: () => {},
 
     inputEditRef:{},
 
@@ -29,4 +30,5 @@ export default createContext({
 
     handleAddToBasket: (idOfProducToAdd) => {},
     handleDeleteBasketProduct: (idProductToDelete) => {},
+    handleEditBasket: () => {},
 });

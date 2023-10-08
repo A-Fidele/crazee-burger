@@ -5,8 +5,17 @@ import { useContext } from "react";
 import UserContext from "../../../../../context/UserContext";
 
 export default function BasketCards() {
-  const { basketProduct, handleDeleteBasketProduct, isModeAdmin } =
-    useContext(UserContext);
+  const {
+    basketProduct,
+    handleDeleteBasketProduct,
+    isAdmin,
+    productSelected,
+    handleSelectCard,
+  } = useContext(UserContext);
+
+  const checkProductIsClicked = (idProductedCliked, productSelected) => {
+    return idProductedCliked === productSelected.id;
+  };
 
   return (
     <BasketBodyStyled>
@@ -16,7 +25,9 @@ export default function BasketCards() {
             <BasketCard
               {...product}
               onDelete={() => handleDeleteBasketProduct(product.id)}
-              isModeAdmin={isModeAdmin}
+              isClickable={isAdmin}
+              onSelect={() => handleSelectCard(product.id)}
+              isSelected={checkProductIsClicked(product.id, productSelected)}
             />
           </div>
         );
