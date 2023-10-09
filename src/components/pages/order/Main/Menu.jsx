@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
@@ -7,6 +7,7 @@ import UserContext from "../../../../context/UserContext";
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
 import { EMPTY_PRODUCT } from "../../../../enums/product";
+import { isEmpty } from "../../../../utils/array";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -22,7 +23,7 @@ export default function Menu() {
     handleDeleteBasketProduct,
   } = useContext(UserContext);
 
-  if (menu.length === 0) {
+  if (isEmpty(menu)) {
     if (!isAdmin) return <EmptyMenuCustomer />;
     return <EmptyMenuAdmin />;
   }

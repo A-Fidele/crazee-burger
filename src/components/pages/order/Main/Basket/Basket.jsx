@@ -7,11 +7,12 @@ import { theme } from "../../../../../theme";
 import BasketFooter from "./BasketFooter.jsx";
 import BasketHeader from "./BasketHeader.jsx";
 import { calculateBasketTotal } from "../../../../../helper/calculate";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Basket() {
   const { menu, basketProduct } = useContext(UserContext);
   const basketTotal = calculateBasketTotal(menu, basketProduct);
-  const isBasketEmpty = basketProduct.length === 0;
+  const isBasketEmpty = isEmpty(basketProduct);
 
   return (
     <BasketStyled>

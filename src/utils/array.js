@@ -13,3 +13,7 @@ export const findObjectById = (array, idOfObjectToFind) => {
 export const findObjectIndexById = (array, idOfObjectToFind) => {
     return array.findIndex((product) => product.id === idOfObjectToFind)
 }
+
+export const isEmpty = (array) => {
+  return array.length === 0
+}
