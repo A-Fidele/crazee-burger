@@ -9,3 +9,6 @@ export const calculateBasketTotal = (menu, basketProduct) => {
   }, 0);
   return total;
 };
+
+export const checkProductIsClicked = (idProductedCliked, array) =>
+  idProductedCliked === array.id;

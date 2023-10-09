@@ -6,7 +6,7 @@ import UserContext from "../../../../../context/UserContext";
 import { theme } from "../../../../../theme";
 import BasketFooter from "./BasketFooter.jsx";
 import BasketHeader from "./BasketHeader.jsx";
-import { calculateBasketTotal } from "../../../../../helper/calculate";
+import { calculateBasketTotal } from "../../../../../helper/helper";
 import { isEmpty } from "../../../../../utils/array";
 
 export default function Basket() {

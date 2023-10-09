@@ -4,6 +4,7 @@ import BasketCard from "./BasketCard";
 import { useContext } from "react";
 import UserContext from "../../../../../context/UserContext";
 import { findObjectById } from "../../../../../utils/array";
+import { checkProductIsClicked } from "../../../../../helper/helper";
 
 export default function BasketCards() {
   const {
@@ -15,9 +16,6 @@ export default function BasketCards() {
     handleSelectCard,
   } = useContext(UserContext);
 
-  const checkProductIsClicked = (idProductedCliked, productSelected) => {
-    return idProductedCliked === productSelected.id;
-  };
   const handleDelete = (event, id) => {
     event.stopPropagation();
     handleDeleteBasketProduct(id);

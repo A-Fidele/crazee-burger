@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
+import { findObjectIndexById } from "../../../utils/array";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -32,9 +33,11 @@ export default function OrderPage() {
     if (!isAdmin) return;
     await setIsCollapsed(false);
     await setCurrentTabSelected("edit");
-    const productClickedOn = menu.find(
-      (data) => data.id === idOfProductSelected
+    const indexOfProductClickedOn = findObjectIndexById(
+      menu,
+      idOfProductSelected
     );
+    const productClickedOn = menu[indexOfProductClickedOn];
     await setProductSelected(productClickedOn);
     inputEditRef.current.focus();
   };

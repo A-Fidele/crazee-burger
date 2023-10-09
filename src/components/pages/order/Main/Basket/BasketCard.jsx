@@ -108,6 +108,7 @@ const BasketCardStyled = styled.div`
       display: grid;
       grid-template-rows: 60% 40%;
       margin-left: 21px;
+      box-sizing: border-box;
 
       .title {
         box-sizing: border-box;
@@ -118,6 +119,7 @@ const BasketCardStyled = styled.div`
         line-height: 32px;
         font-weight: ${theme.fonts.weights.bold};
         color: ${theme.colors.dark};
+        height: 32px;
         margin-top: 15px;
         min-width: 0;
 
@@ -129,7 +131,7 @@ const BasketCardStyled = styled.div`
       }
 
       .price {
-        margin-top: 5px;
+        margin-top: 4px;
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.medium};
         font-family: "Open sans";
