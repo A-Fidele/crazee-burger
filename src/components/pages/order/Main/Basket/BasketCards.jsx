@@ -3,9 +3,11 @@ import styled from "styled-components";
 import BasketCard from "./BasketCard";
 import { useContext } from "react";
 import UserContext from "../../../../../context/UserContext";
+import { findObjectById } from "../../../../../utils/array";
 
 export default function BasketCards() {
   const {
+    menu,
     basketProduct,
     handleDeleteBasketProduct,
     isAdmin,
@@ -20,10 +22,12 @@ export default function BasketCards() {
   return (
     <BasketBodyStyled>
       {basketProduct.map((product) => {
+        const menuProduct = findObjectById(menu, product.id);
         return (
           <div className="basket-card" key={product.id}>
             <BasketCard
-              {...product}
+              {...menuProduct}
+              quantity={product.quantity}
               onDelete={() => handleDeleteBasketProduct(product.id)}
               isClickable={isAdmin}
               onSelect={() => handleSelectCard(product.id)}

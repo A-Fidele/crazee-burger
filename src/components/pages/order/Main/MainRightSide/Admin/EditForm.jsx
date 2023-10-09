@@ -8,13 +8,8 @@ import { getInputTextsConfig } from "./inputTextsConfig";
 import InstructionMessage from "./InstructionMessage";
 
 export default function EditForm() {
-  const {
-    productSelected,
-    setProductSelected,
-    handleEdit,
-    inputEditRef,
-    handleEditBasket,
-  } = useContext(UserContext);
+  const { productSelected, setProductSelected, handleEdit, inputEditRef } =
+    useContext(UserContext);
 
   const inputTexts = getInputTextsConfig(productSelected);
 
@@ -24,7 +19,6 @@ export default function EditForm() {
 
     setProductSelected(productUpdated); //update affichage
     handleEdit(productUpdated); //update menu
-    handleEditBasket(productUpdated); //update basket
   };
 
   return (

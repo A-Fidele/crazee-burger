@@ -19,6 +19,7 @@ export default function Menu() {
     setProductSelected,
     handleAddToBasket,
     handleSelectCard,
+    handleDeleteBasketProduct,
   } = useContext(UserContext);
 
   if (menu.length === 0) {
@@ -34,6 +35,7 @@ export default function Menu() {
   const handleOnDelete = (id, event) => {
     event.stopPropagation();
     handleDelete(id);
+    handleDeleteBasketProduct(id);
     setProductSelected(EMPTY_PRODUCT);
   };
 

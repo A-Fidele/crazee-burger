@@ -9,8 +9,8 @@ import BasketHeader from "./BasketHeader.jsx";
 import { calculateBasketTotal } from "../../../../../helper/calculate";
 
 export default function Basket() {
-  const { basketProduct } = useContext(UserContext);
-  const basketTotal = calculateBasketTotal(basketProduct);
+  const { menu, basketProduct } = useContext(UserContext);
+  const basketTotal = calculateBasketTotal(menu, basketProduct);
   const isBasketEmpty = basketProduct.length === 0;
 
   return (
