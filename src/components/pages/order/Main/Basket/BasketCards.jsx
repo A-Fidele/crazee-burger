@@ -18,6 +18,10 @@ export default function BasketCards() {
   const checkProductIsClicked = (idProductedCliked, productSelected) => {
     return idProductedCliked === productSelected.id;
   };
+  const handleDelete = (event, id) => {
+    event.stopPropagation();
+    handleDeleteBasketProduct(id);
+  };
 
   return (
     <BasketBodyStyled>
@@ -28,7 +32,7 @@ export default function BasketCards() {
             <BasketCard
               {...menuProduct}
               quantity={product.quantity}
-              onDelete={() => handleDeleteBasketProduct(product.id)}
+              onDelete={(event) => handleDelete(event, product.id)}
               isClickable={isAdmin}
               onSelect={() => handleSelectCard(product.id)}
               isSelected={checkProductIsClicked(product.id, productSelected)}

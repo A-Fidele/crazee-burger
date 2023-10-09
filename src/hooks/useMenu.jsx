@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { LARGE, LARGE_WEIRD } from "../fakeData/fakeMenu";
-import { deepClone } from "../utils/array";
+import {
+  deepClone,
+  findObjectIndexById,
+  removeObjectById,
+} from "../utils/array";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(LARGE_WEIRD);
 
   const handleEdit = (productEdit) => {
     const menuCopy = deepClone(menu);
-    const indexProduct = menu.findIndex((data) => data.id === productEdit.id);
+    const indexProduct = findObjectIndexById(menu, productEdit.id);
     menuCopy[indexProduct] = productEdit;
     setMenu(menuCopy);
   };
@@ -20,7 +24,7 @@ export const useMenu = () => {
 
   //gestionnaire de state
   const handleDelete = (id) => {
-    const menuUpdated = menu.filter((data) => data.id !== id);
+    const menuUpdated = removeObjectById(menu, id);
     setMenu(menuUpdated);
   };
 
