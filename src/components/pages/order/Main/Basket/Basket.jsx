@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
 import BasketBody from "./BasketBody";

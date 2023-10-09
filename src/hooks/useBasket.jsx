@@ -23,7 +23,10 @@ export const useBasket = () => {
     const productFound = findObjectById(basketProduct, productToAdd.id);
 
     if (!productFound) {
-      const newBasketProduct = { ...productToAdd, quantity: 1 };
+      const newBasketProduct = {
+        ...productToAdd,
+        quantity: 1,
+      };
       const basketProductUpdated = [newBasketProduct, ...basketProductCopy];
       setBasketProduct(basketProductUpdated);
       return;

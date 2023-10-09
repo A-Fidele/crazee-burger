@@ -5,6 +5,7 @@ import {
   findObjectIndexById,
   removeObjectById,
 } from "../utils/array";
+import { replaceFrenchCommaWithDot } from "../utils/maths";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(LARGE_WEIRD);
@@ -13,6 +14,7 @@ export const useMenu = () => {
     const menuCopy = deepClone(menu);
     const indexProduct = findObjectIndexById(menu, productEdit.id);
     menuCopy[indexProduct] = productEdit;
+
     setMenu(menuCopy);
   };
 
