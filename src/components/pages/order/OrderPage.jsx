@@ -59,7 +59,6 @@ export default function OrderPage() {
     basketProduct,
     handleAddToBasket,
     handleDeleteBasketProduct,
-    handleEditBasket,
     handleSelectCard,
   };
 

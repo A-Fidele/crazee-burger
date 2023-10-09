@@ -10,16 +10,6 @@ import {
 export const useBasket = () => {
   const [basketProduct, setBasketProduct] = useState([]);
 
-  const handleEditBasket = (productToEdit) => {
-    const indexProductToEdit = findObjectIndexById(
-      basketProduct,
-      productToEdit
-    );
-    const basketProductCopy = deepClone(basketProduct);
-    basketProductCopy[indexProductToEdit] = productToEdit;
-    setBasketProduct(basketProductCopy);
-  };
-
   const handleDeleteBasketProduct = (idOfProducToDelete) => {
     const basketProductUpdated = removeObjectById(
       basketProduct,
@@ -50,6 +40,5 @@ export const useBasket = () => {
     basketProduct,
     handleAddToBasket,
     handleDeleteBasketProduct,
-    handleEditBasket,
   };
 };
