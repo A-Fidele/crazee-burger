@@ -1,35 +1,47 @@
 import { useState } from "react";
 import { LARGE_WEIRD } from "../fakeData/fakeMenu";
-import { deepClone } from "../utils/array";
+import {
+  deepClone,
+  findObjectById,
+  findObjectIndexById,
+  removeObjectById,
+} from "../utils/array";
 
 export const useBasket = () => {
   const [basketProduct, setBasketProduct] = useState([]);
 
-  const handleDeleteBasketProduct = (idProducToDelete) => {
-    const basketProductUpdated = basketProduct.filter(
-      (product) => product.id !== idProducToDelete
+  const handleDeleteBasketProduct = (idOfProducToDelete) => {
+    const basketProductUpdated = removeObjectById(
+      basketProduct,
+      idOfProducToDelete
     );
     setBasketProduct(basketProductUpdated);
   };
 
   const handleAddToBasket = (productToAdd) => {
     const basketProductCopy = deepClone(basketProduct);
-    const productFound = basketProduct.find(
-      (data) => data.id === productToAdd.id
-    );
+    const productFound = findObjectById(basketProduct, productToAdd.id);
 
     if (!productFound) {
-      const newBasketProduct = { ...productToAdd, quantity: 1 };
+      const newBasketProduct = {
+        ...productToAdd,
+        quantity: 1,
+      };
       const basketProductUpdated = [newBasketProduct, ...basketProductCopy];
       setBasketProduct(basketProductUpdated);
       return;
     }
-    const indexOfProductToChangeQuantity = basketProduct.findIndex(
-      (product) => product.id === productToAdd.id
+    const indexOfProductToChangeQuantity = findObjectIndexById(
+      basketProduct,
+      productToAdd.id
     );
     basketProductCopy[indexOfProductToChangeQuantity].quantity += 1;
     setBasketProduct(basketProductCopy);
   };
 
-  return { basketProduct, handleAddToBasket, handleDeleteBasketProduct };
+  return {
+    basketProduct,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+  };
 };

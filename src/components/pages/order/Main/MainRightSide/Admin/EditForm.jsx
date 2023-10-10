@@ -6,6 +6,7 @@ import TextInput from "../../../../../reusable-ui/TextInput";
 import UserContext from "../../../../../../context/UserContext";
 import { getInputTextsConfig } from "./inputTextsConfig";
 import InstructionMessage from "./InstructionMessage";
+import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
 
 export default function EditForm() {
   const { productSelected, setProductSelected, handleEdit, inputEditRef } =
@@ -15,10 +16,18 @@ export default function EditForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const productUpdated = { ...productSelected, [name]: value };
+    const productUpdated = {
+      ...productSelected,
+      [name]: value,
+    };
+
+    const productWithPriceUpdated = {
+      ...productUpdated,
+      price: replaceFrenchCommaWithDot(productUpdated.price),
+    };
 
     setProductSelected(productUpdated); //update affichage
-    handleEdit(productUpdated); //update menu
+    handleEdit(productWithPriceUpdated); //update menu
   };
 
   return (

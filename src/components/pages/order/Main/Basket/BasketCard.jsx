@@ -11,10 +11,16 @@ export default function BasketCard({
   price,
   quantity,
   onDelete,
-  isModeAdmin,
+  isClickable,
+  onSelect,
+  isSelected,
 }) {
   return (
-    <BasketCardStyled $isModeAdmin={isModeAdmin}>
+    <BasketCardStyled
+      $isClickable={isClickable}
+      onClick={onSelect}
+      className={isClickable && isSelected ? "card-selected" : ""}
+    >
       <div className="delete-button" onClick={onDelete}>
         <MdDeleteForever className="icon" />
       </div>
@@ -40,7 +46,7 @@ export default function BasketCard({
 }
 
 const BasketCardStyled = styled.div`
-  cursor: ${({ $isModeAdmin }) => ($isModeAdmin ? "pointer" : "auto")};
+  cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "auto")};
   box-sizing: border-box;
   height: 86px;
   padding: 8px 16px;
@@ -60,6 +66,18 @@ const BasketCardStyled = styled.div`
     padding-inline-end: initial;
     padding-block-start: initial;
     padding-block-end: initial;
+  }
+
+  &.card-selected {
+    background-color: ${theme.colors.primary};
+
+    .price {
+      color: ${theme.colors.white};
+    }
+
+    .quantity {
+      color: ${theme.colors.white};
+    }
   }
 
   .image {
@@ -90,6 +108,7 @@ const BasketCardStyled = styled.div`
       display: grid;
       grid-template-rows: 60% 40%;
       margin-left: 21px;
+      box-sizing: border-box;
 
       .title {
         box-sizing: border-box;
@@ -100,6 +119,7 @@ const BasketCardStyled = styled.div`
         line-height: 32px;
         font-weight: ${theme.fonts.weights.bold};
         color: ${theme.colors.dark};
+        height: 32px;
         margin-top: 15px;
         min-width: 0;
 
@@ -111,7 +131,7 @@ const BasketCardStyled = styled.div`
       }
 
       .price {
-        margin-top: 5px;
+        margin-top: 4px;
         font-size: ${theme.fonts.size.SM};
         font-weight: ${theme.fonts.weights.medium};
         font-family: "Open sans";

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
 import BasketBody from "./BasketBody";
@@ -6,12 +6,13 @@ import UserContext from "../../../../../context/UserContext";
 import { theme } from "../../../../../theme";
 import BasketFooter from "./BasketFooter.jsx";
 import BasketHeader from "./BasketHeader.jsx";
-import { calculateBasketTotal } from "../../../../../helper/calculate";
+import { calculateBasketTotal } from "../../../../../helper/helper";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Basket() {
-  const { basketProduct } = useContext(UserContext);
-  const basketTotal = calculateBasketTotal(basketProduct);
-  const isBasketEmpty = basketProduct.length === 0;
+  const { menu, basketProduct } = useContext(UserContext);
+  const basketTotal = calculateBasketTotal(menu, basketProduct);
+  const isBasketEmpty = isEmpty(basketProduct);
 
   return (
     <BasketStyled>

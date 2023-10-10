@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
+import { findObjectIndexById } from "../../../utils/array";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -19,10 +20,27 @@ export default function OrderPage() {
 
   const { menu, handleEdit, handleAddProduct, handleDelete, resetMenu } =
     useMenu();
-  const { basketProduct, handleAddToBasket, handleDeleteBasketProduct } =
-    useBasket();
+  const {
+    basketProduct,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+    handleEditBasket,
+  } = useBasket();
 
   const inputEditRef = useRef();
+
+  const handleSelectCard = async (idOfProductSelected) => {
+    if (!isAdmin) return;
+    await setIsCollapsed(false);
+    await setCurrentTabSelected("edit");
+    const indexOfProductClickedOn = findObjectIndexById(
+      menu,
+      idOfProductSelected
+    );
+    const productClickedOn = menu[indexOfProductClickedOn];
+    await setProductSelected(productClickedOn);
+    inputEditRef.current.focus();
+  };
 
   const userContextValue = {
     isAdmin,
@@ -44,6 +62,7 @@ export default function OrderPage() {
     basketProduct,
     handleAddToBasket,
     handleDeleteBasketProduct,
+    handleSelectCard,
   };
 
   return (

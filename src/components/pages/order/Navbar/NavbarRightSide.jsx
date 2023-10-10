@@ -26,10 +26,8 @@ export default function NavbarRightSide({ username }) {
         draggable: true,
         progress: undefined,
       });
-    } else {
-      setIsChecked(false);
-      setIsAdmin(false);
     }
+    setIsAdmin(!isAdmin);
   };
 
   return (
