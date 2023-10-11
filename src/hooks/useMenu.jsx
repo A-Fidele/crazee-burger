@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { LARGE, LARGE_WEIRD } from "../fakeData/fakeMenu";
+import { fakeMenu } from "../fakeData/fakeMenu";
 import {
   deepClone,
   findObjectIndexById,
   removeObjectById,
 } from "../utils/array";
-import { replaceFrenchCommaWithDot } from "../utils/maths";
 
 export const useMenu = () => {
-  const [menu, setMenu] = useState(LARGE_WEIRD);
+  const [menu, setMenu] = useState(fakeMenu.LARGE);
 
   const handleEdit = (productEdit) => {
     const menuCopy = deepClone(menu);

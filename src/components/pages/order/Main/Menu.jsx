@@ -6,10 +6,8 @@ import Card from "../../../reusable-ui/Card";
 import UserContext from "../../../../context/UserContext";
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
-import { EMPTY_PRODUCT } from "../../../../enums/product";
+import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../enums/product";
 import { isEmpty } from "../../../../utils/array";
-
-const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
   const {

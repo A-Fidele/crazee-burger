@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { LARGE_WEIRD } from "../fakeData/fakeMenu";
 import {
   deepClone,
   findObjectById,
