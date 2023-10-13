@@ -10,7 +10,6 @@ export const getUser = async (userId ) => {
         const userReceived = docSnapshot.data()
         return userReceived
     }
-    createUser(userId)
 }
 
 export const createUser = (userId) => {
@@ -21,5 +20,20 @@ export const createUser = (userId) => {
    }
      setDoc(docRef, newDoc)
  }
-
+ 
+ export const authentificateUser = async (userId) => {
+  const userExists = await getUser(userId);
+  if (!userExists) {
+    createUser(userId);
+  }
+ }
+ 
+ export const updateMenuDb = (userId, newMenu) => {
+     const docRef = doc(db, "users", userId)
+     const newDoc = {
+       username: userId,
+        menu: newMenu,
+     }
+     setDoc(docRef,newDoc)
+ }
  

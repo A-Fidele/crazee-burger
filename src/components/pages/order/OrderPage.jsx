@@ -9,6 +9,7 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findObjectIndexById } from "../../../utils/array";
+import { getUser } from "../../../api/user";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -20,12 +21,8 @@ export default function OrderPage() {
 
   const { menu, handleEdit, handleAddProduct, handleDelete, resetMenu } =
     useMenu();
-  const {
-    basketProduct,
-    handleAddToBasket,
-    handleDeleteBasketProduct,
-    handleEditBasket,
-  } = useBasket();
+  const { basketProduct, handleAddToBasket, handleDeleteBasketProduct } =
+    useBasket();
 
   const inputEditRef = useRef();
 
@@ -43,6 +40,7 @@ export default function OrderPage() {
   };
 
   const userContextValue = {
+    username,
     isAdmin,
     setIsAdmin,
     isCollapsed,

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import {
   deepClone,
   findObjectIndexById,
   removeObjectById,
 } from "../utils/array";
+import { updateMenuDb } from "../api/user";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
@@ -17,9 +18,10 @@ export const useMenu = () => {
     setMenu(menuCopy);
   };
 
-  const handleAddProduct = (newProduct) => {
+  const handleAddProduct = (username, newProduct) => {
     const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
+    updateMenuDb(username, menuUpdated);
     setMenu(menuUpdated);
   };
 

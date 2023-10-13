@@ -11,11 +11,11 @@ import ImagePreview from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
+import { useParams } from "react-router-dom";
 
 export default function AddForm() {
-  const { handleAddProduct, newProduct, setNewProduct } =
+  const { handleAddProduct, newProduct, setNewProduct, username } =
     useContext(UserContext);
-
   const { isSuccess, displaySuccessMessage } = useSuccessMessage();
 
   const handleChange = (e) => {
@@ -38,7 +38,7 @@ export default function AddForm() {
       price: replaceFrenchCommaWithDot(newProduct.price),
     };
 
-    handleAddProduct(newProductToAdd);
+    handleAddProduct(username, newProductToAdd);
     setNewProduct(EMPTY_PRODUCT); // remise a 0 des champs
 
     displaySuccessMessage();
