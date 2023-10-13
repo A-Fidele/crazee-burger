@@ -7,7 +7,8 @@ import UserContext from "../../../../context/UserContext";
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../enums/product";
-import { isEmpty } from "../../../../utils/array";
+import { isEmpty, isUndefined } from "../../../../utils/array";
+import LoadingPage from "./LoadingPage";
 
 export default function Menu() {
   const {
@@ -21,6 +22,8 @@ export default function Menu() {
     handleSelectCard,
     handleDeleteBasketProduct,
   } = useContext(UserContext);
+
+  if (isUndefined(menu)) return <LoadingPage className={"menu"} />;
 
   if (isEmpty(menu)) {
     if (!isAdmin) return <EmptyMenuCustomer />;

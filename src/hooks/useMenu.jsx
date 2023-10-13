@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { fakeMenu } from "../fakeData/fakeMenu";
+import { useState } from "react";
 import {
   deepClone,
   findObjectIndexById,
@@ -8,7 +7,7 @@ import {
 import { updateMenuDb } from "../api/product";
 
 export const useMenu = () => {
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const [menu, setMenu] = useState();
 
   const handleEdit = (productEdit) => {
     const menuCopy = deepClone(menu);

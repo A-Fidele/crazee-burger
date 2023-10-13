@@ -17,3 +17,7 @@ export const findObjectIndexById = (array, idOfObjectToFind) => {
 export const isEmpty = (array) => {
   return array.length === 0
 }
+
+export const isUndefined = (array) => {
+    return array === undefined
+  }
