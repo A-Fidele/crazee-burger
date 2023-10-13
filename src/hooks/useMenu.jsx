@@ -26,8 +26,9 @@ export const useMenu = () => {
   };
 
   //gestionnaire de state
-  const handleDelete = (id) => {
+  const handleDelete = (username, id) => {
     const menuUpdated = removeObjectById(menu, id);
+    updateMenuDb(username, menuUpdated);
     setMenu(menuUpdated);
   };
 

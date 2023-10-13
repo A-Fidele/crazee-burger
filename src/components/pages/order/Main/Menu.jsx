@@ -11,6 +11,7 @@ import { isEmpty } from "../../../../utils/array";
 
 export default function Menu() {
   const {
+    username,
     menu,
     isAdmin,
     handleDelete,
@@ -33,7 +34,7 @@ export default function Menu() {
   //gestionnaire d'evenement
   const handleOnDelete = (id, event) => {
     event.stopPropagation();
-    handleDelete(id);
+    handleDelete(username, id);
     handleDeleteBasketProduct(id);
     setProductSelected(EMPTY_PRODUCT);
   };
