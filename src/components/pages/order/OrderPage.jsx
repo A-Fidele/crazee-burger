@@ -9,7 +9,7 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findObjectIndexById } from "../../../utils/array";
-import { getMenu } from "../../../api/user";
+import { getMenu } from "../../../api/product";
 
 export default function OrderPage() {
   const { username } = useParams();

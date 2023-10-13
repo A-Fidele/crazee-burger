@@ -5,7 +5,7 @@ import {
   findObjectIndexById,
   removeObjectById,
 } from "../utils/array";
-import { updateMenuDb } from "../api/user";
+import { updateMenuDb } from "../api/product";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
