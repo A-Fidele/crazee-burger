@@ -1,11 +1,11 @@
-import {doc, getDoc, setDoc} from "firebase/firestore"
+import {doc, getDoc, setDoc, updateDoc} from "firebase/firestore"
 import { db } from "./firebase-config"
 
 export const updateMenuDb = (userId, newMenu) => {
     const docRef = doc(db, "users", userId)
     const newDoc = {
-      username: userId,
-       menu: newMenu,
+        username: userId,
+        menu: newMenu,
     }
     setDoc(docRef,newDoc)
 }
@@ -19,3 +19,4 @@ export const getMenu = async (userId ) => {
      return menu
  }
 }
+

@@ -5,14 +5,25 @@ import {
   removeObjectById,
 } from "../utils/array";
 import { updateMenuDb } from "../api/product";
+import { useParams } from "react-router-dom";
+import { fakeMenu } from "../fakeData/fakeMenu";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState();
+  const { username } = useParams();
 
-  const handleEdit = (productEdit) => {
+  const handleEdit = async (productEdit) => {
     const menuCopy = deepClone(menu);
     const indexProduct = findObjectIndexById(menu, productEdit.id);
     menuCopy[indexProduct] = productEdit;
+
+    console.log(
+      "username, indexProduct, productEdit",
+      username,
+      indexProduct,
+      productEdit
+    );
+    await updateProductDb(username, indexProduct, productEdit);
 
     setMenu(menuCopy);
   };
@@ -32,7 +43,8 @@ export const useMenu = () => {
   };
 
   const resetMenu = () => {
-    setMenu(LARGE);
+    setMenu(fakeMenu.LARGE);
+    updateMenuDb(username, fakeMenu.LARGE);
   };
 
   return {
