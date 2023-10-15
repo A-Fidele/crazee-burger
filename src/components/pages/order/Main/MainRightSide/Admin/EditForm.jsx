@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../../theme";
 import ImagePreview from "./ImagePreview";
@@ -7,10 +7,14 @@ import UserContext from "../../../../../../context/UserContext";
 import { getInputTextsConfig } from "./inputTextsConfig";
 import InstructionMessage from "./InstructionMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
+import SavedEditMessage from "./SavedEditMeessage";
+import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 export default function EditForm() {
   const { productSelected, setProductSelected, handleEdit, inputEditRef } =
     useContext(UserContext);
+  const { isSuccess, displaySuccessMessage } = useSuccessMessage();
+  const [valueOnfocus, setValueOnfocus] = useState();
 
   const inputTexts = getInputTextsConfig(productSelected);
 
@@ -30,6 +34,17 @@ export default function EditForm() {
     handleEdit(productWithPriceUpdated); //update menu
   };
 
+  const handleOnFocus = (event) => {
+    setValueOnfocus(event.target.value);
+  };
+
+  const handleOnBlur = (event) => {
+    const valueOnBlur = event.target.value;
+    if (valueOnfocus !== valueOnBlur) {
+      displaySuccessMessage();
+    }
+  };
+
   return (
     <EditFormStyled>
       <ImagePreview
@@ -44,12 +59,14 @@ export default function EditForm() {
               {...input}
               onChange={handleChange}
               version="darklight"
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlur}
               ref={input.name === "title" ? inputEditRef : null}
             />
           );
         })}
       </div>
-      <InstructionMessage />
+      {isSuccess ? <SavedEditMessage /> : <InstructionMessage />}
     </EditFormStyled>
   );
 }

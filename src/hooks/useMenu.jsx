@@ -17,13 +17,7 @@ export const useMenu = () => {
     const indexProduct = findObjectIndexById(menu, productEdit.id);
     menuCopy[indexProduct] = productEdit;
 
-    console.log(
-      "username, indexProduct, productEdit",
-      username,
-      indexProduct,
-      productEdit
-    );
-    await updateProductDb(username, indexProduct, productEdit);
+    await updateMenuDb(username, menuCopy);
 
     setMenu(menuCopy);
   };

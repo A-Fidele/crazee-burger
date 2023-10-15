@@ -19,4 +19,3 @@ export const getMenu = async (userId ) => {
      return menu
  }
 }
-
