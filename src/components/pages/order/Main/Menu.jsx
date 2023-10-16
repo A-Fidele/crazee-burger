@@ -7,7 +7,7 @@ import UserContext from "../../../../context/UserContext";
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../enums/product";
-import { isEmpty, isUndefined } from "../../../../utils/array";
+import { findObjectById, isEmpty, isUndefined } from "../../../../utils/array";
 import LoadingPage from "./LoadingPage";
 
 export default function Menu() {
@@ -45,7 +45,7 @@ export default function Menu() {
   const handleAddProduct = (event, id) => {
     event.stopPropagation();
 
-    const productToAdd = menu.find((product) => product.id === id);
+    const productToAdd = findObjectById(menu, id);
     handleAddToBasket(productToAdd);
   };
 

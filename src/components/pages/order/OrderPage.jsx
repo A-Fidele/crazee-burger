@@ -10,6 +10,7 @@ import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findObjectIndexById } from "../../../utils/array";
 import { getMenu } from "../../../api/product";
+import { getLocalStorage } from "../../../utils/window";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -27,8 +28,12 @@ export default function OrderPage() {
     resetMenu,
     setMenu,
   } = useMenu();
-  const { basketProduct, handleAddToBasket, handleDeleteBasketProduct } =
-    useBasket();
+  const {
+    basketProduct,
+    setBasketProduct,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+  } = useBasket();
 
   const inputEditRef = useRef();
 
@@ -46,13 +51,23 @@ export default function OrderPage() {
     inputEditRef.current.focus();
   };
 
-  const initializeMenu = async () => {
+  const initialiseMenu = async () => {
     const firestoreMenu = await getMenu(username);
     setMenu(firestoreMenu);
   };
 
+  const initialiseBasket = () => {
+    const basketReceived = getLocalStorage(username);
+    console.log("initBasketProducts", basketReceived);
+    if (basketReceived) setBasketProduct(basketReceived);
+  };
+
   useEffect(() => {
-    initializeMenu();
+    initialiseMenu();
+  }, []);
+
+  useEffect(() => {
+    initialiseBasket();
   }, []);
 
   const userContextValue = {

@@ -11,7 +11,6 @@ import ImagePreview from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
-import { useParams } from "react-router-dom";
 
 export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct, username } =
