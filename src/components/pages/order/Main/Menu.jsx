@@ -38,15 +38,14 @@ export default function Menu() {
   const handleOnDelete = (id, event) => {
     event.stopPropagation();
     handleDelete(username, id);
-    handleDeleteBasketProduct(id);
+    handleDeleteBasketProduct(id, username);
     setProductSelected(EMPTY_PRODUCT);
   };
 
   const handleAddProduct = (event, id) => {
     event.stopPropagation();
-
     const productToAdd = findObjectById(menu, id);
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(productToAdd, username);
   };
 
   return (

@@ -45,6 +45,7 @@ export default function OrderPage() {
       menu,
       idOfProductSelected
     );
+
     const productClickedOn = menu[indexOfProductClickedOn];
     await setProductSelected(productClickedOn);
     inputEditRef.current.focus();

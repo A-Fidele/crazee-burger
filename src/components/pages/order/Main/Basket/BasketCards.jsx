@@ -8,6 +8,7 @@ import { checkProductIsClicked } from "../../../../../helper/helper";
 
 export default function BasketCards() {
   const {
+    username,
     menu,
     basketProduct,
     handleDeleteBasketProduct,
@@ -18,7 +19,7 @@ export default function BasketCards() {
 
   const handleDelete = (event, id) => {
     event.stopPropagation();
-    handleDeleteBasketProduct(id);
+    handleDeleteBasketProduct(id, username);
   };
 
   return (

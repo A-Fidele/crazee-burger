@@ -20,7 +20,6 @@ export default function EmptyMenuCustomer() {
 
 const EmptyMenuCustomerStyled = styled.div`
   display: flex;
-  width: 1400px;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;

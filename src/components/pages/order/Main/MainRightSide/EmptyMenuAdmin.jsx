@@ -28,7 +28,6 @@ export default function EmptyMenuAdmin() {
 
 const EmptyMenuAdminStyled = styled.div`
   display: flex;
-  width: 1400px;
   flex-direction: column;
   align-items: center;
   text-align: center;

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import {
   deepClone,
   findObjectById,
@@ -6,13 +6,12 @@ import {
   removeObjectById,
 } from "../utils/array";
 import { setLocalStorage } from "../utils/window";
-import UserContext from "../context/UserContext";
 
 export const useBasket = () => {
   const [basketProduct, setBasketProduct] = useState([]);
-  const { username } = useContext(UserContext);
 
-  const handleDeleteBasketProduct = (idOfProducToDelete) => {
+  const handleDeleteBasketProduct = (idOfProducToDelete, username) => {
+    console.log("username", username);
     const basketProductUpdated = removeObjectById(
       basketProduct,
       idOfProducToDelete
@@ -21,7 +20,7 @@ export const useBasket = () => {
     setBasketProduct(basketProductUpdated);
   };
 
-  const handleAddToBasket = (productToAdd) => {
+  const handleAddToBasket = (productToAdd, username) => {
     const basketProductCopy = deepClone(basketProduct);
     const productFound = findObjectById(basketProduct, productToAdd.id);
 
@@ -30,6 +29,7 @@ export const useBasket = () => {
         ...productToAdd,
         quantity: 1,
       };
+
       const basketProductUpdated = [newBasketProduct, ...basketProductCopy];
       setBasketProduct(basketProductUpdated);
       setLocalStorage(username, basketProductUpdated);
