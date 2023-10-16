@@ -8,5 +8,15 @@ import { isUndefined } from "../../../../../utils/array";
 export default function BasketBody({ isBasketEmpty }) {
   const { menu } = useContext(UserContext);
 
-  return <>{isBasketEmpty ? <EmptyBasket /> : <BasketCards />}</>;
+  //if (isUndefined(menu)) return <LoadingPage className={"basket"} />;
+
+  return (
+    <>
+      {isBasketEmpty ? (
+        <EmptyBasket isLoading={isUndefined(menu)} />
+      ) : (
+        <BasketCards />
+      )}
+    </>
+  );
 }

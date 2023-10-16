@@ -15,7 +15,7 @@ export default function Basket() {
   const basketTotal = calculateBasketTotal(menu, basketProduct);
   const isBasketEmpty = isEmpty(basketProduct);
 
-  if (isUndefined(menu)) return <LoadingPage className={"basket"} />;
+  //if (isUndefined(menu)) return <LoadingPage className={"basket"} />;
 
   return (
     <BasketStyled>
