@@ -9,8 +9,7 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findObjectIndexById } from "../../../utils/array";
-import { getMenu } from "../../../api/product";
-import { getLocalStorage } from "../../../utils/window";
+import { initialiseUserSession } from "./helpers/userSession";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -51,23 +50,8 @@ export default function OrderPage() {
     inputEditRef.current.focus();
   };
 
-  const initialiseMenu = async () => {
-    const firestoreMenu = await getMenu(username);
-    setMenu(firestoreMenu);
-  };
-
-  const initialiseBasket = () => {
-    const basketReceived = getLocalStorage(username);
-    console.log("initBasketProducts", basketReceived);
-    if (basketReceived) setBasketProduct(basketReceived);
-  };
-
   useEffect(() => {
-    initialiseMenu();
-  }, []);
-
-  useEffect(() => {
-    initialiseBasket();
+    initialiseUserSession(username, setMenu, setBasketProduct);
   }, []);
 
   const userContextValue = {
