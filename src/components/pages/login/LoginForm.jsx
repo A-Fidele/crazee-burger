@@ -59,7 +59,7 @@ const LoginFormStyled = styled.form`
   margin: 0px auto;
   padding: 40px ${theme.spacing.lg};
   border-radius: ${theme.borderRadius.round};
-  font-family: "Amatic SC", cursive;
+  font-family: ${theme.fonts.family.Amatic}, cursive;
 
   .icon {
     display: flex;

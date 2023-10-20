@@ -17,6 +17,9 @@ const InstructionMessageStyled = styled.div`
   display: grid;
   grid-area: 4/2/4/3;
   color: ${theme.colors.primary};
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
   .underline {
     text-decoration: underline;

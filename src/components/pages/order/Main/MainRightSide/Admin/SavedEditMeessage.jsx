@@ -20,6 +20,7 @@ const SavedEditMessageStyled = styled.div`
   color: ${theme.colors.blue};
   display: flex;
   flex-direction: row;
+  align-items: center;
   font-family: "Open Sans";
 
   .icon {
@@ -29,7 +30,5 @@ const SavedEditMessageStyled = styled.div`
     display: flex;
     align-items: flex-end;
     justify-content: center;
-  }
-  .message {
   }
 `;

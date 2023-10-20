@@ -2,15 +2,15 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../../../theme";
 
-export default function LoadingPage({ className }) {
+export default function Loading({ className }) {
   return (
-    <LoadingPageStyled className={className}>
+    <LoadingStyled className={className}>
       <span className="title">CHARGEMENT EN COURS ...</span>
-    </LoadingPageStyled>
+    </LoadingStyled>
   );
 }
 
-const LoadingPageStyled = styled.div`
+const LoadingStyled = styled.div`
   ${(props) => extraStyled[props.className]}
 `;
 const extraStyledMenu = css`
@@ -32,7 +32,7 @@ const extraStyledBasket = css`
   flex: 1;
   box-shadow: ${theme.shadows.basket};
   .title {
-    font-family: "Amatic SC", cursive;
+    font-family: ${theme.fonts.family.Amatic}, cursive;
     font-weight: ${theme.fonts.weights.regular};
     font-size: ${theme.fonts.size.P4};
     color: ${theme.colors.greyBlue};

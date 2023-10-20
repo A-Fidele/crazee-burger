@@ -20,7 +20,7 @@ const TotalStyled = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-family: "Amatic SC";
+  font-family: ${theme.fonts.family.Amatic};
   font-weight: ${theme.fonts.weights.bold};
   font-size: ${theme.fonts.size.P4};
   color: ${theme.colors.primary};

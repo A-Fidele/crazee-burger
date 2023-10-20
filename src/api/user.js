@@ -12,7 +12,7 @@ export const getUser = async (userId ) => {
     }
 }
 
-export const createUser = (userId) => {
+export const createUser =  (userId) => {
    const docRef = doc(db, "users", userId)
    const newDoc = {
      username: userId,

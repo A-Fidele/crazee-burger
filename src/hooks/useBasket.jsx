@@ -10,11 +10,10 @@ import { setLocalStorage } from "../utils/window";
 export const useBasket = () => {
   const [basketProduct, setBasketProduct] = useState([]);
 
-  const handleDeleteBasketProduct = (idOfProducToDelete, username) => {
-    console.log("username", username);
+  const handleDeleteBasketProduct = (idOfProductToDelete, username) => {
     const basketProductUpdated = removeObjectById(
       basketProduct,
-      idOfProducToDelete
+      idOfProductToDelete
     );
     setLocalStorage(username, basketProductUpdated);
     setBasketProduct(basketProductUpdated);

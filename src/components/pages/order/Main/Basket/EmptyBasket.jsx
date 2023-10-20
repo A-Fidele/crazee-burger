@@ -7,7 +7,7 @@ export default function EmptyBasket({ isLoading }) {
   return (
     <EmptyBasketStyled>
       <span className="empty-message">
-        {isLoading ? BASKET_MESSAGE.loading : BASKET_MESSAGE.empty}
+        {isLoading ? BASKET_MESSAGE.LOADING : BASKET_MESSAGE.EMPTY}
       </span>
     </EmptyBasketStyled>
   );
@@ -17,7 +17,7 @@ const EmptyBasketStyled = styled.div`
   flex: 1;
   box-shadow: ${theme.shadows.basket};
   .empty-message {
-    font-family: "Amatic SC", cursive;
+    font-family: ${theme.fonts.family.Amatic};
     font-weight: ${theme.fonts.weights.regular};
     font-size: ${theme.fonts.size.P4};
     color: ${theme.colors.greyBlue};

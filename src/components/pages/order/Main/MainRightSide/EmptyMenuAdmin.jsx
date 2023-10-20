@@ -37,7 +37,7 @@ const EmptyMenuAdminStyled = styled.div`
   .subtitle {
     margin-bottom: 30px;
     font-size: ${theme.fonts.size.P4};
-    font-family: "Amatic SC";
+    font-family: ${theme.fonts.family.Amatic};
     color: ${theme.colors.greySemiDark};
     font-weight: ${theme.fonts.weights.regular};
 

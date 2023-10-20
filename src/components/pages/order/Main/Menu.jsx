@@ -8,7 +8,7 @@ import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../enums/product";
 import { findObjectById, isEmpty, isUndefined } from "../../../../utils/array";
-import LoadingPage from "./LoadingPage";
+import Loading from "./Loading";
 
 export default function Menu() {
   const {
@@ -23,7 +23,7 @@ export default function Menu() {
     handleDeleteBasketProduct,
   } = useContext(UserContext);
 
-  if (isUndefined(menu)) return <LoadingPage className={"menu"} />;
+  if (isUndefined(menu)) return <Loading className={"menu"} />;
 
   if (isEmpty(menu)) {
     if (!isAdmin) return <EmptyMenuCustomer />;
@@ -92,7 +92,7 @@ const MenuStyled = styled.div`
     .empty-menu {
       margin-bottom: 30px;
       font-size: ${theme.fonts.size.P4};
-      font-family: "Amatic SC";
+      font-family: ${theme.fonts.family.Amatic}, cursive;
       color: ${theme.colors.greySemiDark};
       font-weight: ${theme.fonts.weights.regular};
 
