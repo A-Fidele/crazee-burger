@@ -5,6 +5,7 @@ import { useContext } from "react";
 import UserContext from "../../../../../context/UserContext";
 import { findObjectById } from "../../../../../utils/array";
 import { checkProductIsClicked } from "../../../../../helper/helper";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default function BasketCards() {
   const {
@@ -24,21 +25,34 @@ export default function BasketCards() {
 
   return (
     <BasketBodyStyled>
-      {basketProduct.map((product) => {
-        const menuProduct = findObjectById(menu, product.id);
-        return (
-          <div className="basket-card" key={product.id}>
-            <BasketCard
-              {...menuProduct}
-              quantity={product.quantity}
-              onDelete={(event) => handleDelete(event, product.id)}
-              isClickable={isAdmin}
-              onSelect={() => handleSelectCard(product.id)}
-              isSelected={checkProductIsClicked(product.id, productSelected)}
-            />
-          </div>
-        );
-      })}
+      <TransitionGroup>
+        {basketProduct.map((product) => {
+          const menuProduct = findObjectById(menu, product.id);
+          return (
+            <CSSTransition
+              appear={true}
+              classNames={"card-animation"}
+              timeout={400}
+              key={product.id}
+            >
+              <div className="basket-card">
+                <BasketCard
+                  {...menuProduct}
+                  quantity={product.quantity}
+                  onDelete={(event) => handleDelete(event, product.id)}
+                  isClickable={isAdmin}
+                  onSelect={() => handleSelectCard(product.id)}
+                  isSelected={checkProductIsClicked(
+                    product.id,
+                    productSelected
+                  )}
+                  className={"card"}
+                />
+              </div>
+            </CSSTransition>
+          );
+        })}
+      </TransitionGroup>
     </BasketBodyStyled>
   );
 }
@@ -47,6 +61,36 @@ const BasketBodyStyled = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   scrollbar-color: transparent transparent;
+
+  .card-appear {
+    transform: translateX(200px);
+    opacity: 0%;
+  }
+  .card-appear-active {
+    transform: translateX(0px);
+    transition: 0.5s;
+    opacity: 100%;
+  }
+
+  .card-animation-enter {
+    transform: translateX(200px);
+    opacity: 0%;
+  }
+  .card-animation-enter-active {
+    transform: translateX(0px);
+    transition: 0.5s;
+    opacity: 100%;
+  }
+
+  .card-animation-exit {
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+  .card-animation-exit-active {
+    transform: translateX(-200px);
+    transition: 1s;
+    opacity: 0%;
+  }
 
   .basket-card {
     margin-left: 14px;
