@@ -4,6 +4,8 @@ import Menu from "../Menu";
 import { theme } from "../../../../../theme";
 import styled from "styled-components";
 import Admin from "./Admin/Admin";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { adminAnimation } from "../../../../../theme/animations";
 
 export default function MainRightSide() {
   const { isAdmin } = useContext(UserContext);
@@ -11,7 +13,13 @@ export default function MainRightSide() {
   return (
     <MainRightSideStyles>
       <Menu />
-      {isAdmin && <Admin />}
+      {isAdmin && (
+        <TransitionGroup className={"transition-group"}>
+          <CSSTransition appear classNames={"panel-animation"} timeout={800}>
+            <Admin />
+          </CSSTransition>
+        </TransitionGroup>
+      )}
     </MainRightSideStyles>
   );
 }
@@ -21,4 +29,6 @@ const MainRightSideStyles = styled.div`
   overflow-y: hidden;
   display: grid;
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
+
+  ${adminAnimation}
 `;

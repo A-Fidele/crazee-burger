@@ -42,7 +42,4 @@ const CasinoEffectStyled = styled.div`
     transform: translateY(-100%);
     transition: 300ms;
   }
-
-  .count-animation-exit-done {
-  }
 `;
