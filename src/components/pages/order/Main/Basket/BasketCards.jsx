@@ -24,39 +24,37 @@ export default function BasketCards() {
   };
 
   return (
-    <BasketBodyStyled>
-      <TransitionGroup>
-        {basketProduct.map((product) => {
-          const menuProduct = findObjectById(menu, product.id);
-          return (
-            <CSSTransition
-              appear={true}
-              classNames={"card-animation"}
-              timeout={400}
-              key={product.id}
-            >
-              <div className="basket-card">
-                <BasketCard
-                  {...menuProduct}
-                  quantity={product.quantity}
-                  onDelete={(event) => handleDelete(event, product.id)}
-                  isClickable={isAdmin}
-                  onSelect={() => handleSelectCard(product.id)}
-                  isSelected={checkProductIsClicked(
-                    product.id,
-                    productSelected
-                  )}
-                  className={"card"}
-                />
-              </div>
-            </CSSTransition>
-          );
-        })}
-      </TransitionGroup>
-    </BasketBodyStyled>
+    <TransitionGroup
+      component={BasketCardsStyled}
+      className={"transition-group"}
+    >
+      {basketProduct.map((product) => {
+        const menuProduct = findObjectById(menu, product.id);
+        return (
+          <CSSTransition
+            appear={true}
+            classNames={"card-animation"}
+            timeout={400}
+            key={product.id}
+          >
+            <div className="basket-card">
+              <BasketCard
+                {...menuProduct}
+                quantity={product.quantity}
+                onDelete={(event) => handleDelete(event, product.id)}
+                isClickable={isAdmin}
+                onSelect={() => handleSelectCard(product.id)}
+                isSelected={checkProductIsClicked(product.id, productSelected)}
+                className={"card"}
+              />
+            </div>
+          </CSSTransition>
+        );
+      })}
+    </TransitionGroup>
   );
 }
-const BasketBodyStyled = styled.div`
+const BasketCardsStyled = styled.div`
   flex: 1;
   flex-direction: column;
   overflow-y: scroll;

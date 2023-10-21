@@ -9,7 +9,7 @@ export default function Total({ amountToPay }) {
     <Header>
       <TotalStyled>
         <span className="total">Total</span>
-        <CasinoEffect className="amount" count={amountToPay} />
+        <CasinoEffect className={"amount"} count={amountToPay} />
       </TotalStyled>
     </Header>
   );
