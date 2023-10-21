@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { fadeInRight } from "../../theme/animations";
 
 export default function Card({
   title,
@@ -16,54 +16,48 @@ export default function Card({
   handleAddProduct,
 }) {
   return (
-    <TransitionGroup>
-      <CardStyled
-        className={hasDeleteButton && "delete-icon"}
-        $ishoverable={ishoverable}
-        onClick={onSelect}
-      >
-        <div
-          className={hasDeleteButton && isSelected ? "selected-card" : "card"}
-        >
-          {hasDeleteButton && (
-            <CSSTransition classNames={"delete-button"} timeout={300}>
-              <button className="delete-icon" onClick={onDelete}>
-                <TiDelete className="icon" />
-              </button>
-            </CSSTransition>
-          )}
-          <div className="image">
-            <img src={imageSource} alt={title} />
-          </div>
-          <div className="text-info">
-            <div className="title">{title}</div>
-            <div className="description">
-              <div
+    <CardStyled
+      className={hasDeleteButton && "delete-icon"}
+      $ishoverable={ishoverable}
+      onClick={onSelect}
+    >
+      <div className={hasDeleteButton && isSelected ? "selected-card" : "card"}>
+        {hasDeleteButton && (
+          <button className="delete-icon" onClick={onDelete}>
+            <TiDelete className="icon" />
+          </button>
+        )}
+        <div className="image">
+          <img src={imageSource} alt={title} />
+        </div>
+        <div className="text-info">
+          <div className="title">{title}</div>
+          <div className="description">
+            <div
+              className={
+                hasDeleteButton && isSelected
+                  ? "selected-card-left-description"
+                  : "left-description"
+              }
+            >
+              {leftDescription}
+            </div>
+            <div className="right-description">
+              <PrimaryButton
                 className={
                   hasDeleteButton && isSelected
-                    ? "selected-card-left-description"
-                    : "left-description"
+                    ? "selected-card-button"
+                    : "primary-button"
                 }
-              >
-                {leftDescription}
-              </div>
-              <div className="right-description">
-                <PrimaryButton
-                  className={
-                    hasDeleteButton && isSelected
-                      ? "selected-card-button"
-                      : "primary-button"
-                  }
-                  version="classic"
-                  label={"Ajouter"}
-                  onClick={(event) => handleAddProduct(event)}
-                />
-              </div>
+                version="classic"
+                label={"Ajouter"}
+                onClick={(event) => handleAddProduct(event)}
+              />
             </div>
           </div>
         </div>
-      </CardStyled>
-    </TransitionGroup>
+      </div>
+    </CardStyled>
   );
 }
 
@@ -71,17 +65,6 @@ const CardStyled = styled.div`
   ${({ $ishoverable }) => $ishoverable && hoverableStyle}
   height: 330px;
   border-radius: ${theme.borderRadius.extraRound};
-
-  .delete-button {
-    transform: translateX(-100px);
-    opacity: 0%;
-  }
-  .delete-button-enter {
-    transform: translateX(0px);
-    opacity: 100%;
-  }
-  .delete-button-done {
-  }
 
   .card {
     background: ${theme.colors.white};
@@ -124,6 +107,8 @@ const CardStyled = styled.div`
       width: 30px;
       height: 30px;
       color: ${theme.colors.primary};
+      animation: ${fadeInRight} 500ms ease-out;
+
       :hover {
         color: ${theme.colors.red};
         cursor: pointer;
@@ -236,6 +221,8 @@ const CardStyled = styled.div`
       width: 30px;
       height: 30px;
       color: ${theme.colors.white};
+      animation: ${fadeInRight} 500ms ease-out;
+
       :hover {
         color: ${theme.colors.red};
         cursor: pointer;

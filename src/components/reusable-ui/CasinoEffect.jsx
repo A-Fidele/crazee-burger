@@ -30,11 +30,12 @@ const CasinoEffectStyled = styled.div`
   .count-animation-enter-active {
     transform: translateY(0%);
     transition: 300ms;
+    left: 0;
+    right: 0;
   }
   .count-animation-exit {
     transform: translateY(0%);
     position: absolute;
-    //left: 0;
     right: 0;
     bottom: 0;
   }
