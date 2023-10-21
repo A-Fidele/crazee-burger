@@ -4,6 +4,7 @@ import { theme } from "../../../../../theme";
 import { MdDeleteForever } from "react-icons/md";
 import { formatPrice } from "../../../../../utils/maths";
 import { DEFAULT_IMAGE } from "../../../../../enums/product";
+import CasinoEffect from "../../../../reusable-ui/CasinoEffect";
 
 export default function BasketCard({
   title,
@@ -38,7 +39,7 @@ export default function BasketCard({
           <span className="price">{formatPrice(price)}</span>
         </div>
         <div className="quantity">
-          <span>x {quantity}</span>
+          <CasinoEffect text={"x "} count={quantity} />
         </div>
       </div>
     </BasketCardStyled>
