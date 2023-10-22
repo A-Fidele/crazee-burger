@@ -18,7 +18,7 @@ export default function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    authentificateUser(username);
+    await authentificateUser(username);
 
     setUsername("");
     navigate(`order/${username}`);

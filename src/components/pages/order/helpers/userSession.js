@@ -3,10 +3,7 @@ import { getMenu } from "../../../../api/product"
 import { getLocalStorage } from "../../../../utils/window"
 
  const initialiseMenu = async (username, setMenu) => {  
-   const firestoreMenu = await getMenu(username)
-
-   console.log('firestoreMenu: ', firestoreMenu)
-   
+   const firestoreMenu = await getMenu(username)   
    setMenu(firestoreMenu);
  };
 
