@@ -74,3 +74,24 @@ export const emptyBasketAnimation = keyframes`
      opacity: 1;
  }
  `;
+
+export const cardMenuAnimation = css`
+  .card-menu-enter {
+    transform: translateX(-120px);
+    opacity: 10%;
+  }
+  .card-menu-enter-active {
+    transform: translateX(0px);
+    transition: 1s;
+    opacity: 100%;
+  }
+  .card-menu-exit {
+    transform: translateX(-200px);
+    opacity: 100%;
+  }
+  .card-menu-exit-active {
+    transform: translateX(0px);
+    transition: 300ms;
+    opacity: 0%;
+  }
+`;

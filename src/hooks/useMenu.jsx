@@ -6,8 +6,6 @@ import {
 } from "../utils/array";
 import { updateMenuDb } from "../api/product";
 import { fakeMenu } from "../fakeData/fakeMenu";
-import { useContext } from "react";
-import UserContext from "../context/UserContext";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState();
