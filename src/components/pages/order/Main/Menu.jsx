@@ -21,13 +21,14 @@ export default function Menu() {
     handleAddToBasket,
     handleSelectCard,
     handleDeleteBasketProduct,
+    resetMenu,
   } = useContext(UserContext);
 
   if (isUndefined(menu)) return <Loading className={"menu"} />;
 
   if (isEmpty(menu)) {
     if (!isAdmin) return <EmptyMenuCustomer />;
-    return <EmptyMenuAdmin />;
+    return <EmptyMenuAdmin onReset={() => resetMenu(username)} />;
   }
 
   const checkProductIsClicked = (idProductedCliked, productSelected) => {

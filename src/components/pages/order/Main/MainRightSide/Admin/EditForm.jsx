@@ -11,8 +11,13 @@ import SavedEditMessage from "./SavedEditMeessage";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 export default function EditForm() {
-  const { productSelected, setProductSelected, handleEdit, inputEditRef } =
-    useContext(UserContext);
+  const {
+    username,
+    productSelected,
+    setProductSelected,
+    handleEdit,
+    inputEditRef,
+  } = useContext(UserContext);
   const { isSuccess, displaySuccessMessage } = useSuccessMessage();
   const [valueOnfocus, setValueOnfocus] = useState();
 
@@ -31,7 +36,7 @@ export default function EditForm() {
     };
 
     setProductSelected(productUpdated); //update affichage
-    handleEdit(productWithPriceUpdated); //update menu
+    handleEdit(productWithPriceUpdated, username); //update menu
   };
 
   const handleOnFocus = (event) => {

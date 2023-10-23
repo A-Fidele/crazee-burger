@@ -5,21 +5,22 @@ import {
   removeObjectById,
 } from "../utils/array";
 import { updateMenuDb } from "../api/product";
-import { useParams } from "react-router-dom";
 import { fakeMenu } from "../fakeData/fakeMenu";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState();
-  const { username } = useParams();
+  const { username } = useContext(UserContext);
 
-  const handleEdit = async (productEdit) => {
+  const handleEdit = (productEdit, username) => {
+    console.log("username: ", username);
     const menuCopy = deepClone(menu);
     const indexProduct = findObjectIndexById(menu, productEdit.id);
     menuCopy[indexProduct] = productEdit;
-
-    await updateMenuDb(username, menuCopy);
-
     setMenu(menuCopy);
+
+    updateMenuDb(username, menuCopy);
   };
 
   const handleAddProduct = (username, newProduct) => {
@@ -36,7 +37,7 @@ export const useMenu = () => {
     setMenu(menuUpdated);
   };
 
-  const resetMenu = () => {
+  const resetMenu = (username) => {
     setMenu(fakeMenu.LARGE);
     updateMenuDb(username, fakeMenu.LARGE);
   };

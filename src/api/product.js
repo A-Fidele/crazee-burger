@@ -3,11 +3,11 @@ import { db } from "./firebase-config";
 
 export const updateMenuDb = (userId, newMenu) => {
   const docRef = doc(db, "users", userId);
-  const newDoc = {
+  const menuUpdated = {
     username: userId,
     menu: newMenu,
   };
-  setDoc(docRef, newDoc);
+  setDoc(docRef, menuUpdated);
 };
 
 export const getMenu = async (userId) => {
