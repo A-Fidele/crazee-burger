@@ -11,10 +11,8 @@ import UserContext from "../context/UserContext";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState();
-  const { username } = useContext(UserContext);
 
-  const handleEdit = (productEdit, username) => {
-    console.log("username: ", username);
+  const handleEdit = async (productEdit, username) => {
     const menuCopy = deepClone(menu);
     const indexProduct = findObjectIndexById(menu, productEdit.id);
     menuCopy[indexProduct] = productEdit;
