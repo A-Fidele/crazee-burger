@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import { MdDeleteForever } from "react-icons/md";
 import { formatPrice } from "../../../../../utils/maths";
-const DEFAULT_IMAGE = "/images/coming-soon.png";
+import { DEFAULT_IMAGE } from "../../../../../enums/product";
 
 export default function BasketCard({
   title,
@@ -114,7 +114,7 @@ const BasketCardStyled = styled.div`
         box-sizing: border-box;
         display: flex;
         align-items: center;
-        font-family: "Amatic SC";
+        font-family: ${theme.fonts.family.Amatic};
         font-size: ${theme.fonts.size.P3};
         line-height: 32px;
         font-weight: ${theme.fonts.weights.bold};

@@ -6,34 +6,35 @@ import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "../../reusable-ui/TextInput";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import { theme } from "../../../theme";
+import { authenticateUser } from "../../../api/user";
+import Welcome from "./Welcome";
 
 export default function LoginForm() {
   // state
-  const [inputValue, setInputValue] = useState("Aurelien");
+  const [username, setUsername] = useState("Aurelien");
   const navigate = useNavigate();
 
   // comportements
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setInputValue("");
-    navigate(`order/${inputValue}`);
+
+    await authenticateUser(username);
+
+    setUsername("");
+    navigate(`order/${username}`);
   };
 
   const handleChange = (event) => {
-    setInputValue(event.target.value);
+    setUsername(event.target.value);
   };
 
   // affichage
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
-      <div>
-        <h1>Bienvenue chez nous !</h1>
-        <hr />
-        <h2>Connectez-vous</h2>
-      </div>
+      <Welcome />
       <div>
         <TextInput
-          value={inputValue}
+          value={username}
           onChange={handleChange}
           placeholder={"Entrez votre prénom"}
           required
@@ -58,23 +59,7 @@ const LoginFormStyled = styled.form`
   margin: 0px auto;
   padding: 40px ${theme.spacing.lg};
   border-radius: ${theme.borderRadius.round};
-  font-family: "Amatic SC", cursive;
-
-  hr {
-    border: 1.5px solid ${theme.colors.loginLine};
-    margin-bottom: ${theme.gridUnit * 5}px;
-  }
-
-  h1 {
-    color: ${theme.colors.white};
-    font-size: ${theme.fonts.size.P5};
-  }
-
-  h2 {
-    margin: 20px 10px 10px;
-    color: ${theme.colors.white};
-    font-size: ${theme.fonts.size.P4};
-  }
+  font-family: ${theme.fonts.family.Amatic}, cursive;
 
   .icon {
     display: flex;

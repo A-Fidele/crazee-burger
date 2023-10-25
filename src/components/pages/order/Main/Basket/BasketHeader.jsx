@@ -6,7 +6,6 @@ import Header from "../../../../reusable-ui/Header";
 export default function Total({ amountToPay }) {
   return (
     <Header>
-      {/*header a l'interieur du composant*/}
       <TotalStyled>
         <span className="total">Total</span>
         <span className="amount">{amountToPay}</span>
@@ -21,7 +20,7 @@ const TotalStyled = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-family: "Amatic SC";
+  font-family: ${theme.fonts.family.Amatic};
   font-weight: ${theme.fonts.weights.bold};
   font-size: ${theme.fonts.size.P4};
   color: ${theme.colors.primary};

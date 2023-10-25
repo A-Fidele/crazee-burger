@@ -2,11 +2,8 @@ import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
-import UserContext from "../../../../../context/UserContext";
 
-export default function EmptyMenuAdmin() {
-  const { resetMenu } = useContext(UserContext);
-
+export default function EmptyMenuAdmin({ onReset }) {
   return (
     <EmptyMenuAdminStyled>
       <div className="empty-menu-container">
@@ -19,7 +16,7 @@ export default function EmptyMenuAdmin() {
         <PrimaryButton
           label="Générer de nouveaux produits"
           className="button"
-          onClick={resetMenu}
+          onClick={onReset}
         />
       </div>
     </EmptyMenuAdminStyled>
@@ -28,7 +25,6 @@ export default function EmptyMenuAdmin() {
 
 const EmptyMenuAdminStyled = styled.div`
   display: flex;
-  width: 1400px;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -38,7 +34,7 @@ const EmptyMenuAdminStyled = styled.div`
   .subtitle {
     margin-bottom: 30px;
     font-size: ${theme.fonts.size.P4};
-    font-family: "Amatic SC";
+    font-family: ${theme.fonts.family.Amatic};
     color: ${theme.colors.greySemiDark};
     font-weight: ${theme.fonts.weights.regular};
 

@@ -1,37 +1,45 @@
 import { useState } from "react";
-import { LARGE, LARGE_WEIRD } from "../fakeData/fakeMenu";
 import {
   deepClone,
   findObjectIndexById,
   removeObjectById,
 } from "../utils/array";
-import { replaceFrenchCommaWithDot } from "../utils/maths";
+import { updateMenuDb } from "../api/product";
+import { fakeMenu } from "../fakeData/fakeMenu";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 export const useMenu = () => {
-  const [menu, setMenu] = useState(LARGE_WEIRD);
+  const [menu, setMenu] = useState();
+  const { username } = useContext(UserContext);
 
-  const handleEdit = (productEdit) => {
+  const handleEdit = (productEdit, username) => {
+    console.log("username: ", username);
     const menuCopy = deepClone(menu);
     const indexProduct = findObjectIndexById(menu, productEdit.id);
     menuCopy[indexProduct] = productEdit;
-
     setMenu(menuCopy);
+
+    updateMenuDb(username, menuCopy);
   };
 
-  const handleAddProduct = (newProduct) => {
+  const handleAddProduct = (username, newProduct) => {
     const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
+    updateMenuDb(username, menuUpdated);
     setMenu(menuUpdated);
   };
 
   //gestionnaire de state
-  const handleDelete = (id) => {
+  const handleDelete = (username, id) => {
     const menuUpdated = removeObjectById(menu, id);
+    updateMenuDb(username, menuUpdated);
     setMenu(menuUpdated);
   };
 
-  const resetMenu = () => {
-    setMenu(LARGE);
+  const resetMenu = (username) => {
+    setMenu(fakeMenu.LARGE);
+    updateMenuDb(username, fakeMenu.LARGE);
   };
 
   return {

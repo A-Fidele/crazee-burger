@@ -19,7 +19,7 @@ const HintMessageStyled = styled.div`
   align-items: center;
 
   .titre {
-    font-family: "Amatic SC", cursive;
+    font-family: ${theme.fonts.family.Amatic}, cursive;
     font-size: ${theme.fonts.size.P3};
     font-weight: ${theme.fonts.weights.regular};
     color: ${theme.colors.greyBlue};

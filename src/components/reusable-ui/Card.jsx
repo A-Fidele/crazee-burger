@@ -142,7 +142,7 @@ const CardStyled = styled.div`
         overflow: hidden;
         width: 100%;
         text-overflow: ellipsis;
-        font-family: "Amatic SC", cursive;
+        font-family: ${theme.fonts.family.Amatic}, cursive;
       }
 
       .description {
@@ -211,7 +211,7 @@ const CardStyled = styled.div`
       cursor: pointer;
       position: absolute;
       right: 0;
-      margin: 15px;
+      margin: 24px;
     }
 
     .icon {
@@ -254,7 +254,7 @@ const CardStyled = styled.div`
         overflow: hidden;
         width: 100%;
         text-overflow: ellipsis;
-        font-family: "Amatic SC", cursive;
+        font-family: ${theme.fonts.family.Amatic}, cursive;
       }
 
       .description {
@@ -312,7 +312,7 @@ const CardStyled = styled.div`
     height: 38px;
     padding: 18px 24px;
     border-radius: ${theme.borderRadius.round};
-    font-size: ${theme.fonts.size.sm};
+    font-size: ${theme.fonts.size.XS};
     font-weight: ${theme.fonts.weights.heavy};
     background-color: ${theme.colors.white};
     color: ${theme.colors.primary};

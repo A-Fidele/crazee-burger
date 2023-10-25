@@ -20,7 +20,6 @@ export default function EmptyMenuCustomer() {
 
 const EmptyMenuCustomerStyled = styled.div`
   display: flex;
-  width: 1400px;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
@@ -30,7 +29,7 @@ const EmptyMenuCustomerStyled = styled.div`
   .empty-menu {
     margin-bottom: 30px;
     font-size: ${theme.fonts.size.P4};
-    font-family: "Amatic SC";
+    font-family: ${theme.fonts.family.Amatic};
     color: ${theme.colors.greySemiDark};
     font-weight: ${theme.fonts.weights.regular};
 

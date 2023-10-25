@@ -85,7 +85,7 @@ const extraStyleSuccess = css`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 29px 9px 29px;
+  padding: 10px 25px 9px 25px;
 
   &:hover {
     color: ${theme.colors.success};

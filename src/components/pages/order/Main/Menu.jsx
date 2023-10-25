@@ -6,13 +6,13 @@ import Card from "../../../reusable-ui/Card";
 import UserContext from "../../../../context/UserContext";
 import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
 import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
-import { EMPTY_PRODUCT } from "../../../../enums/product";
-import { isEmpty } from "../../../../utils/array";
-
-const DEFAULT_IMAGE = "/images/coming-soon.png";
+import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../enums/product";
+import { findObjectById, isEmpty, isUndefined } from "../../../../utils/array";
+import Loading from "./Loading";
 
 export default function Menu() {
   const {
+    username,
     menu,
     isAdmin,
     handleDelete,
@@ -21,11 +21,14 @@ export default function Menu() {
     handleAddToBasket,
     handleSelectCard,
     handleDeleteBasketProduct,
+    resetMenu,
   } = useContext(UserContext);
+
+  if (isUndefined(menu)) return <Loading className={"menu"} />;
 
   if (isEmpty(menu)) {
     if (!isAdmin) return <EmptyMenuCustomer />;
-    return <EmptyMenuAdmin />;
+    return <EmptyMenuAdmin onReset={() => resetMenu(username)} />;
   }
 
   const checkProductIsClicked = (idProductedCliked, productSelected) => {
@@ -35,16 +38,15 @@ export default function Menu() {
   //gestionnaire d'evenement
   const handleOnDelete = (id, event) => {
     event.stopPropagation();
-    handleDelete(id);
-    handleDeleteBasketProduct(id);
+    handleDelete(username, id);
+    handleDeleteBasketProduct(id, username);
     setProductSelected(EMPTY_PRODUCT);
   };
 
   const handleAddProduct = (event, id) => {
     event.stopPropagation();
-
-    const productToAdd = menu.find((product) => product.id === id);
-    handleAddToBasket(productToAdd);
+    const productToAdd = findObjectById(menu, id);
+    handleAddToBasket(productToAdd, username);
   };
 
   return (
@@ -91,7 +93,7 @@ const MenuStyled = styled.div`
     .empty-menu {
       margin-bottom: 30px;
       font-size: ${theme.fonts.size.P4};
-      font-family: "Amatic SC";
+      font-family: ${theme.fonts.family.Amatic}, cursive;
       color: ${theme.colors.greySemiDark};
       font-weight: ${theme.fonts.weights.regular};
 

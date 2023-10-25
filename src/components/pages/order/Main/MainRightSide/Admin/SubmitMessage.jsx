@@ -16,7 +16,6 @@ const SubmitMessageStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 5px;
   display: inline;
 
   .icon {

@@ -1,24 +1,25 @@
 import { useState } from "react";
-import { LARGE_WEIRD } from "../fakeData/fakeMenu";
 import {
   deepClone,
   findObjectById,
   findObjectIndexById,
   removeObjectById,
 } from "../utils/array";
+import { setLocalStorage } from "../utils/window";
 
 export const useBasket = () => {
   const [basketProduct, setBasketProduct] = useState([]);
 
-  const handleDeleteBasketProduct = (idOfProducToDelete) => {
+  const handleDeleteBasketProduct = (idOfProductToDelete, username) => {
     const basketProductUpdated = removeObjectById(
       basketProduct,
-      idOfProducToDelete
+      idOfProductToDelete
     );
+    setLocalStorage(username, basketProductUpdated);
     setBasketProduct(basketProductUpdated);
   };
 
-  const handleAddToBasket = (productToAdd) => {
+  const handleAddToBasket = (productToAdd, username) => {
     const basketProductCopy = deepClone(basketProduct);
     const productFound = findObjectById(basketProduct, productToAdd.id);
 
@@ -27,8 +28,10 @@ export const useBasket = () => {
         ...productToAdd,
         quantity: 1,
       };
+
       const basketProductUpdated = [newBasketProduct, ...basketProductCopy];
       setBasketProduct(basketProductUpdated);
+      setLocalStorage(username, basketProductUpdated);
       return;
     }
     const indexOfProductToChangeQuantity = findObjectIndexById(
@@ -36,10 +39,12 @@ export const useBasket = () => {
       productToAdd.id
     );
     basketProductCopy[indexOfProductToChangeQuantity].quantity += 1;
+    setLocalStorage(username, basketProductCopy);
     setBasketProduct(basketProductCopy);
   };
 
   return {
+    setBasketProduct,
     basketProduct,
     handleAddToBasket,
     handleDeleteBasketProduct,

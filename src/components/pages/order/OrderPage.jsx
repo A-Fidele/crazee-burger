@@ -4,11 +4,12 @@ import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import UserContext from "../../../context/UserContext";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { findObjectIndexById } from "../../../utils/array";
+import { initialiseUserSession } from "./helpers/userSession";
 
 export default function OrderPage() {
   const { username } = useParams();
@@ -18,13 +19,19 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
-  const { menu, handleEdit, handleAddProduct, handleDelete, resetMenu } =
-    useMenu();
+  const {
+    menu,
+    handleEdit,
+    handleAddProduct,
+    handleDelete,
+    resetMenu,
+    setMenu,
+  } = useMenu();
   const {
     basketProduct,
+    setBasketProduct,
     handleAddToBasket,
     handleDeleteBasketProduct,
-    handleEditBasket,
   } = useBasket();
 
   const inputEditRef = useRef();
@@ -33,16 +40,23 @@ export default function OrderPage() {
     if (!isAdmin) return;
     await setIsCollapsed(false);
     await setCurrentTabSelected("edit");
+
     const indexOfProductClickedOn = findObjectIndexById(
       menu,
       idOfProductSelected
     );
+
     const productClickedOn = menu[indexOfProductClickedOn];
     await setProductSelected(productClickedOn);
     inputEditRef.current.focus();
   };
 
+  useEffect(() => {
+    initialiseUserSession(username, setMenu, setBasketProduct);
+  }, []);
+
   const userContextValue = {
+    username,
     isAdmin,
     setIsAdmin,
     isCollapsed,

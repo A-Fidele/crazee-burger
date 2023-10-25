@@ -4,7 +4,16 @@ import React from "react";
 
 const TextInput = React.forwardRef(
   (
-    { value, onChange, Icon, className, version = "classic", ...extraProps },
+    {
+      value,
+      onChange,
+      Icon,
+      className,
+      onFocus,
+      onBlur,
+      version = "classic",
+      ...extraProps
+    },
     ref
   ) => {
     return (
@@ -14,6 +23,8 @@ const TextInput = React.forwardRef(
           ref={ref}
           value={value}
           onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
           type="text"
           {...extraProps}
         />
