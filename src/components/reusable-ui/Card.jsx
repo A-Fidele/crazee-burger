@@ -11,14 +11,14 @@ export default function Card({
   hasDeleteButton,
   onDelete,
   onSelect,
-  ishoverable,
+  isHoverable,
   isSelected,
   handleAddProduct,
 }) {
   return (
     <CardStyled
       className={hasDeleteButton && "delete-icon"}
-      $ishoverable={ishoverable}
+      $isHoverable={isHoverable}
       onClick={onSelect}
     >
       <div className={hasDeleteButton && isSelected ? "selected-card" : "card"}>
@@ -62,7 +62,7 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  ${({ $ishoverable }) => $ishoverable && hoverableStyle}
+  ${({ $isHoverable }) => $isHoverable && hoverableStyle}
   height: 330px;
   border-radius: ${theme.borderRadius.extraRound};
 

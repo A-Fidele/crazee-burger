@@ -69,7 +69,7 @@ export default function Menu() {
               hasDeleteButton={isAdmin}
               onDelete={(event) => handleOnDelete(id, event)}
               onSelect={() => handleSelectCard(id)}
-              ishoverable={isAdmin}
+              isHoverable={isAdmin}
               isSelected={checkProductIsClicked(id, productSelected)}
               handleAddProduct={(event) => handleAddProduct(event, id)}
             />

@@ -46,7 +46,7 @@ export const basketCardsAnimation = css`
   }
   .card-container-exit-active {
     transform: translateX(-200px);
-    transition: 1s;
+    transition: 500ms;
     opacity: 0%;
   }
 `;
