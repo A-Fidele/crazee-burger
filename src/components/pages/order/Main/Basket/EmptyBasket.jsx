@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import { BASKET_MESSAGE } from "../../../../../enums/product";
+import { emptyBasketAnimation } from "../../../../../theme/animations";
 
 export default function EmptyBasket({ isLoading }) {
   return (
@@ -27,5 +28,6 @@ const EmptyBasketStyled = styled.div`
     text-align: center;
     align-items: center;
     justify-content: center;
+    animation: ${emptyBasketAnimation} 1s;
   }
 `;

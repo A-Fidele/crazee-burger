@@ -2,13 +2,14 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../theme";
 import Header from "../../../../reusable-ui/Header";
+import CasinoEffect from "../../../../reusable-ui/CasinoEffect";
 
 export default function Total({ amountToPay }) {
   return (
     <Header>
       <TotalStyled>
         <span className="total">Total</span>
-        <span className="amount">{amountToPay}</span>
+        <CasinoEffect className={"amount"} count={amountToPay} />
       </TotalStyled>
     </Header>
   );

@@ -9,6 +9,8 @@ import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../enums/product";
 import { findObjectById, isEmpty, isUndefined } from "../../../../utils/array";
 import Loading from "./Loading";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { cardMenuAnimation } from "../../../../theme/animations";
 
 export default function Menu() {
   const {
@@ -50,24 +52,31 @@ export default function Menu() {
   };
 
   return (
-    <MenuStyled className="menu">
+    <TransitionGroup component={MenuStyled} className="menu">
       {menu.map(({ id, title, imageSource, price }) => {
         return (
-          <Card
+          <CSSTransition
+            appear
+            classNames={"card-menu"}
             key={id}
-            title={title}
-            imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-            leftDescription={formatPrice(price)}
-            hasDeleteButton={isAdmin}
-            onDelete={(event) => handleOnDelete(id, event)}
-            onSelect={() => handleSelectCard(id)}
-            ishoverable={isAdmin}
-            isSelected={checkProductIsClicked(id, productSelected)}
-            handleAddProduct={(event) => handleAddProduct(event, id)}
-          />
+            timeout={{ enter: 1000, exit: 300 }}
+          >
+            <Card
+              key={id}
+              title={title}
+              imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+              leftDescription={formatPrice(price)}
+              hasDeleteButton={isAdmin}
+              onDelete={(event) => handleOnDelete(id, event)}
+              onSelect={() => handleSelectCard(id)}
+              isHoverable={isAdmin}
+              isSelected={checkProductIsClicked(id, productSelected)}
+              handleAddProduct={(event) => handleAddProduct(event, id)}
+            />
+          </CSSTransition>
         );
       })}
-    </MenuStyled>
+    </TransitionGroup>
   );
 }
 
@@ -81,6 +90,8 @@ const MenuStyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   overflow: scroll;
   //grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  ${cardMenuAnimation}
 
   .empty-menu-container {
     display: flex;
