@@ -62,6 +62,12 @@ export default function AddForm() {
             />
           );
         })}
+        <div className="input-fields-stock">
+          <TextInput version="darklight" />
+        </div>
+        <div className="input-fields-stock">
+          <TextInput version="darklight" />
+        </div>
       </div>
       <div className="submit-button">
         <PrimaryButton
@@ -85,9 +91,23 @@ const AddFormStyled = styled.form`
   grid-row-gap: 8px;
 
   .input-fields {
-    grid-area: 1/2/4/2;
+    grid-area: 1/2/4/3;
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-row-gap: 8px;
+    grid-column-gap: 8px;
+  }
+
+  .title {
+    grid-area: 1/1/2/4;
+  }
+
+  .image-source {
+    grid-area: 2/1/3/4;
+  }
+
+  .price {
   }
 
   .submit-button {

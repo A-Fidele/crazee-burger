@@ -86,7 +86,7 @@ const EditFormStyled = styled.div`
   grid-row-gap: 8px;
 
   .input-fields {
-    grid-area: 1/2/4/2;
+    grid-area: 1/2/4/3;
     display: grid;
     grid-row-gap: 8px;
   }
