@@ -62,12 +62,14 @@ export default function AddForm() {
             />
           );
         })}
-        <div className="input-fields-stock">
-          <TextInput version="darklight" />
-        </div>
-        <div className="input-fields-stock">
-          <TextInput version="darklight" />
-        </div>
+        <select name="isAvailable" id="is-available">
+          <option value={true}>En stock</option>
+          <option value={false}>Rupture</option>
+        </select>
+        <select name="isPublished" id="is-published">
+          <option value={true}>Pub</option>
+          <option value={false}>Sans pub</option>
+        </select>
       </div>
       <div className="submit-button">
         <PrimaryButton
