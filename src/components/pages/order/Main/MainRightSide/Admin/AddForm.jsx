@@ -11,6 +11,7 @@ import ImagePreview from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
+import SelectInput from "./SelectInput";
 
 export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct, username } =
@@ -45,6 +46,15 @@ export default function AddForm() {
 
   const inputTexts = getInputTextsConfig(newProduct);
 
+  const isAvailableOptions = [
+    { value: true, label: "En Stock" },
+    { value: false, label: "Rupture" },
+  ];
+  const isPublicisedOptions = [
+    { value: true, label: "Pub" },
+    { value: false, label: "Sans pub" },
+  ];
+
   return (
     <AddFormStyled action="submit" onSubmit={handleSubmit}>
       <ImagePreview
@@ -62,14 +72,18 @@ export default function AddForm() {
             />
           );
         })}
-        <select name="isAvailable" id="is-available">
-          <option value={true}>En stock</option>
-          <option value={false}>Rupture</option>
-        </select>
-        <select name="isPublished" id="is-published">
-          <option value={true}>Pub</option>
-          <option value={false}>Sans pub</option>
-        </select>
+        <SelectInput
+          option={isAvailableOptions}
+          name="isAvailable"
+          className="is-available"
+          id="3"
+        />
+        <SelectInput
+          option={isPublicisedOptions}
+          name="isPublicised"
+          className="is-publicised"
+          id="4"
+        />
       </div>
       <div className="submit-button">
         <PrimaryButton
