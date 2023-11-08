@@ -3,6 +3,8 @@ export const EMPTY_PRODUCT = Object.freeze({
     title: "",
     imageSource: "",
     price: 0,
+    isAvailable: true,
+    isPublicised: false,
   });
 
   export const DEFAULT_IMAGE = "/images/coming-soon.png";
@@ -11,3 +13,4 @@ export const EMPTY_PRODUCT = Object.freeze({
     EMPTY: "Votre commande est vide.",
     LOADING: "Chargement en cours..."
   }
+

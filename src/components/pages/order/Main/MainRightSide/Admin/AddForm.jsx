@@ -5,13 +5,13 @@ import PrimaryButton from "../../../../../reusable-ui/PrimaryButton";
 import { styled } from "styled-components";
 import { theme } from "../../../../../../theme";
 import UserContext from "../../../../../../context/UserContext";
-import { getInputTextsConfig } from "./inputTextsConfig";
+import { getInputTextsConfig, getSelectConfig } from "./inputTextsConfig";
 import SubmitMessage from "./SubmitMessage";
 import ImagePreview from "./ImagePreview";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
-import SelectInput from "./SelectInput";
+import SelectInput from "../../../../../reusable-ui/SelectInput";
 
 export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct, username } =
@@ -25,6 +25,8 @@ export default function AddForm() {
       ...newProduct,
       [name]: value,
     };
+
+    console.log("name: ", name, " value: ", value);
 
     setNewProduct(productBeingChanged);
   };
@@ -45,15 +47,7 @@ export default function AddForm() {
   };
 
   const inputTexts = getInputTextsConfig(newProduct);
-
-  const isAvailableOptions = [
-    { value: true, label: "En Stock" },
-    { value: false, label: "Rupture" },
-  ];
-  const isPublicisedOptions = [
-    { value: true, label: "Pub" },
-    { value: false, label: "Sans pub" },
-  ];
+  const inputSelects = getSelectConfig(newProduct);
 
   return (
     <AddFormStyled action="submit" onSubmit={handleSubmit}>
@@ -72,18 +66,9 @@ export default function AddForm() {
             />
           );
         })}
-        <SelectInput
-          option={isAvailableOptions}
-          name="isAvailable"
-          className="is-available"
-          id="3"
-        />
-        <SelectInput
-          option={isPublicisedOptions}
-          name="isPublicised"
-          className="is-publicised"
-          id="4"
-        />
+        {inputSelects.map((options) => {
+          return <SelectInput {...options} />;
+        })}
       </div>
       <div className="submit-button">
         <PrimaryButton
@@ -121,9 +106,6 @@ const AddFormStyled = styled.form`
 
   .image-source {
     grid-area: 2/1/3/4;
-  }
-
-  .price {
   }
 
   .submit-button {

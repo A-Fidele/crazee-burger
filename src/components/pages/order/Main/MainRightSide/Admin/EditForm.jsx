@@ -4,11 +4,12 @@ import { theme } from "../../../../../../theme";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import UserContext from "../../../../../../context/UserContext";
-import { getInputTextsConfig } from "./inputTextsConfig";
+import { getInputTextsConfig, getSelectConfig } from "./inputTextsConfig";
 import InstructionMessage from "./InstructionMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
 import SavedEditMessage from "./SavedEditMeessage";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
+import SelectInput from "../../../../../reusable-ui/SelectInput";
 
 export default function EditForm() {
   const {
@@ -22,6 +23,7 @@ export default function EditForm() {
   const [valueOnfocus, setValueOnfocus] = useState();
 
   const inputTexts = getInputTextsConfig(productSelected);
+  const inputSelects = getSelectConfig(productSelected);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +72,16 @@ export default function EditForm() {
             />
           );
         })}
+        {inputSelects.map((options) => {
+          return (
+            <SelectInput
+              {...options}
+              onChange={handleChange}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlur}
+            />
+          );
+        })}
       </div>
       {isSuccess ? <SavedEditMessage /> : <InstructionMessage />}
     </EditFormStyled>
@@ -88,7 +100,18 @@ const EditFormStyled = styled.div`
   .input-fields {
     grid-area: 1/2/4/3;
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-row-gap: 8px;
+    grid-column-gap: 8px;
+  }
+
+  .title {
+    grid-area: 1/1/2/4;
+  }
+
+  .image-source {
+    grid-area: 2/1/3/4;
   }
 
   .submit-button {
