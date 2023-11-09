@@ -53,7 +53,7 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled} className="menu">
-      {menu.map(({ id, title, imageSource, price }) => {
+      {menu.map(({ id, title, imageSource, price, isAvailable }) => {
         return (
           <CSSTransition
             appear
@@ -72,6 +72,7 @@ export default function Menu() {
               isHoverable={isAdmin}
               isSelected={checkProductIsClicked(id, productSelected)}
               handleAddProduct={(event) => handleAddProduct(event, id)}
+              isOverLap={true}
             />
           </CSSTransition>
         );

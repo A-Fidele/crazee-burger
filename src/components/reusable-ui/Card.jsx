@@ -2,7 +2,8 @@ import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
-import { fadeInRight } from "../../theme/animations";
+import { fadeInRight, fadeInTop } from "../../theme/animations";
+import { OUTOFSTOCK_IMAGE } from "../../enums/product";
 
 export default function Card({
   title,
@@ -14,6 +15,7 @@ export default function Card({
   isHoverable,
   isSelected,
   handleAddProduct,
+  isOverLap,
 }) {
   return (
     <CardStyled
@@ -28,6 +30,16 @@ export default function Card({
           </button>
         )}
         <div className="image">
+          {isOverLap && (
+            <div className="overlap-container">
+              <div className="layer"> </div>
+              <img
+                className="outofstock-img"
+                src={OUTOFSTOCK_IMAGE}
+                alt={"outofstock"}
+              />
+            </div>
+          )}
           <img src={imageSource} alt={title} />
         </div>
         <div className="text-info">
@@ -125,6 +137,29 @@ const CardStyled = styled.div`
         width: 100%;
         height: 100%;
         object-fit: contain;
+      }
+      .overlap-container {
+        .layer {
+          z-index: 1;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 70%;
+          background: snow;
+          border-radius: ${theme.borderRadius.extraRound};
+        }
+        .outofstock-img {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 80%;
+          height: 100%;
+          z-index: 1;
+          border-radius: ${theme.borderRadius.extraRound};
+          animation: ${fadeInTop} 500ms;
+        }
       }
     }
 
