@@ -11,6 +11,7 @@ import { findObjectById, isEmpty, isUndefined } from "../../../../utils/array";
 import Loading from "./Loading";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { cardMenuAnimation } from "../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../utils/string";
 
 export default function Menu() {
   const {
@@ -72,7 +73,7 @@ export default function Menu() {
               isHoverable={isAdmin}
               isSelected={checkProductIsClicked(id, productSelected)}
               handleAddProduct={(event) => handleAddProduct(event, id)}
-              isOverLap={true}
+              isOverLap={convertStringToBoolean(isAvailable) === false}
             />
           </CSSTransition>
         );

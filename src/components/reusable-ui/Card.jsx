@@ -275,6 +275,29 @@ const CardStyled = styled.div`
         height: 100%;
         object-fit: contain;
       }
+      .overlap-container {
+        .layer {
+          z-index: 1;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 70%;
+          background: snow;
+          border-radius: ${theme.borderRadius.extraRound};
+        }
+        .outofstock-img {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 80%;
+          height: 100%;
+          z-index: 1;
+          border-radius: ${theme.borderRadius.extraRound};
+          animation: ${fadeInTop} 500ms;
+        }
+      }
     }
 
     .text-info {
