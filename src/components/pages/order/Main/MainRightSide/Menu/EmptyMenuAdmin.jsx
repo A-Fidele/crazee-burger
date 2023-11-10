@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { styled } from "styled-components";
-import { theme } from "../../../../../theme";
-import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
+import { theme } from "../../../../../../theme";
+import PrimaryButton from "../../../../../reusable-ui/PrimaryButton";
 
 export default function EmptyMenuAdmin({ onReset }) {
   return (

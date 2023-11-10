@@ -33,7 +33,6 @@ export default function BasketCards() {
       className={"transition-group"}
     >
       {basketProduct.map((product) => {
-        console.log("product.isAvailable: ", product.isAvailable);
         const menuProduct = findObjectById(menu, product.id);
         return (
           <CSSTransition
@@ -52,8 +51,8 @@ export default function BasketCards() {
                 isSelected={checkProductIsClicked(product.id, productSelected)}
                 className={"card"}
                 price={
-                  convertStringToBoolean(product.isAvailable)
-                    ? formatPrice(product.price)
+                  convertStringToBoolean(menuProduct.isAvailable)
+                    ? formatPrice(menuProduct.price)
                     : BASKET_MESSAGE.NOT_AVAILABLE
                 }
               />

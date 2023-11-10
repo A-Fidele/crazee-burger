@@ -1,18 +1,22 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { theme } from "../../../../theme";
-import { formatPrice } from "../../../../utils/maths";
-import Card from "../../../reusable-ui/Card";
-import UserContext from "../../../../context/UserContext";
-import EmptyMenuCustomer from "./MainRightSide/EmptyMenuCustomer";
-import EmptyMenuAdmin from "./MainRightSide/EmptyMenuAdmin";
-import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../enums/product";
-import { findObjectById, isEmpty, isUndefined } from "../../../../utils/array";
+import { theme } from "../../../../../../theme";
+import { formatPrice } from "../../../../../../utils/maths";
+import Card from "../../../../../reusable-ui/Card";
+import UserContext from "../../../../../../context/UserContext";
+import EmptyMenuCustomer from "./EmptyMenuCustomer";
+import EmptyMenuAdmin from "./EmptyMenuAdmin";
+import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../../enums/product";
+import {
+  findObjectById,
+  isEmpty,
+  isUndefined,
+} from "../../../../../../utils/array";
 import Loading from "./Loading";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { cardMenuAnimation } from "../../../../theme/animations";
-import { convertStringToBoolean } from "../../../../utils/string";
-import Ribbon from "../../../reusable-ui/Ribbon";
+import { cardMenuAnimation } from "../../../../../../theme/animations";
+import { convertStringToBoolean } from "../../../../../../utils/string";
+import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
 
 export default function Menu() {
   const {
@@ -64,8 +68,14 @@ export default function Menu() {
               key={id}
               timeout={{ enter: 1000, exit: 300 }}
             >
-              <div className="card-container">
-                {convertStringToBoolean(isPublicised) && <Ribbon />}
+              <div
+                className={
+                  isAdmin
+                    ? "card-container-admin is-hoverable"
+                    : "card-container"
+                }
+              >
+                {convertStringToBoolean(isPublicised) && <RibbonAnimated />}
                 <Card
                   key={id}
                   title={title}
@@ -100,9 +110,22 @@ const MenuStyled = styled.div`
   //grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
   ${cardMenuAnimation}
+  ${ribbonAnimation}
 
   .card-container {
     position: relative;
+
+    .ribbon {
+      z-index: 2;
+    }
+  }
+
+  .card-container-admin {
+    position: relative;
+    &:hover {
+      transform: scale(1.05);
+      transition: ease-out 0.4s;
+    }
     .ribbon {
       z-index: 2;
     }
