@@ -1,6 +1,7 @@
-import styled from "styled-components"
-import Logo from "../../reusable-ui/Logo"
-import LoginForm from "./LoginForm"
+import styled from "styled-components";
+import Logo from "../../reusable-ui/Logo";
+import LoginForm from "./LoginForm";
+import { fadeIn } from "../../../theme/animations";
 
 export default function LoginPage() {
   return (
@@ -8,7 +9,7 @@ export default function LoginPage() {
       <Logo className={"logo-login-page"} />
       <LoginForm />
     </LoginPageStyled>
-  )
+  );
 }
 
 const LoginPageStyled = styled.div`
@@ -21,8 +22,9 @@ const LoginPageStyled = styled.div`
   background-size: cover;
   background-position: center;
   background-blend-mode: darken;
+  animation: ${fadeIn} 1s ease-out;
 
-    .logo-login-page {
-    transform: scale(2.5);  
+  .logo-login-page {
+    transform: scale(2.5);
   }
-`
+`;

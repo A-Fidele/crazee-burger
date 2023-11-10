@@ -92,6 +92,7 @@ const CardStyled = styled.div`
     position: relative;
 
     .delete-icon {
+      z-index: 2;
       height: 30px;
       width: 30px;
       border: none;
@@ -217,10 +218,13 @@ const CardStyled = styled.div`
     position: relative;
 
     .delete-icon {
+      z-index: 2;
       height: 30px;
       width: 30px;
       border: none;
-      background-color: ${theme.colors.primary};
+      background-color: transparent;
+      border-radius: ${theme.borderRadius.extraRound};
+
       margin-left: auto;
       cursor: pointer;
       position: absolute;
@@ -367,8 +371,6 @@ const CardStyled = styled.div`
 
 const hoverableStyle = css`
   &:hover {
-    //transform: scale(1.05);
-    //transition: ease-out 0.4s;
     box-shadow: ${theme.shadows.orangeHighlight};
     cursor: pointer;
   }

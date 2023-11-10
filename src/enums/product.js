@@ -13,6 +13,6 @@ export const EMPTY_PRODUCT = Object.freeze({
   export const BASKET_MESSAGE = {
     EMPTY: "Votre commande est vide.",
     LOADING: "Chargement en cours...",
-    NOT_AVAILABLE: "Non disponoble",
+    NOT_AVAILABLE: "Non disponible",
   }
 
