@@ -12,6 +12,7 @@ import Loading from "./Loading";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { cardMenuAnimation } from "../../../../theme/animations";
 import { convertStringToBoolean } from "../../../../utils/string";
+import Ribbon from "../../../reusable-ui/Ribbon";
 
 export default function Menu() {
   const {
@@ -54,30 +55,35 @@ export default function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled} className="menu">
-      {menu.map(({ id, title, imageSource, price, isAvailable }) => {
-        return (
-          <CSSTransition
-            appear
-            classNames={"card-menu"}
-            key={id}
-            timeout={{ enter: 1000, exit: 300 }}
-          >
-            <Card
+      {menu.map(
+        ({ id, title, imageSource, price, isAvailable, isPublicised }) => {
+          return (
+            <CSSTransition
+              appear
+              classNames={"card-menu"}
               key={id}
-              title={title}
-              imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-              leftDescription={formatPrice(price)}
-              hasDeleteButton={isAdmin}
-              onDelete={(event) => handleOnDelete(id, event)}
-              onSelect={() => handleSelectCard(id)}
-              isHoverable={isAdmin}
-              isSelected={checkProductIsClicked(id, productSelected)}
-              handleAddProduct={(event) => handleAddProduct(event, id)}
-              isOverLap={convertStringToBoolean(isAvailable) === false}
-            />
-          </CSSTransition>
-        );
-      })}
+              timeout={{ enter: 1000, exit: 300 }}
+            >
+              <div className="card-container">
+                {convertStringToBoolean(isPublicised) && <Ribbon />}
+                <Card
+                  key={id}
+                  title={title}
+                  imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+                  leftDescription={formatPrice(price)}
+                  hasDeleteButton={isAdmin}
+                  onDelete={(event) => handleOnDelete(id, event)}
+                  onSelect={() => handleSelectCard(id)}
+                  isHoverable={isAdmin}
+                  isSelected={checkProductIsClicked(id, productSelected)}
+                  handleAddProduct={(event) => handleAddProduct(event, id)}
+                  isOverLap={convertStringToBoolean(isAvailable) === false}
+                />
+              </div>
+            </CSSTransition>
+          );
+        }
+      )}
     </TransitionGroup>
   );
 }
@@ -94,6 +100,13 @@ const MenuStyled = styled.div`
   //grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
   ${cardMenuAnimation}
+
+  .card-container {
+    position: relative;
+    .ribbon {
+      z-index: 2;
+    }
+  }
 
   .empty-menu-container {
     display: flex;

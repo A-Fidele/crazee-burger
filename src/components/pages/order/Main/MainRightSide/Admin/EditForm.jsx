@@ -98,6 +98,7 @@ const EditFormStyled = styled.div`
   grid-row-gap: 8px;
 
   .input-fields {
+    z-index: 3;
     grid-area: 1/2/4/3;
     display: grid;
     grid-template-columns: repeat(3, 1fr);

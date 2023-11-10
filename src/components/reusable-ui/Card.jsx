@@ -91,18 +91,6 @@ const CardStyled = styled.div`
     border-radius: ${theme.borderRadius.extraRound};
     position: relative;
 
-    &.delete-button {
-      background: ${theme.colors.primary};
-      width: 200px;
-      height: 300px;
-      display: grid;
-      grid-template-rows: 65% 1fr;
-      padding: 20px;
-      padding-bottom: 10px;
-      box-shadow: ${theme.shadows.medium};
-      border-radius: ${theme.borderRadius.extraRound};
-    }
-
     .delete-icon {
       height: 30px;
       width: 30px;
@@ -227,18 +215,6 @@ const CardStyled = styled.div`
     box-shadow: ${theme.shadows.medium};
     border-radius: ${theme.borderRadius.extraRound};
     position: relative;
-
-    &.delete-button {
-      background: ${theme.colors.primary};
-      width: 200px;
-      height: 300px;
-      display: grid;
-      grid-template-rows: 65% 1fr;
-      padding: 20px;
-      padding-bottom: 10px;
-      box-shadow: ${theme.shadows.medium};
-      border-radius: ${theme.borderRadius.extraRound};
-    }
 
     .delete-icon {
       height: 30px;

@@ -23,4 +23,5 @@ const AdminPanelStyled = styled.div`
   box-shadow: ${theme.shadows.subtle};
   padding: 30px 5%;
   box-sizing: border-box;
+  z-index: 4;
 `;

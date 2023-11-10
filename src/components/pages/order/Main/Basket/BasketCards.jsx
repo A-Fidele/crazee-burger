@@ -7,6 +7,9 @@ import { findObjectById } from "../../../../../utils/array";
 import { checkProductIsClicked } from "../../../../../helper/helper";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { basketCardsAnimation } from "../../../../../theme/animations";
+import { formatPrice } from "../../../../../utils/maths";
+import { BASKET_MESSAGE } from "../../../../../enums/product";
+import { convertStringToBoolean } from "../../../../../utils/string";
 
 export default function BasketCards() {
   const {
@@ -30,6 +33,7 @@ export default function BasketCards() {
       className={"transition-group"}
     >
       {basketProduct.map((product) => {
+        console.log("product.isAvailable: ", product.isAvailable);
         const menuProduct = findObjectById(menu, product.id);
         return (
           <CSSTransition
@@ -47,6 +51,11 @@ export default function BasketCards() {
                 onSelect={() => handleSelectCard(product.id)}
                 isSelected={checkProductIsClicked(product.id, productSelected)}
                 className={"card"}
+                price={
+                  convertStringToBoolean(product.isAvailable)
+                    ? formatPrice(product.price)
+                    : BASKET_MESSAGE.NOT_AVAILABLE
+                }
               />
             </div>
           </CSSTransition>
