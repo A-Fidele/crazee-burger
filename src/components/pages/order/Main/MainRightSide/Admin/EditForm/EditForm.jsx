@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../../../../../../../context/UserContext";
-import { getInputTextsConfig, getSelectConfig } from "../inputTextsConfig";
+import { getInputTextsConfig, getSelectConfig } from "../Form/inputTextsConfig";
 import InstructionMessage from "./InstructionMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../../utils/maths";
 import SavedEditMessage from "./SavedEditMeessage";
 import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
-import Form from "../Form";
+import Form from "../Form/Form";
 
 export default function EditForm() {
   const {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { useContext } from "react";
-import { getTabSelected, getTabsConfig } from "./getTabsConfig";
+import { getTabSelected, getTabsConfig } from "./Form/getTabsConfig";
 import UserContext from "../../../../../../context/UserContext";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 

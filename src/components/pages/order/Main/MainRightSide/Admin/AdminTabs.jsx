@@ -4,7 +4,7 @@ import Usercontext from "../../../../../../context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import { getTabsConfig } from "./getTabsConfig";
+import { getTabsConfig } from "./Form/getTabsConfig";
 
 export default function AdminTabs() {
   const {

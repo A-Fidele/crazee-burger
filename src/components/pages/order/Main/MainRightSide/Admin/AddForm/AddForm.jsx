@@ -1,14 +1,12 @@
 import React from "react";
 import { useContext } from "react";
-import PrimaryButton from "../../../../../../reusable-ui/PrimaryButton";
 import UserContext from "../../../../../../../context/UserContext";
-import { getInputTextsConfig, getSelectConfig } from "../inputTextsConfig";
-import SubmitMessage from "./SubmitMessage";
+import { getInputTextsConfig, getSelectConfig } from "../Form/inputTextsConfig";
 import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../../utils/maths";
-import Form from "../Form";
 import SubmitButton from "./SubmitButton";
+import Form from "../Form/Form";
 
 export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct, username } =
