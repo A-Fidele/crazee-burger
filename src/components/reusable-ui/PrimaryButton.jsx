@@ -7,12 +7,14 @@ export default function PrimaryButton({
   className,
   onClick,
   version = "classic",
+  disabled,
 }) {
   return (
     <PrimaryButtonStyled
       className={className}
       onClick={onClick}
       version={version}
+      disabled={disabled}
     >
       <span>{label}</span>
       {Icon && Icon}
@@ -33,6 +35,7 @@ const extraStyleClassic = css`
   white-space: nowrap;
   text-decoration: none;
   line-height: 1;
+  cursor: pointer;
 
   padding: 18px 24px;
   border-radius: ${theme.borderRadius.round};
@@ -53,7 +56,7 @@ const extraStyleClassic = css`
     color: ${theme.colors.white};
   }
 
-  &.is-disabled {
+  &:disabled {
     opacity: 50%;
     cursor: not-allowed;
     z-index: 2;

@@ -64,6 +64,7 @@ export default function Card({
                 version="classic"
                 label={"Ajouter"}
                 onClick={(event) => handleAddProduct(event)}
+                disabled={isOverLap}
               />
             </div>
           </div>
@@ -72,7 +73,6 @@ export default function Card({
     </CardStyled>
   );
 }
-
 const CardStyled = styled.div`
   ${({ $isHoverable }) => $isHoverable && hoverableStyle}
   height: 330px;
@@ -92,11 +92,11 @@ const CardStyled = styled.div`
     position: relative;
 
     .delete-icon {
-      z-index: 2;
+      //z-index: 3;
       height: 30px;
       width: 30px;
       border: none;
-      background-color: ${theme.colors.white};
+      background-color: transparent;
       margin-left: auto;
       cursor: pointer;
       position: absolute;
@@ -196,7 +196,6 @@ const CardStyled = styled.div`
 
           .primary-button {
             font-size: ${theme.fonts.size.XS};
-            cursor: pointer;
             padding: 12px;
           }
         }
@@ -223,8 +222,6 @@ const CardStyled = styled.div`
       width: 30px;
       border: none;
       background-color: transparent;
-      border-radius: ${theme.borderRadius.extraRound};
-
       margin-left: auto;
       cursor: pointer;
       position: absolute;
@@ -323,8 +320,8 @@ const CardStyled = styled.div`
           font-size: ${theme.fonts.size.P1};
 
           .primary-button {
+            color: white;
             font-size: ${theme.fonts.size.XS};
-            cursor: pointer;
             padding: 12px;
           }
         }
@@ -371,6 +368,8 @@ const CardStyled = styled.div`
 
 const hoverableStyle = css`
   &:hover {
+    transform: scale(1.05);
+    transition: ease-out 0.4s;
     box-shadow: ${theme.shadows.orangeHighlight};
     cursor: pointer;
   }

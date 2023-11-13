@@ -26,8 +26,6 @@ export default function AddForm() {
       [name]: value,
     };
 
-    console.log("name: ", name, " value: ", value);
-
     setNewProduct(productBeingChanged);
   };
 
@@ -67,7 +65,7 @@ export default function AddForm() {
           );
         })}
         {inputSelects.map((options) => {
-          return <SelectInput {...options} />;
+          return <SelectInput {...options} onChange={handleChange} />;
         })}
       </div>
       <div className="submit-button">
