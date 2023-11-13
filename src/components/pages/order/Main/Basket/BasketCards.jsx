@@ -35,12 +35,6 @@ export default function BasketCards() {
     >
       {basketProduct.map((product) => {
         const menuProduct = findObjectById(menu, product.id);
-        console.log(
-          "convertStringToBoolean(menuProduct.isPublicised): ",
-          convertStringToBoolean(menuProduct.isPublicised),
-          " product: ",
-          menuProduct.title
-        );
         return (
           <CSSTransition
             appear
