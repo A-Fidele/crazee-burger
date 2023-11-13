@@ -1,17 +1,17 @@
 import React from "react";
 import { useContext } from "react";
-import TextInput from "../../../../../reusable-ui/TextInput";
-import PrimaryButton from "../../../../../reusable-ui/PrimaryButton";
+import TextInput from "../../../../../../reusable-ui/TextInput";
+import PrimaryButton from "../../../../../../reusable-ui/PrimaryButton";
 import { styled } from "styled-components";
-import { theme } from "../../../../../../theme";
-import UserContext from "../../../../../../context/UserContext";
-import { getInputTextsConfig, getSelectConfig } from "./inputTextsConfig";
+import { theme } from "../../../../../../../theme";
+import UserContext from "../../../../../../../context/UserContext";
+import { getInputTextsConfig, getSelectConfig } from "../inputTextsConfig";
 import SubmitMessage from "./SubmitMessage";
-import ImagePreview from "./ImagePreview";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
-import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
-import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
-import SelectInput from "../../../../../reusable-ui/SelectInput";
+import ImagePreview from "../ImagePreview";
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
+import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
+import { replaceFrenchCommaWithDot } from "../../../../../../../utils/maths";
+import SelectInput from "../../../../../../reusable-ui/SelectInput";
 
 export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct, username } =

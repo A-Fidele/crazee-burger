@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
-import { theme } from "../../../../../../theme";
-import ImagePreview from "./ImagePreview";
-import TextInput from "../../../../../reusable-ui/TextInput";
-import UserContext from "../../../../../../context/UserContext";
-import { getInputTextsConfig, getSelectConfig } from "./inputTextsConfig";
+import { theme } from "../../../../../../../theme";
+import ImagePreview from "../ImagePreview";
+import TextInput from "../../../../../../reusable-ui/TextInput";
+import UserContext from "../../../../../../../context/UserContext";
+import { getInputTextsConfig, getSelectConfig } from "../inputTextsConfig";
 import InstructionMessage from "./InstructionMessage";
-import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
+import { replaceFrenchCommaWithDot } from "../../../../../../../utils/maths";
 import SavedEditMessage from "./SavedEditMeessage";
-import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
-import SelectInput from "../../../../../reusable-ui/SelectInput";
+import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
+import SelectInput from "../../../../../../reusable-ui/SelectInput";
 
 export default function EditForm() {
   const {
