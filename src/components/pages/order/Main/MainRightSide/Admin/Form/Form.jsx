@@ -1,10 +1,6 @@
 import React from "react";
-import { getInputTextsConfig, getSelectConfig } from "./inputTextsConfig";
 import ImagePreview from "../ImagePreview";
-import TextInput from "../../../../../../reusable-ui/TextInput";
-import { theme } from "../../../../../../../theme";
 import styled from "styled-components";
-import SelectInput from "../../../../../../reusable-ui/SelectInput";
 import Inputs from "./Inputs";
 
 const Form = React.forwardRef(

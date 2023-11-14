@@ -92,23 +92,24 @@ const CardStyled = styled.div`
     position: relative;
 
     .delete-icon {
-      //z-index: 3;
+      z-index: 2;
       height: 30px;
       width: 30px;
       border: none;
-      background-color: transparent;
       margin-left: auto;
       cursor: pointer;
       position: absolute;
-      right: 0;
-      margin: 24px;
+      background-color: transparent;
+      top: 15px;
+      right: 15px;
+      padding: 0;
+      animation: ${fadeInRight} 500ms ease-out;
     }
 
     .icon {
       width: 30px;
       height: 30px;
       color: ${theme.colors.primary};
-      animation: ${fadeInRight} 500ms ease-out;
 
       :hover {
         color: ${theme.colors.red};
@@ -221,19 +222,20 @@ const CardStyled = styled.div`
       height: 30px;
       width: 30px;
       border: none;
-      background-color: transparent;
       margin-left: auto;
       cursor: pointer;
       position: absolute;
-      right: 0;
-      margin: 24px;
+      background-color: transparent;
+      top: 15px;
+      right: 15px;
+      padding: 0;
+      animation: ${fadeInRight} 500ms ease-out;
     }
 
     .icon {
       width: 30px;
       height: 30px;
       color: ${theme.colors.white};
-      animation: ${fadeInRight} 500ms ease-out;
 
       :hover {
         color: ${theme.colors.red};
@@ -337,7 +339,7 @@ const CardStyled = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: ${theme.fonts.weights.medium};
-    color: white;
+    color: ${theme.colors.white};
   }
 
   .selected-card-button {
@@ -356,7 +358,6 @@ const CardStyled = styled.div`
     font-weight: ${theme.fonts.weights.heavy};
     background-color: ${theme.colors.white};
     color: ${theme.colors.primary};
-    cursor: pointer;
 
     &:active {
       background-color: ${theme.colors.primary};
