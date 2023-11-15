@@ -6,7 +6,7 @@ import { GoMegaphone } from "react-icons/go";
 import {
   isAvailableOptions,
   isPublicisedOptions,
-} from "../../../../../../../enums/select";
+} from "../../../../../../../enums/product";
 
 export const getInputTextsConfig = (newProduct) => [
   {

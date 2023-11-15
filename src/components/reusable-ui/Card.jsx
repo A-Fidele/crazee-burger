@@ -3,7 +3,7 @@ import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
 import { fadeInRight, fadeInTop } from "../../theme/animations";
-import { OUTOFSTOCK_IMAGE } from "../../enums/product";
+import { OUT_OF_STOCK_IMAGE } from "../../enums/product";
 
 export default function Card({
   title,
@@ -35,7 +35,7 @@ export default function Card({
               <div className="layer"> </div>
               <img
                 className="outofstock-img"
-                src={OUTOFSTOCK_IMAGE}
+                src={OUT_OF_STOCK_IMAGE}
                 alt={"outofstock"}
               />
             </div>
@@ -369,7 +369,6 @@ const CardStyled = styled.div`
 
 const hoverableStyle = css`
   &:hover {
-    transform: scale(1.05);
     transition: ease-out 0.4s;
     box-shadow: ${theme.shadows.orangeHighlight};
     cursor: pointer;
