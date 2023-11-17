@@ -4,7 +4,7 @@ import Usercontext from "../../../../../../context/UserContext";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { FiChevronUp, FiChevronDown } from "react-icons/fi";
-import { getTabsConfig } from "./getTabsConfig";
+import { getTabsConfig } from "./Form/getTabsConfig";
 
 export default function AdminTabs() {
   const {
@@ -48,7 +48,7 @@ const AdminTabsStyled = styled.div`
   position: absolute;
   top: -43px;
   left: 5%;
-
+  z-index: 4;
   .is-active {
     background-color: ${theme.colors.background_dark};
     border-color: ${theme.colors.background_dark};

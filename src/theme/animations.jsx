@@ -51,6 +51,16 @@ export const basketCardsAnimation = css`
   }
 `;
 
+export const fadeIn = keyframes`
+ 0% {
+     opacity: 0;
+ }
+
+ 100% {
+     opacity: 1;
+ }
+ `;
+
 export const fadeInRight = keyframes`
  0% {
      position: absolute;
@@ -62,6 +72,20 @@ export const fadeInRight = keyframes`
  100% {
      opacity: 1;
      transform: translateX(0%);
+ }
+ `;
+
+export const fadeInTop = keyframes`
+ 0% {
+     position: absolute;
+     z-index: 1;
+     opacity: 0;
+     transform: translateY(-40%);
+ }
+
+ 100% {
+     opacity: 1;
+     transform: translateY(0%);
  }
  `;
 

@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import UserContext from "../../../../../context/UserContext";
-import Menu from "../Menu";
 import { theme } from "../../../../../theme";
 import styled from "styled-components";
 import Admin from "./Admin/Admin";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { adminAnimation } from "../../../../../theme/animations";
+import Menu from "./Menu/Menu";
 
 export default function MainRightSide() {
   const { isAdmin } = useContext(UserContext);

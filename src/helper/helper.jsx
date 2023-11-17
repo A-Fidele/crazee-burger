@@ -1,9 +1,11 @@
 import { findObjectById } from "../utils/array";
+import { convertStringToBoolean } from "../utils/string";
 
 export const calculateBasketTotal = (menu, basketProduct) => {
   const total = basketProduct.reduce((total, basketProduct) => {
     const menuProduct = findObjectById(menu, basketProduct.id);
     if (isNaN(menuProduct.price)) return total;
+    if (convertStringToBoolean(menuProduct.isAvailable) === false) return total;
     total += menuProduct.price * basketProduct.quantity;
     return total;
   }, 0);

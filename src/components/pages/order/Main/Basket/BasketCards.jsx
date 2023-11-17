@@ -7,6 +7,10 @@ import { findObjectById } from "../../../../../utils/array";
 import { checkProductIsClicked } from "../../../../../helper/helper";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { basketCardsAnimation } from "../../../../../theme/animations";
+import { formatPrice } from "../../../../../utils/maths";
+import { BASKET_MESSAGE } from "../../../../../enums/product";
+import { convertStringToBoolean } from "../../../../../utils/string";
+import Sticker from "../../../../reusable-ui/Stiker";
 
 export default function BasketCards() {
   const {
@@ -38,16 +42,29 @@ export default function BasketCards() {
             timeout={400}
             key={product.id}
           >
-            <div className="basket-card">
-              <BasketCard
-                {...menuProduct}
-                quantity={product.quantity}
-                onDelete={(event) => handleDelete(event, product.id)}
-                isClickable={isAdmin}
-                onSelect={() => handleSelectCard(product.id)}
-                isSelected={checkProductIsClicked(product.id, productSelected)}
-                className={"card"}
-              />
+            <div className="card-container">
+              {convertStringToBoolean(menuProduct.isPublicised) && (
+                <Sticker className="badge" />
+              )}
+              <div className="basket-card">
+                <BasketCard
+                  {...menuProduct}
+                  quantity={product.quantity}
+                  onDelete={(event) => handleDelete(event, product.id)}
+                  isClickable={isAdmin}
+                  onSelect={() => handleSelectCard(product.id)}
+                  isSelected={checkProductIsClicked(
+                    product.id,
+                    productSelected
+                  )}
+                  className={"card"}
+                  price={
+                    convertStringToBoolean(menuProduct.isAvailable)
+                      ? formatPrice(menuProduct.price)
+                      : BASKET_MESSAGE.NOT_AVAILABLE
+                  }
+                />
+              </div>
             </div>
           </CSSTransition>
         );
@@ -61,13 +78,29 @@ const BasketCardsStyled = styled.div`
   overflow-y: scroll;
   scrollbar-color: transparent transparent;
 
-  .basket-card {
-    margin-left: 14px;
+  ${basketCardsAnimation};
+
+  .card-container {
+    margin: 10px 16px;
     height: 86px;
     box-sizing: border-box;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
+    position: relative;
 
-  ${basketCardsAnimation};
+    .basket-card {
+      margin-left: 5px;
+      height: 86px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    .badge {
+      position: absolute;
+      bottom: 10%;
+      left: 21%;
+      z-index: 1;
+      transform: translateY(-21%);
+      transform: translateX(-5%);
+    }
+  }
 `;

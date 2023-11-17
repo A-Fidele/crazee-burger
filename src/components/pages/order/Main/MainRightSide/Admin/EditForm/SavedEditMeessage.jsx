@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-import { theme } from "../../../../../../theme";
+import { theme } from "../../../../../../../theme";
 import { BsCloudCheck } from "react-icons/bs";
 
 export default function SavedEditMessage() {

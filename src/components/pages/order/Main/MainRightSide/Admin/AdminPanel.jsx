@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { useContext } from "react";
-import { getTabSelected, getTabsConfig } from "./getTabsConfig";
+import { getTabSelected, getTabsConfig } from "./Form/getTabsConfig";
 import UserContext from "../../../../../../context/UserContext";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
@@ -23,4 +23,5 @@ const AdminPanelStyled = styled.div`
   box-shadow: ${theme.shadows.subtle};
   padding: 30px 5%;
   box-sizing: border-box;
+  z-index: 4;
 `;
