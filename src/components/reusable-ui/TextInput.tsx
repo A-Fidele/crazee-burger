@@ -1,6 +1,18 @@
-import styled, { css } from "styled-components";
-import { theme } from "../../theme";
 import React from "react";
+import styled, { css, RuleSet } from "styled-components";
+import { theme } from "../../theme";
+
+type TextInputProps = {
+  value: string,
+  onChange: (event: { target: any; preventDefault: () => void }) => void,
+  Icon?: JSX.Element,
+  className?: string,
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void,
+  version?: "classic" | "darklight",
+  placeholder?: string,
+  required?: boolean,
+}
 
 const TextInput = React.forwardRef(
   (
@@ -13,7 +25,7 @@ const TextInput = React.forwardRef(
       onBlur,
       version = "classic",
       ...extraProps
-    },
+    }: TextInputProps,
     ref
   ) => {
     return (
@@ -33,7 +45,7 @@ const TextInput = React.forwardRef(
   }
 );
 
-const TextInputStyled = styled.div`
+const TextInputStyled = styled.div<{ version: "classic" | "darklight" }>`
   ${(props) => extraStyle[props.version]}
 `;
 
@@ -88,8 +100,12 @@ const extraStyleDarklight = css`
     }
   }
 `;
+type ExtraStyleType = {
+  [key: string]: RuleSet<object>,
+}
+
 //dictionnaire
-const extraStyle = {
+const extraStyle: ExtraStyleType = {
   classic: extraStyleCassic,
   darklight: extraStyleDarklight,
 };

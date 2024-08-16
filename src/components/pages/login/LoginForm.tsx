@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IoChevronForward } from "react-icons/io5";
 import { BsPersonCircle } from "react-icons/bs";
+import Welcome from "./Welcome";
+import { authenticateUser } from "../../../api/user";
 import TextInput from "../../reusable-ui/TextInput";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import { theme } from "../../../theme";
-import { authenticateUser } from "../../../api/user";
-import Welcome from "./Welcome";
 
 export default function LoginForm() {
   // state
@@ -15,7 +15,7 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   // comportements
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
     await authenticateUser(username);
@@ -24,11 +24,10 @@ export default function LoginForm() {
     navigate(`order/${username}`);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: any; preventDefault: () => void }) => {
     setUsername(event.target.value);
   };
 
-  // affichage
   return (
     <LoginFormStyled action="submit" onSubmit={handleSubmit}>
       <Welcome />

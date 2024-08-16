@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { styled } from "styled-components";
-import { formatPrice } from "../../../../../utils/maths";
-import BasketBody from "./BasketBody";
-import UserContext from "../../../../../context/UserContext";
-import { theme } from "../../../../../theme";
-import BasketFooter from "./BasketFooter.jsx";
-import BasketHeader from "./BasketHeader.jsx";
-import { calculateBasketTotal } from "../../../../../helper/helper";
-import { isEmpty } from "../../../../../utils/array";
+import { formatPrice } from "../../../../../utils/maths.js";
+import BasketBody from "./BasketBody.js";
+import UserContext from "../../../../../context/UserContext.js";
+import { theme } from "../../../../../theme/index.js";
+import BasketFooter from "./BasketFooter.js";
+import BasketHeader from "./BasketHeader.js";
+import { calculateBasketTotal } from "../../../../../helper/helper.js";
+import { isEmpty } from "../../../../../utils/array.js";
 
 export default function Basket() {
   const { menu, basketProduct } = useContext(UserContext);

@@ -1,5 +1,14 @@
-import styled, { css } from "styled-components";
+import styled, { css, RuleSet } from "styled-components";
 import { theme } from "../../theme";
+
+type PrimaryButtonProps = {
+  label: string,
+  Icon: JSX.Element,
+  className: string,
+  onClick?: () => void,
+  version?: "classic" | "success",
+  disabled?: boolean,
+}
 
 export default function PrimaryButton({
   label,
@@ -8,7 +17,7 @@ export default function PrimaryButton({
   onClick,
   version = "classic",
   disabled,
-}) {
+}: PrimaryButtonProps) {
   return (
     <PrimaryButtonStyled
       className={className}
@@ -22,7 +31,7 @@ export default function PrimaryButton({
   );
 }
 
-const PrimaryButtonStyled = styled.button`
+const PrimaryButtonStyled = styled.button<{ version: "classic" | "success" }>`
   ${({ version }) => extraStyle[version]}
 `;
 const extraStyleClassic = css`
@@ -102,7 +111,10 @@ const extraStyleSuccess = css`
   }
 `;
 
-const extraStyle = {
+type ExtraStyleType = {
+  [key: string]: RuleSet<object>,
+}
+const extraStyle: ExtraStyleType = {
   classic: extraStyleClassic,
   success: extraStyleSuccess,
 };
