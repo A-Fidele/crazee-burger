@@ -1,16 +1,13 @@
 import { useState } from "react";
-import {
-  deepClone,
-  findObjectIndexById,
-  removeObjectById,
-} from "../utils/array";
+import { fakeMenu, MenuType } from "../fakeData/fakeMenu";
+import { ProductType } from "../enums/product";
+import { deepClone, findObjectIndexById, removeObjectById } from "../utils/array";
 import { updateMenuDb } from "../api/product";
-import { fakeMenu } from "../fakeData/fakeMenu";
 
 export const useMenu = () => {
-  const [menu, setMenu] = useState();
+  const [menu, setMenu] = useState<MenuType[]>();
 
-  const handleEdit = async (productEdit, username) => {
+  const handleEdit = async (productEdit: ProductType, username: string) => {
     const menuCopy = deepClone(menu);
     const indexProduct = findObjectIndexById(menu, productEdit.id);
     menuCopy[indexProduct] = productEdit;
@@ -19,7 +16,7 @@ export const useMenu = () => {
     updateMenuDb(username, menuCopy);
   };
 
-  const handleAddProduct = (username, newProduct) => {
+  const handleAddProduct = (username: string, newProduct: ProductType) => {
     const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
     updateMenuDb(username, menuUpdated);
@@ -27,13 +24,13 @@ export const useMenu = () => {
   };
 
   //gestionnaire de state
-  const handleDelete = (username, id) => {
+  const handleDelete = (username: string, id: string) => {
     const menuUpdated = removeObjectById(menu, id);
     updateMenuDb(username, menuUpdated);
     setMenu(menuUpdated);
   };
 
-  const resetMenu = (username) => {
+  const resetMenu = (username: string) => {
     setMenu(fakeMenu.LARGE);
     updateMenuDb(username, fakeMenu.LARGE);
   };

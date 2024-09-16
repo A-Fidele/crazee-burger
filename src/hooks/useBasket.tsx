@@ -1,16 +1,13 @@
 import { useState } from "react";
-import {
-  deepClone,
-  findObjectById,
-  findObjectIndexById,
-  removeObjectById,
-} from "../utils/array";
+
+import { ProductType } from "../enums/product";
+import { deepClone, findObjectById, findObjectIndexById, removeObjectById } from "../utils/array";
 import { setLocalStorage } from "../utils/window";
 
 export const useBasket = () => {
-  const [basketProduct, setBasketProduct] = useState([]);
+  const [basketProduct, setBasketProduct] = useState<ProductType[]>([]);
 
-  const handleDeleteBasketProduct = (idOfProductToDelete, username) => {
+  const handleDeleteBasketProduct = (idOfProductToDelete: string, username: string) => {
     const basketProductUpdated = removeObjectById(
       basketProduct,
       idOfProductToDelete
@@ -19,7 +16,7 @@ export const useBasket = () => {
     setBasketProduct(basketProductUpdated);
   };
 
-  const handleAddToBasket = (productToAdd, username) => {
+  const handleAddToBasket = (productToAdd: ProductType, username: string) => {
     const basketProductCopy = deepClone(basketProduct);
     const productFound = findObjectById(basketProduct, productToAdd.id);
 

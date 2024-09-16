@@ -1,8 +1,10 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, { css, RuleSet } from "styled-components";
 import { theme } from "../../../../../../theme";
 
-export default function Loading({ className }) {
+type LoadingType = { className: "menu" | "basket" }
+
+export default function Loading({ className }: LoadingType) {
   return (
     <LoadingStyled className={className}>
       <span className="title">CHARGEMENT EN COURS ...</span>
@@ -11,7 +13,7 @@ export default function Loading({ className }) {
 }
 
 const LoadingStyled = styled.div`
-  ${(props) => extraStyled[props.className]}
+  ${({ className }) => extraStyled[className]}
 `;
 const extraStyledMenu = css`
   display: flex;
@@ -44,7 +46,13 @@ const extraStyledBasket = css`
     justify-content: center;
   }
 `;
-const extraStyled = {
+type OptionExtraStyledType = "menu" | "basket";
+
+type extraStyledType = {
+  [key in OptionExtraStyledType]: RuleSet<object>;
+}
+
+const extraStyled: extraStyledType = {
   menu: extraStyledMenu,
   basket: extraStyledBasket,
 };

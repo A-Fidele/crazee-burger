@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { styled } from "styled-components";
-import { theme } from "../../../../../../theme";
 import PrimaryButton from "../../../../../reusable-ui/PrimaryButton";
+import { theme } from "../../../../../../theme";
 
-export default function EmptyMenuAdmin({ onReset }) {
+type EmptyMenuAdminprops = {
+  onReset: () => void,
+}
+
+export default function EmptyMenuAdmin({ onReset }: EmptyMenuAdminprops) {
   return (
     <EmptyMenuAdminStyled>
       <div className="empty-menu-container">

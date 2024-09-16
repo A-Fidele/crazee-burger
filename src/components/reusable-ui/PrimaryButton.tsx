@@ -3,7 +3,7 @@ import { theme } from "../../theme";
 
 type PrimaryButtonProps = {
   label: string,
-  Icon: JSX.Element,
+  Icon?: JSX.Element,
   className: string,
   onClick?: () => void,
   version?: "classic" | "success",

@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import { ProductType } from "../enums/product";
 
 export default createContext({
     username: "",
-    
+
     isAdmin: false,
     setIsAdmin: () => { },
 
@@ -13,23 +14,23 @@ export default createContext({
     setCurrentTabSelected: () => { },
 
     menu: [],
-    handleAddProduct: (newProduct) => { },
-    handleDelete: (title) => { },
-    resetMenu: () => {},
+    handleAddProduct: () => { },
+    handleDelete: (username: string, id: string) => { },
+    resetMenu: (username: string) => { },
 
     newProduct: {},
-    setNewProduct: () => {},
+    setNewProduct: () => { },
 
-    productSelected: {},
-    setProductSelected: () => {},
-    handleEdit: () => {},
-    handleSelectCard: () => {},
+    productSelected: <ProductType>{},
+    setProductSelected: (EMPTY_PRODUCT: ProductType) => { },
+    handleEdit: () => { },
+    handleSelectCard: (id: string) => { },
 
-    inputEditRef:{},
+    inputEditRef: {},
 
     basketProduct: [],
-    setBasketProduct: () => {},
+    setBasketProduct: () => { },
 
-    handleAddToBasket: (idOfProducToAdd) => {},
-    handleDeleteBasketProduct: (idProductToDelete) => {},
+    handleAddToBasket: (productToAdd: ProductType, username: string) => { },
+    handleDeleteBasketProduct: (id: string, username: string) => { },
 });

@@ -1,10 +1,24 @@
 import styled, { css } from "styled-components";
-import { theme } from "../../theme";
-import PrimaryButton from "./PrimaryButton";
 import { TiDelete } from "react-icons/ti";
-import { fadeInRight, fadeInTop } from "../../theme/animations";
-import { OUT_OF_STOCK_IMAGE } from "../../enums/product";
+import { OUT_OF_STOCK_IMAGE, ProductType } from "../../enums/product";
+import { theme } from "../../theme";
 
+type CardProps = {
+  title: string,
+  imageSource: string,
+  leftDescription: string,
+  hasDeleteButton: boolean,
+  onDelete: (id: string, event: {
+    stopPropagation(): unknown; preventDefault: () => void
+  }) => void,
+  onSelect: (id: string) => void,
+  isHoverable: boolean,
+  isSelected: boolean,
+  handleAddProduct: (event: {
+    stopPropagation(): unknown; preventDefault: () => void
+  }, id: string) => void,
+  isOverLap: boolean,
+}
 export default function Card({
   title,
   imageSource,
@@ -16,7 +30,7 @@ export default function Card({
   isSelected,
   handleAddProduct,
   isOverLap,
-}) {
+}: CardProps) {
   return (
     <CardStyled
       className={hasDeleteButton && "delete-icon"}

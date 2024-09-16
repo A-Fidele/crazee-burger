@@ -23,7 +23,7 @@ export default function BasketCards() {
     handleSelectCard,
   } = useContext(UserContext);
 
-  const handleDelete = (event, id) => {
+  const handleDelete = (event: { stopPropagation(): unknown; preventDefault: () => void }, id: string) => {
     event.stopPropagation();
     handleDeleteBasketProduct(id, username);
   };

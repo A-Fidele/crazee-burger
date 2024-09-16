@@ -1,21 +1,18 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
-import { formatPrice } from "../../../../../../utils/maths";
-import Card from "../../../../../reusable-ui/Card";
-import UserContext from "../../../../../../context/UserContext";
 import EmptyMenuCustomer from "./EmptyMenuCustomer";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
-import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../../enums/product";
-import {
-  findObjectById,
-  isEmpty,
-  isUndefined,
-} from "../../../../../../utils/array";
+
 import Loading from "./Loading";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { cardMenuAnimation } from "../../../../../../theme/animations";
+import UserContext from "../../../../../../context/UserContext";
+import { findObjectById, isEmpty, isUndefined } from "../../../../../../utils/array";
+import { DEFAULT_IMAGE, EMPTY_PRODUCT, ProductType } from "../../../../../../enums/product";
 import { convertStringToBoolean } from "../../../../../../utils/string";
+import Card from "../../../../../reusable-ui/Card";
+import { formatPrice } from "../../../../../../utils/maths";
+import { theme } from "../../../../../../theme";
+import { cardMenuAnimation } from "../../../../../../theme/animations";
 import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
 
 export default function Menu() {
@@ -39,19 +36,23 @@ export default function Menu() {
     return <EmptyMenuAdmin onReset={() => resetMenu(username)} />;
   }
 
-  const checkProductIsClicked = (idProductedCliked, productSelected) => {
+  const checkProductIsClicked = (idProductedCliked: string, productSelected: ProductType): boolean => {
     return idProductedCliked === productSelected.id;
   };
 
   //gestionnaire d'evenement
-  const handleOnDelete = (id, event) => {
+  const handleOnDelete = (id: string, event: {
+    stopPropagation(): unknown; preventDefault: () => void
+  }) => {
     event.stopPropagation();
     handleDelete(username, id);
     handleDeleteBasketProduct(id, username);
     setProductSelected(EMPTY_PRODUCT);
   };
 
-  const handleAddProduct = (event, id) => {
+  const handleAddProduct = (event: {
+    stopPropagation(): unknown; preventDefault: () => void
+  }, id: string) => {
     event.stopPropagation();
     const productToAdd = findObjectById(menu, id);
     handleAddToBasket(productToAdd, username);
@@ -82,11 +83,11 @@ export default function Menu() {
                   imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
                   leftDescription={formatPrice(price)}
                   hasDeleteButton={isAdmin}
-                  onDelete={(event) => handleOnDelete(id, event)}
+                  onDelete={(id: string, event: { stopPropagation(): unknown; preventDefault: () => void; }) => handleOnDelete(id, event)}
                   onSelect={() => handleSelectCard(id)}
                   isHoverable={isAdmin}
                   isSelected={checkProductIsClicked(id, productSelected)}
-                  handleAddProduct={(event) => handleAddProduct(event, id)}
+                  handleAddProduct={(event: { stopPropagation(): unknown; preventDefault: () => void; }) => handleAddProduct(event, id)}
                   isOverLap={convertStringToBoolean(isAvailable) === false}
                 />
               </div>

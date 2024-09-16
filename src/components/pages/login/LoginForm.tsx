@@ -11,7 +11,7 @@ import { theme } from "../../../theme";
 
 export default function LoginForm() {
   // state
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState<string>("");
   const navigate = useNavigate();
 
   // comportements

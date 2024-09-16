@@ -1,10 +1,14 @@
 import { styled } from "styled-components";
-import { theme } from "../../../../theme";
 import Logo from "../../../reusable-ui/Logo";
 import NavbarRightSide from "./NavbarRightSide";
 import { refreshPage } from "../../../../utils/window";
+import { theme } from "../../../../theme";
 
-export default function Navbar({ username }) {
+type NavBarProps = {
+  username: string,
+}
+
+export default function Navbar({ username }: NavBarProps) {
   return (
     <NavbarStyled>
       <Logo className="logo-order-page" onClick={() => refreshPage()} />
@@ -23,7 +27,6 @@ const NavbarStyled = styled.nav`
   border-top-left-radius: ${theme.borderRadius.extraRound};
   border-top-right-radius: ${theme.borderRadius.extraRound};
   border-bottom: 1px solid ${theme.colors.greyLight};
-  /* align-items: center; */
 
   .logo-order-page {
     cursor: pointer;
