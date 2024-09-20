@@ -4,7 +4,9 @@ import { theme } from "../../../../../theme";
 import { BASKET_MESSAGE } from "../../../../../enums/product";
 import { emptyBasketAnimation } from "../../../../../theme/animations";
 
-export default function EmptyBasket({ isLoading }) {
+type EmptyBasketProps = { isLoading: boolean }
+
+export default function EmptyBasket({ isLoading }: EmptyBasketProps) {
   return (
     <EmptyBasketStyled>
       <span className="empty-message">

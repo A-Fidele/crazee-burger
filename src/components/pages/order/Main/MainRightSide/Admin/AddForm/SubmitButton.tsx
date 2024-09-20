@@ -2,7 +2,9 @@ import React, { Fragment } from "react";
 import PrimaryButton from "../../../../../../reusable-ui/PrimaryButton";
 import SubmitMessage from "./SubmitMessage";
 
-export default function SubmitButton({ isSuccess }) {
+type SubmitButtonProps = { isSuccess: boolean }
+
+export default function SubmitButton({ isSuccess }: SubmitButtonProps) {
   return (
     <>
       <PrimaryButton

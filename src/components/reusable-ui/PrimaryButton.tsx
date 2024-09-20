@@ -5,7 +5,7 @@ type PrimaryButtonProps = {
   label: string,
   Icon?: JSX.Element,
   className: string,
-  onClick?: () => void,
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
   version?: "classic" | "success",
   disabled?: boolean,
 }
@@ -93,7 +93,7 @@ const extraStyleSuccess = css`
   color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};
   font-weight: ${theme.fonts.weights.bold};
-  font-size: ${theme.fonts.size.sm};
+  font-size: ${theme.fonts.size.SM};
   display: inline-flex;
   justify-content: center;
   align-items: center;

@@ -41,18 +41,14 @@ export default function Menu() {
   };
 
   //gestionnaire d'evenement
-  const handleOnDelete = (id: string, event: {
-    stopPropagation(): unknown; preventDefault: () => void
-  }) => {
+  const handleOnDelete = (id: string, event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     handleDelete(username, id);
     handleDeleteBasketProduct(id, username);
     setProductSelected(EMPTY_PRODUCT);
   };
 
-  const handleAddProduct = (event: {
-    stopPropagation(): unknown; preventDefault: () => void
-  }, id: string) => {
+  const handleAddProduct = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
     event.stopPropagation();
     const productToAdd = findObjectById(menu, id);
     handleAddToBasket(productToAdd, username);
@@ -83,11 +79,11 @@ export default function Menu() {
                   imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
                   leftDescription={formatPrice(price)}
                   hasDeleteButton={isAdmin}
-                  onDelete={(id: string, event: { stopPropagation(): unknown; preventDefault: () => void; }) => handleOnDelete(id, event)}
+                  onDelete={(event: React.MouseEvent<HTMLButtonElement>) => handleOnDelete(id, event)}
                   onSelect={() => handleSelectCard(id)}
                   isHoverable={isAdmin}
                   isSelected={checkProductIsClicked(id, productSelected)}
-                  handleAddProduct={(event: { stopPropagation(): unknown; preventDefault: () => void; }) => handleAddProduct(event, id)}
+                  handleAddProduct={(event: React.MouseEvent<HTMLButtonElement>) => handleAddProduct(event, id)}
                   isOverLap={convertStringToBoolean(isAvailable) === false}
                 />
               </div>

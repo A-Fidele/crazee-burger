@@ -12,7 +12,7 @@ export default function Loading({ className }: LoadingType) {
   );
 }
 
-const LoadingStyled = styled.div`
+const LoadingStyled = styled.div<{ className: "menu" | "basket" }>`
   ${({ className }) => extraStyled[className]}
 `;
 const extraStyledMenu = css`

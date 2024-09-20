@@ -1,22 +1,21 @@
+import React from "react";
 import styled, { css } from "styled-components";
 import { TiDelete } from "react-icons/ti";
-import { OUT_OF_STOCK_IMAGE, ProductType } from "../../enums/product";
+import { OUT_OF_STOCK_IMAGE } from "../../enums/product";
 import { theme } from "../../theme";
+import PrimaryButton from "./PrimaryButton";
+import { fadeInRight, fadeInTop } from "../../theme/animations";
 
 type CardProps = {
   title: string,
   imageSource: string,
   leftDescription: string,
   hasDeleteButton: boolean,
-  onDelete: (id: string, event: {
-    stopPropagation(): unknown; preventDefault: () => void
-  }) => void,
+  onDelete: (event: React.MouseEvent<HTMLButtonElement>) => void,
   onSelect: (id: string) => void,
   isHoverable: boolean,
   isSelected: boolean,
-  handleAddProduct: (event: {
-    stopPropagation(): unknown; preventDefault: () => void
-  }, id: string) => void,
+  handleAddProduct: (event: React.MouseEvent<HTMLButtonElement>) => void,
   isOverLap: boolean,
 }
 export default function Card({
@@ -39,7 +38,11 @@ export default function Card({
     >
       <div className={hasDeleteButton && isSelected ? "selected-card" : "card"}>
         {hasDeleteButton && (
-          <button className="delete-icon" onClick={onDelete}>
+          <button className="delete-icon" onClick={(event) => {
+            event.stopPropagation();
+            event.preventDefault();
+            onDelete(event);
+          }}>
             <TiDelete className="icon" />
           </button>
         )}
@@ -87,7 +90,7 @@ export default function Card({
     </CardStyled>
   );
 }
-const CardStyled = styled.div`
+const CardStyled = styled.div<{ $isHoverable: boolean }>`
   ${({ $isHoverable }) => $isHoverable && hoverableStyle}
   height: 330px;
   border-radius: ${theme.borderRadius.extraRound};

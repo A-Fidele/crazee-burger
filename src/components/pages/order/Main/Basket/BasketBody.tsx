@@ -4,7 +4,9 @@ import { useContext } from "react";
 import UserContext from "../../../../../context/UserContext";
 import { isUndefined } from "../../../../../utils/array";
 
-export default function BasketBody({ isBasketEmpty }) {
+type BasketBodyProps = { isBasketEmpty: boolean }
+
+export default function BasketBody({ isBasketEmpty }: BasketBodyProps) {
   const { menu } = useContext(UserContext);
 
   return (
