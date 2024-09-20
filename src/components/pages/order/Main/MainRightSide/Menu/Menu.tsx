@@ -2,7 +2,6 @@ import { useContext } from "react";
 import styled from "styled-components";
 import EmptyMenuCustomer from "./EmptyMenuCustomer";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
-
 import Loading from "./Loading";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserContext from "../../../../../../context/UserContext";

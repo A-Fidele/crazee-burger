@@ -4,7 +4,14 @@ import EditForm from "../EditForm/EditForm.js";
 import HintMessage from "../EditForm/HintMessage.js";
 import AddForm from "../AddForm/AddForm.js";
 
-export const getTabsConfig = (hasAlreadyBeenClicked) => [
+type GetTabConfigType = {
+  index: string,
+  label: string,
+  Icon: JSX.Element,
+  Content: JSX.Element,
+}
+
+export const getTabsConfig = (hasAlreadyBeenClicked?: boolean): GetTabConfigType[] => [
   {
     index: "add",
     label: "Ajouter un produit",

@@ -14,7 +14,7 @@ export default function AdminTabs() {
     setCurrentTabSelected,
   } = useContext(Usercontext);
 
-  const selectTab = (tabSelected) => {
+  const selectTab = (tabSelected: string) => {
     setIsCollapsed(false);
     setCurrentTabSelected(tabSelected);
   };

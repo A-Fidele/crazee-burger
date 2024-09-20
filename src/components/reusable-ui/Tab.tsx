@@ -1,7 +1,15 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function Tab({ onClick, className, Icon, label }) {
+type TabProps = {
+  index: string,
+  onClick: () => void,
+  className: string,
+  Icon: JSX.Element,
+  label: string,
+}
+
+export default function Tab({ onClick, className, Icon, label }: TabProps) {
   return (
     <TabStyled className={className} onClick={onClick}>
       <div className="icon">{Icon}</div>

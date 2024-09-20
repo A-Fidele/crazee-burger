@@ -8,10 +8,10 @@ export default createContext({
     setIsAdmin: () => { },
 
     isCollapsed: false,
-    setIsCollapsed: () => { },
+    setIsCollapsed: (isCollapsed: boolean) => { },
 
-    currentTabSelected: false,
-    setCurrentTabSelected: () => { },
+    currentTabSelected: "",
+    setCurrentTabSelected: (tabSelected: string) => { },
 
     menu: [],
     handleAddProduct: () => { },
