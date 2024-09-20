@@ -23,7 +23,7 @@ export default function BasketCards() {
     handleSelectCard,
   } = useContext(UserContext);
 
-  const handleDelete = (event: { stopPropagation(): unknown; preventDefault: () => void }, id: string) => {
+  const handleDelete = (event: React.MouseEvent<HTMLElement>, id: string) => {
     event.stopPropagation();
     handleDeleteBasketProduct(id, username);
   };
@@ -33,14 +33,14 @@ export default function BasketCards() {
       component={BasketCardsStyled}
       className={"transition-group"}
     >
-      {basketProduct.map((product) => {
-        const menuProduct = findObjectById(menu, product.id);
+      {basketProduct.map(({ id, quantity }) => {
+        const menuProduct = findObjectById(menu, id);
         return (
           <CSSTransition
             appear
             classNames={"card-container"}
             timeout={400}
-            key={product.id}
+            key={id}
           >
             <div className="card-container">
               {convertStringToBoolean(menuProduct.isPublicised) && (
@@ -49,15 +49,15 @@ export default function BasketCards() {
               <div className="basket-card">
                 <BasketCard
                   {...menuProduct}
-                  quantity={product.quantity}
-                  onDelete={(event) => handleDelete(event, product.id)}
+                  quantity={quantity}
+                  onDelete={(event: React.MouseEvent<HTMLElement>) => handleDelete(event, id)}
                   isClickable={isAdmin}
-                  onSelect={() => handleSelectCard(product.id)}
+                  onSelect={() => handleSelectCard(id)}
                   isSelected={checkProductIsClicked(
-                    product.id,
+                    id,
                     productSelected
                   )}
-                  className={"card"}
+                  //className={"card"}
                   price={
                     convertStringToBoolean(menuProduct.isAvailable)
                       ? formatPrice(menuProduct.price)

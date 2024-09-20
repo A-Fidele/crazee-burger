@@ -5,6 +5,17 @@ import { MdDeleteForever } from "react-icons/md";
 import { DEFAULT_IMAGE } from "../../../../../enums/product";
 import CasinoEffect from "../../../../reusable-ui/CasinoEffect";
 
+type BasketCardType = {
+  title: string,
+  imageSource: string,
+  price: string,
+  quantity: number,
+  onDelete: (event: React.MouseEvent<HTMLElement>) => void,
+  isClickable: boolean,
+  onSelect: () => void,
+  isSelected: boolean,
+}
+
 export default function BasketCard({
   title,
   imageSource,
@@ -14,7 +25,7 @@ export default function BasketCard({
   isClickable,
   onSelect,
   isSelected,
-}) {
+}: BasketCardType) {
   return (
     <BasketCardStyled
       $isClickable={isClickable}
@@ -45,7 +56,7 @@ export default function BasketCard({
   );
 }
 
-const BasketCardStyled = styled.div`
+const BasketCardStyled = styled.div<{ $isClickable: boolean }>`
   cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "auto")};
   box-sizing: border-box;
   height: 86px;
