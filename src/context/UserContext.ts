@@ -13,7 +13,7 @@ export default createContext({
     currentTabSelected: "",
     setCurrentTabSelected: (tabSelected: string) => { },
 
-    menu: [],
+    menu: [] as ProductType[],
     handleAddProduct: () => { },
     handleDelete: (username: string, id: string) => { },
     resetMenu: (username: string) => { },
@@ -28,7 +28,7 @@ export default createContext({
 
     inputEditRef: {},
 
-    basketProduct: [],
+    basketProduct: [] as ProductType[],
     setBasketProduct: () => { },
 
     handleAddToBasket: (productToAdd: ProductType, username: string) => { },

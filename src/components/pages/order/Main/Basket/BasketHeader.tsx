@@ -4,7 +4,9 @@ import { theme } from "../../../../../theme";
 import Header from "../../../../reusable-ui/Header";
 import CasinoEffect from "../../../../reusable-ui/CasinoEffect";
 
-export default function Total({ amountToPay }) {
+type TotalProps = { amountToPay: string };
+
+export default function Total({ amountToPay }: TotalProps) {
   return (
     <Header>
       <TotalStyled>

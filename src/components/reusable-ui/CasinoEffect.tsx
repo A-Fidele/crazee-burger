@@ -3,9 +3,9 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styled from "styled-components";
 
 type CasinoEffectType = {
-  count: number,
+  count: string | number,
   className?: string,
-  text: "x ",
+  text?: "x ",
 }
 
 export default function CasinoEffect({ count, className, text }: CasinoEffectType) {
