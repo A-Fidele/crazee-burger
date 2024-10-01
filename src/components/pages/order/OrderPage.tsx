@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Params, useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
@@ -12,7 +12,7 @@ import { findObjectIndexById } from "../../../utils/array";
 import { initialiseUserSession } from "./helpers/userSession";
 
 export default function OrderPage() {
-  const { username } = useParams();
+  const { username }: Readonly<Params<string>> = useParams();
   const [isAdmin, setIsAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
@@ -34,12 +34,12 @@ export default function OrderPage() {
     handleDeleteBasketProduct,
   } = useBasket();
 
-  const inputEditRef = useRef();
+  const inputEditRef: React.MutableRefObject<HTMLInputElement | null> = useRef(null);
 
-  const handleSelectCard = async (idOfProductSelected) => {
+  const handleSelectCard = async (idOfProductSelected: string) => {
     if (!isAdmin) return;
-    await setIsCollapsed(false);
-    await setCurrentTabSelected("edit");
+    setIsCollapsed(false);
+    setCurrentTabSelected("edit");
 
     const indexOfProductClickedOn = findObjectIndexById(
       menu,
@@ -47,16 +47,16 @@ export default function OrderPage() {
     );
 
     const productClickedOn = menu[indexOfProductClickedOn];
-    await setProductSelected(productClickedOn);
-    inputEditRef.current.focus();
+    setProductSelected(productClickedOn);
+    if (inputEditRef.current) inputEditRef.current.focus();
   };
 
   useEffect(() => {
-    initialiseUserSession(username, setMenu, setBasketProduct);
+    username && initialiseUserSession(username, setMenu, setBasketProduct);
   }, []);
 
   const userContextValue = {
-    username,
+    username: username || "",
     isAdmin,
     setIsAdmin,
     isCollapsed,
@@ -74,6 +74,7 @@ export default function OrderPage() {
     handleEdit,
     inputEditRef,
     basketProduct,
+    setBasketProduct,
     handleAddToBasket,
     handleDeleteBasketProduct,
     handleSelectCard,
@@ -83,7 +84,7 @@ export default function OrderPage() {
     <UserContext.Provider value={userContextValue}>
       <OrderPageStyled>
         <div className="container">
-          <Navbar username={username} />
+          <Navbar username={username || ""} />
           <Main />
         </div>
       </OrderPageStyled>

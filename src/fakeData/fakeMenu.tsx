@@ -1,8 +1,8 @@
-import { MenuType } from "../typeScript/MenuType";
+import { ProductType } from "../typeScript/ProductType";
 
-const EMPTY: MenuType[] = [];
+const EMPTY: ProductType[] = [];
 
-const SMALL: MenuType[] = [
+const SMALL: ProductType[] = [
   {
     id: "1",
     imageSource: "/images/burger1.png",
@@ -23,7 +23,7 @@ const SMALL: MenuType[] = [
   },
 ];
 
-const MEDIUM: MenuType[] = [
+const MEDIUM: ProductType[] = [
   {
     id: "1",
     imageSource: "/images/burger-bacon-egg.png",
@@ -71,7 +71,7 @@ const MEDIUM: MenuType[] = [
   },
 ];
 
-const LARGE: MenuType[] = [
+const LARGE: ProductType[] = [
   {
     id: "1",
     imageSource: "/images/burger-bacon-egg.png",

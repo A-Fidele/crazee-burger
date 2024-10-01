@@ -2,6 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
+type OptionType = {
+  value: string;
+  label: string;
+};
+
+type SelectInputTypes = {
+  name: string,
+  id: string,
+  className: string,
+  options: OptionType[],
+  Icon: JSX.Element,
+  value: string,
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  onFocus: (e: React.FocusEvent<HTMLSelectElement>) => void,
+  onBlur: (e: React.FocusEvent<HTMLSelectElement>) => void,
+
+}
 export default function SelectInput({
   name,
   id,
@@ -13,7 +30,7 @@ export default function SelectInput({
   onFocus,
   onBlur,
   ...restProps
-}) {
+}: SelectInputTypes) {
   return (
     <SelectInputStyled className={className}>
       <div className="icon">{Icon}</div>

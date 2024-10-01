@@ -1,11 +1,11 @@
 import { createContext } from "react";
-import { ProductType } from "../enums/product";
+import { ProductType } from "../typeScript/ProductType";
 
 export default createContext({
     username: "",
 
     isAdmin: false,
-    setIsAdmin: () => { },
+    setIsAdmin: (isAdmin: boolean) => { },
 
     isCollapsed: false,
     setIsCollapsed: (isCollapsed: boolean) => { },
@@ -14,22 +14,22 @@ export default createContext({
     setCurrentTabSelected: (tabSelected: string) => { },
 
     menu: [] as ProductType[],
-    handleAddProduct: () => { },
+    handleAddProduct: (username: string, newProduct: ProductType) => { },
     handleDelete: (username: string, id: string) => { },
     resetMenu: (username: string) => { },
 
-    newProduct: {},
-    setNewProduct: () => { },
+    newProduct: {} as ProductType,
+    setNewProduct: (newProduct: ProductType) => { },
 
     productSelected: <ProductType>{},
     setProductSelected: (EMPTY_PRODUCT: ProductType) => { },
-    handleEdit: () => { },
+    handleEdit: (productWithPriceUpdated: ProductType, username: string) => { },
     handleSelectCard: (id: string) => { },
 
-    inputEditRef: {},
+    inputEditRef: {} as React.MutableRefObject<HTMLInputElement | null>,
 
     basketProduct: [] as ProductType[],
-    setBasketProduct: () => { },
+    setBasketProduct: (basketProductUpdated: ProductType[]) => { },
 
     handleAddToBasket: (productToAdd: ProductType, username: string) => { },
     handleDeleteBasketProduct: (id: string, username: string) => { },

@@ -1,17 +1,10 @@
-export type ProductType = {
-  quantity: number;
-  id: string,
-  title: string,
-  imageSource: string,
-  price: number,
-  isAvailable: boolean,
-  isPublicised: boolean,
-}
+import { ProductType } from "../typeScript/ProductType";
 
 export const EMPTY_PRODUCT: ProductType = Object.freeze({
   id: "",
   title: "",
   imageSource: "",
+  quantity: 0,
   price: 0,
   isAvailable: true,
   isPublicised: false,

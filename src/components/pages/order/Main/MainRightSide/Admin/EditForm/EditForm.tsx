@@ -21,7 +21,7 @@ export default function EditForm() {
   const inputTexts = getInputTextsConfig(productSelected);
   const inputSelects = getSelectConfig(productSelected);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.MouseEvent<HTMLElement>) => {
     const { name, value } = e.target;
     const productUpdated = {
       ...productSelected,
@@ -41,7 +41,7 @@ export default function EditForm() {
     setValueOnfocus(event.target.value);
   };
 
-  const handleOnBlur = (event) => {
+  const handleOnBlur = (event: React.MouseEvent<HTMLElement>) => {
     const valueOnBlur = event.target.value;
     if (valueOnfocus !== valueOnBlur) displaySuccessMessage();
   };

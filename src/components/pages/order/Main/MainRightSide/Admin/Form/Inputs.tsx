@@ -4,9 +4,18 @@ import TextInput from "../../../../../../reusable-ui/TextInput";
 import SelectInput from "../../../../../../reusable-ui/SelectInput";
 import { theme } from "../../../../../../../theme";
 import { getInputTextsConfig, getSelectConfig } from "./inputTextsConfig";
+import { ProductType } from "../../../../../../../typeScript/ProductType";
+
+type InputsType = {
+  product: ProductType,
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void,
+  onFocus: (e: React.FocusEvent<HTMLInputElement>) => void,
+  version: "classic" | "darklight",
+}
 
 const Inputs = React.forwardRef(
-  ({ product, onChange, onBlur, onFocus, version }, ref) => {
+  ({ product, onChange, onBlur, onFocus, version }: InputsType, ref) => {
     const inputTexts = getInputTextsConfig(product);
     const inputSelects = getSelectConfig(product);
 

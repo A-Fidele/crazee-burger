@@ -1,8 +1,7 @@
 import { useState } from "react";
-
-import { ProductType } from "../enums/product";
 import { deepClone, findObjectById, findObjectIndexById, removeObjectById } from "../utils/array";
 import { setLocalStorage } from "../utils/window";
+import { ProductType } from "../typeScript/ProductType";
 
 export const useBasket = () => {
   const [basketProduct, setBasketProduct] = useState<ProductType[]>([]);

@@ -1,6 +1,6 @@
-import { ProductType } from "../enums/product"
+import { ProductType } from "../typeScript/ProductType"
 
-export const deepClone = (array: []): [] => {
+export const deepClone = (array: ProductType[]): ProductType[] => {
     return JSON.parse(JSON.stringify(array))
 }
 

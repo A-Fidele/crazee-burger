@@ -7,8 +7,9 @@ import {
   isAvailableOptions,
   isPublicisedOptions,
 } from "../../../../../../../enums/product";
+import { ProductType } from "../../../../../../../typeScript/ProductType";
 
-export const getInputTextsConfig = (newProduct) => [
+export const getInputTextsConfig = (newProduct: ProductType) => [
   {
     id: "0",
     name: "title",
@@ -42,7 +43,22 @@ export const getInputTextsConfig = (newProduct) => [
   },
 ];
 
-export const getSelectConfig = (newProduct) => [
+type IsAvailableOptionsType = {
+  value: boolean;
+  label: string;
+}
+type GetSelectConfigType = {
+  id: string,
+  name: string,
+  value: ProductType['isAvailable'] | ProductType['isPublicised'],
+  type: string,
+  options: IsAvailableOptionsType,
+  Icon: JSX.Element,
+  version: string,
+  className: string,
+}
+
+export const getSelectConfig = (newProduct: ProductType) => [
   {
     id: "3",
     name: "isAvailable",

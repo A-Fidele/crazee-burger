@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { fakeMenu, MenuType } from "../fakeData/fakeMenu";
-import { ProductType } from "../enums/product";
+import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone, findObjectIndexById, removeObjectById } from "../utils/array";
 import { updateMenuDb } from "../api/product";
+import { ProductType } from "../typeScript/ProductType";
 
 export const useMenu = () => {
-  const [menu, setMenu] = useState<MenuType[]>();
+  const [menu, setMenu] = useState<ProductType[]>([]);
 
   const handleEdit = async (productEdit: ProductType, username: string) => {
     const menuCopy = deepClone(menu);

@@ -8,7 +8,9 @@ import ToggleButton from "./ToggleButton";
 import UserContext from "../../../../context/UserContext";
 import { useContext } from "react";
 
-export default function NavbarRightSide({ username }) {
+type NavbarRightSideProps = { username: string | "" }
+
+export default function NavbarRightSide({ username }: NavbarRightSideProps) {
   const [isChecked, setIsChecked] = useState(false);
   const { isAdmin, setIsAdmin } = useContext(UserContext);
 
