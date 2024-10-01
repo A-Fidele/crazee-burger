@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../../../../../../../context/UserContext";
-import { getInputTextsConfig, getSelectConfig } from "../Form/inputTextsConfig";
 import InstructionMessage from "./InstructionMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../../utils/maths";
 import SavedEditMessage from "./SavedEditMeessage";
@@ -18,9 +17,6 @@ export default function EditForm() {
   const { isSuccess, displaySuccessMessage } = useSuccessMessage();
   const [valueOnfocus, setValueOnfocus] = useState();
 
-  const inputTexts = getInputTextsConfig(productSelected);
-  const inputSelects = getSelectConfig(productSelected);
-
   const handleChange = (e: React.MouseEvent<HTMLElement>) => {
     const { name, value } = e.target;
     const productUpdated = {
@@ -37,7 +33,7 @@ export default function EditForm() {
     handleEdit(productWithPriceUpdated, username); //update menu
   };
 
-  const handleOnFocus = (event) => {
+  const handleOnFocus = (event: React.MouseEvent<HTMLElement>) => {
     setValueOnfocus(event.target.value);
   };
 

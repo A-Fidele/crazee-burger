@@ -4,7 +4,7 @@ import { theme } from "../../theme";
 
 type TextInputProps = {
   value: string,
-  onChange: (event: { target: any; preventDefault: () => void }) => void,
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
   Icon?: JSX.Element,
   className?: string,
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
