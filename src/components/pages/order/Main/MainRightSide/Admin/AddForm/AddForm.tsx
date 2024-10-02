@@ -1,7 +1,6 @@
-import React from "react";
+import React, { FormEventHandler } from "react";
 import { useContext } from "react";
 import UserContext from "../../../../../../../context/UserContext";
-import { getInputTextsConfig, getSelectConfig } from "../Form/inputTextsConfig";
 import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
 import { replaceFrenchCommaWithDot } from "../../../../../../../utils/maths";
@@ -13,7 +12,7 @@ export default function AddForm() {
     useContext(UserContext);
   const { isSuccess, displaySuccessMessage } = useSuccessMessage();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
 
     const productBeingChanged = {
@@ -24,7 +23,7 @@ export default function AddForm() {
     setNewProduct(productBeingChanged);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newProductToAdd = {
@@ -38,9 +37,6 @@ export default function AddForm() {
 
     displaySuccessMessage();
   };
-
-  const inputTexts = getInputTextsConfig(newProduct);
-  const inputSelects = getSelectConfig(newProduct);
 
   return (
     <Form onSubmit={handleSubmit} onChange={handleChange} product={newProduct}>

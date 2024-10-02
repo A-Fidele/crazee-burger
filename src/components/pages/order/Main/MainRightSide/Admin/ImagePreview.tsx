@@ -2,7 +2,12 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../../../../../theme";
 
-export default function ImagePreview({ imageSource, title }) {
+type ImagePreviewProps = {
+  imageSource: string,
+  title: string,
+}
+
+export default function ImagePreview({ imageSource, title }: ImagePreviewProps) {
   return (
     <ImagePreviewStyled>
       {imageSource ? (

@@ -3,7 +3,7 @@ import styled, { css, RuleSet } from "styled-components";
 import { theme } from "../../theme";
 
 type TextInputProps = {
-  value: string,
+  value: string | number,
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
   Icon?: JSX.Element,
   className?: string,

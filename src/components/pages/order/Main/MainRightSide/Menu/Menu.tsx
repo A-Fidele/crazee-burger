@@ -6,13 +6,14 @@ import Loading from "./Loading";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import UserContext from "../../../../../../context/UserContext";
 import { findObjectById, isEmpty, isUndefined } from "../../../../../../utils/array";
-import { DEFAULT_IMAGE, EMPTY_PRODUCT, ProductType } from "../../../../../../enums/product";
+import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../../enums/product";
 import { convertStringToBoolean } from "../../../../../../utils/string";
 import Card from "../../../../../reusable-ui/Card";
 import { formatPrice } from "../../../../../../utils/maths";
 import { theme } from "../../../../../../theme";
 import { cardMenuAnimation } from "../../../../../../theme/animations";
 import RibbonAnimated, { ribbonAnimation } from "./RibbonAnimated";
+import { ProductType } from "../../../../../../typeScript/ProductType";
 
 export default function Menu() {
   const {

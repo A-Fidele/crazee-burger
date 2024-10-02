@@ -2,7 +2,11 @@ import React from "react";
 import { styled } from "styled-components";
 import { theme } from "../../theme";
 
-export default function Header({ children }) {
+type HeaderProps = {
+  children: JSX.Element,
+}
+
+export default function Header({ children }: HeaderProps) {
   return <HeaderStyled>{children}</HeaderStyled>;
 }
 

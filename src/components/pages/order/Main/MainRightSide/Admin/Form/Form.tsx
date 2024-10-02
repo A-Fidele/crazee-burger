@@ -1,10 +1,19 @@
-import React from "react";
+import React, { FormEventHandler } from "react";
 import ImagePreview from "../ImagePreview";
 import styled from "styled-components";
 import Inputs from "./Inputs";
+import { ProductType } from "../../../../../../../typeScript/ProductType";
 
+type FormProps = {
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void,
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  product: ProductType,
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void,
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
+  children: JSX.Element,
+}
 const Form = React.forwardRef(
-  ({ onSubmit, onChange, product, onBlur, onFocus, children }, ref) => {
+  ({ onSubmit, onChange, product, onBlur, onFocus, children }: FormProps, ref) => {
     return (
       <FormStyled onSubmit={onSubmit}>
         <ImagePreview imageSource={product.imageSource} title={product.title} />

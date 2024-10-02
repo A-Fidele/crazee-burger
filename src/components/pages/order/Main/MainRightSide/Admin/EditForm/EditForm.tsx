@@ -15,9 +15,9 @@ export default function EditForm() {
     inputEditRef,
   } = useContext(UserContext);
   const { isSuccess, displaySuccessMessage } = useSuccessMessage();
-  const [valueOnfocus, setValueOnfocus] = useState();
+  const [valueOnfocus, setValueOnfocus] = useState<string>();
 
-  const handleChange = (e: React.MouseEvent<HTMLElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     const productUpdated = {
       ...productSelected,
@@ -33,11 +33,11 @@ export default function EditForm() {
     handleEdit(productWithPriceUpdated, username); //update menu
   };
 
-  const handleOnFocus = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     setValueOnfocus(event.target.value);
   };
 
-  const handleOnBlur = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const valueOnBlur = event.target.value;
     if (valueOnfocus !== valueOnBlur) displaySuccessMessage();
   };

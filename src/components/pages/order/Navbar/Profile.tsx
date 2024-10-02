@@ -3,7 +3,9 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { theme } from "../../../../theme"
 
-export default function Profile({ username }) {
+type ProfileProps = { username: string, }
+
+export default function Profile({ username }: ProfileProps) {
   return (
     <ProfileStyled>
       <div className="info">

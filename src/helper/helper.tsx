@@ -1,4 +1,4 @@
-import { ProductType } from "../enums/product";
+import { ProductType } from "../typeScript/ProductType";
 import { findObjectById } from "../utils/array";
 import { convertStringToBoolean } from "../utils/string";
 
