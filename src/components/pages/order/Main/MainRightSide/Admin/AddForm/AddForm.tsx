@@ -12,7 +12,7 @@ export default function AddForm() {
     useContext(UserContext);
   const { isSuccess, displaySuccessMessage } = useSuccessMessage();
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     const productBeingChanged = {

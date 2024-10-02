@@ -4,7 +4,7 @@ import { theme } from "../../theme";
 
 type TextInputProps = {
   value: string | number,
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
+  onChange: (event: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => void,
   Icon?: JSX.Element,
   className?: string,
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
@@ -14,7 +14,7 @@ type TextInputProps = {
   required?: boolean,
 }
 
-const TextInput = React.forwardRef(
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
       value,
@@ -26,7 +26,7 @@ const TextInput = React.forwardRef(
       version = "classic",
       ...extraProps
     }: TextInputProps,
-    ref
+    ref // Ref ici est typé pour être associé à un HTMLInputElement
   ) => {
     return (
       <TextInputStyled className={className} version={version}>

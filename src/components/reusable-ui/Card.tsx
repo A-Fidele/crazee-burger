@@ -32,9 +32,9 @@ export default function Card({
 }: CardProps) {
   return (
     <CardStyled
-      className={hasDeleteButton && "delete-icon"}
+      className={hasDeleteButton ? "delete-icon" : undefined}
       $isHoverable={isHoverable}
-      onClick={onSelect}
+      onClick={() => onSelect(title)}
     >
       <div className={hasDeleteButton && isSelected ? "selected-card" : "card"}>
         {hasDeleteButton && (

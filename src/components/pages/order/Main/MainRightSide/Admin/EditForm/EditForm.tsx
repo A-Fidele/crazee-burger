@@ -17,7 +17,7 @@ export default function EditForm() {
   const { isSuccess, displaySuccessMessage } = useSuccessMessage();
   const [valueOnfocus, setValueOnfocus] = useState<string>();
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const productUpdated = {
       ...productSelected,

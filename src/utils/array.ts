@@ -9,7 +9,12 @@ export const removeObjectById = (array: ProductType[], idOfObjecToDelete: Produc
 }
 
 export const findObjectById = (array: ProductType[], idOfObjectToFind: ProductType['id']): ProductType => {
-    return array.find((product) => product.id === idOfObjectToFind)
+    const product = array.find((product) => product.id === idOfObjectToFind)
+    if (product) {
+        return product
+    } else {
+        throw new Error(`Product with id ${idOfObjectToFind} not found`);
+    }
 }
 
 export const findObjectIndexById = (array: ProductType[], idOfObjectToFind: ProductType['id']) => {

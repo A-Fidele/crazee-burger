@@ -6,16 +6,16 @@ import { theme } from "../../../../../../../theme";
 import { getInputTextsConfig, getSelectConfig } from "./inputTextsConfig";
 import { ProductType } from "../../../../../../../typeScript/ProductType";
 
-type InputsType = {
+type InputsProps = {
   product: ProductType,
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  onChange: (e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => void,
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void,
   onFocus: (e: React.FocusEvent<HTMLInputElement>) => void,
   version: "classic" | "darklight",
 }
 
-const Inputs = React.forwardRef(
-  ({ product, onChange, onBlur, onFocus, version }: InputsType, ref) => {
+const Inputs = React.forwardRef<HTMLInputElement, InputsProps>(
+  ({ product, onChange, onBlur, onFocus, version }: InputsProps, ref) => {
     const inputTexts = getInputTextsConfig(product);
     const inputSelects = getSelectConfig(product);
 

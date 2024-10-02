@@ -6,21 +6,21 @@ import { ProductType } from "../../../../../../../typeScript/ProductType";
 
 type FormProps = {
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void,
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void,
+  onChange: (e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => void,
   product: ProductType,
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void,
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void,
   children: JSX.Element,
 }
-const Form = React.forwardRef(
+const Form = React.forwardRef<HTMLInputElement, FormProps>(
   ({ onSubmit, onChange, product, onBlur, onFocus, children }: FormProps, ref) => {
     return (
       <FormStyled onSubmit={onSubmit}>
         <ImagePreview imageSource={product.imageSource} title={product.title} />
         <Inputs
           onChange={onChange}
-          onBlur={onBlur}
-          onFocus={onFocus}
+          onBlur={onBlur ? onBlur : () => { }}// retourne une fonction vide si non definie
+          onFocus={onFocus ? onFocus : () => { }}
           version="darklight"
           ref={ref}
           product={product}
