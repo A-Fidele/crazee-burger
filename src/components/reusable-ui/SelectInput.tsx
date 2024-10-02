@@ -3,20 +3,20 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 type OptionType = {
-  value: string;
+  value: boolean;
   label: string;
 };
 
-type SelectInputTypes = {
+type SelectInputProps = {
   name: string,
   id: string,
   className: string,
   options: OptionType[],
   Icon: JSX.Element,
-  value: string,
+  value: boolean,
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void,
-  onFocus: (e: React.FocusEvent<HTMLSelectElement>) => void,
-  onBlur: (e: React.FocusEvent<HTMLSelectElement>) => void,
+  onFocus?: (e: React.FocusEvent<HTMLSelectElement>) => void,
+  onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void,
 
 }
 export default function SelectInput({
@@ -30,7 +30,7 @@ export default function SelectInput({
   onFocus,
   onBlur,
   ...restProps
-}: SelectInputTypes) {
+}: SelectInputProps) {
   return (
     <SelectInputStyled className={className}>
       <div className="icon">{Icon}</div>
