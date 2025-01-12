@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IoChevronForward } from "react-icons/io5";
@@ -24,7 +24,7 @@ export default function LoginForm() {
     navigate(`order/${username}`);
   };
 
-  const handleChange = (event: { target: any; preventDefault: () => void }) => {
+  const handleChange = (event: { target: { value: SetStateAction<string>; }; preventDefault: () => void }) => {
     setUsername(event.target.value);
   };
 
