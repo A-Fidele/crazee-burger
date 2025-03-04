@@ -68,18 +68,6 @@ Le projet est déployé sur **Vercel** pour une accessibilité immédiate. Vous 
 
 ---
 
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Si vous souhaitez améliorer ce projet, suivez ces étapes :
-
-1. Forkez le projet.
-2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`).
-3. Commitez vos changements (`git commit -m 'Ajouter une fonctionnalité incroyable'`).
-4. Poussez vers la branche (`git push origin feature/AmazingFeature`).
-5. Ouvrez une Pull Request.
-
----
-
 ## 🙏 Remerciements
 
 Un grand merci à ViDev pour sa formation.
