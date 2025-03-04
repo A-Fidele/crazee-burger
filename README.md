@@ -76,4 +76,4 @@ Merci à vous d'avoir pris le temps de découvrir **Crazee Burger** ! 🍔
 
 **Créé avec ❤️ par [A-Fidele](https://github.com/A-Fidele)**  
 📧 Contactez-moi pour toute question ou collaboration !
-```
+
