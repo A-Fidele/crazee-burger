@@ -1,4 +1,3 @@
-```markdown
 # 🍔 Crazee Burger - E-commerce Admin Interface
 
 Bienvenue sur **Crazee Burger**, une interface d'administration pour gérer les produits d'un site e-commerce de burgers ! Ce projet est conçu pour offrir une expérience interactive avec un système de panier, des calculs de prix dynamiques, et une gestion simplifiée des produits. Le tout, sans mot de passe, pour une utilisation fluide et rapide.
