@@ -17,8 +17,11 @@ export const useMenu = () => {
   };
 
   const handleAddProduct = (username: string, newProduct: ProductType) => {
+    console.log('menu: ', menu)
     const copyMenu = deepClone(menu);
+    console.log('copyMenu: ', copyMenu)
     const menuUpdated = [newProduct, ...copyMenu];
+    console.log('menuUpdated: ', menuUpdated)
     updateMenuDb(username, menuUpdated);
     setMenu(menuUpdated);
   };

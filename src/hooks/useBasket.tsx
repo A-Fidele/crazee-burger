@@ -18,7 +18,6 @@ export const useBasket = () => {
   const handleAddToBasket = (productToAdd: ProductType, username: string) => {
     const basketProductCopy = deepClone(basketProduct);
     const productFound = findObjectById(basketProduct, productToAdd.id);
-
     if (!productFound) {
       const newBasketProduct = {
         ...productToAdd,

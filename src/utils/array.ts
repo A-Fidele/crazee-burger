@@ -8,13 +8,14 @@ export const removeObjectById = (array: ProductType[], idOfObjecToDelete: Produc
     return array.filter((product) => product.id !== idOfObjecToDelete)
 }
 
-export const findObjectById = (array: ProductType[], idOfObjectToFind: ProductType['id']): ProductType => {
-    const product = array.find((product) => product.id === idOfObjectToFind)
-    if (product) {
-        return product
-    } else {
-        throw new Error(`Product with id ${idOfObjectToFind} not found`);
-    }
+export const findObjectById = (array: ProductType[], idOfObjectToFind: ProductType['id']): ProductType | undefined => {
+    // const product = array.find((product) => product.id === idOfObjectToFind)
+    // if (product) {
+    //     return product
+    // } else {
+    //     throw new Error(`Product with id ${idOfObjectToFind} not found`);
+    // }
+    return array.find((product) => product.id === idOfObjectToFind)
 }
 
 export const findObjectIndexById = (array: ProductType[], idOfObjectToFind: ProductType['id']) => {

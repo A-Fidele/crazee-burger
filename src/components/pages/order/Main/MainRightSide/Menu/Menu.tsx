@@ -51,6 +51,7 @@ export default function Menu() {
   const handleAddProduct = (event: React.MouseEvent<HTMLButtonElement>, id: string) => {
     event.stopPropagation();
     const productToAdd = findObjectById(menu, id);
+    console.log('MENU productToAdd: ', productToAdd.id)
     handleAddToBasket(productToAdd, username);
   };
 
